@@ -1,0 +1,77 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Copyright (c) 2003-2008 by AG-Software 											 *
+ * All Rights Reserved.																 *
+ * Contact information for AG-Software is available at http://www.ag-software.de	 *
+ *																					 *
+ * Licence:																			 *
+ * The agsXMPP SDK is released under a dual licence									 *
+ * agsXMPP can be used under either of two licences									 *
+ * 																					 *
+ * A commercial licence which is probably the most appropriate for commercial 		 *
+ * corporate use and closed source projects. 										 *
+ *																					 *
+ * The GNU Public License (GPL) is probably most appropriate for inclusion in		 *
+ * other open source projects.														 *
+ *																					 *
+ * See README.html for details.														 *
+ *																					 *
+ * For general enquiries visit our website at:										 *
+ * http://www.ag-software.de														 *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#region file header
+
+#endregion
+
+#region file header
+
+#endregion
+
+using System;
+
+namespace ASC.Xmpp.Core.utils.exceptions
+{
+
+    #region usings
+
+    #endregion
+
+    /// <summary>
+    /// </summary>
+    public class XmlRpcException : Exception
+    {
+        #region Constructor
+
+        /// <summary>
+        /// </summary>
+        public XmlRpcException()
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="msg"> </param>
+        public XmlRpcException(string msg) : base(msg)
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="code"> </param>
+        /// <param name="msg"> </param>
+        public XmlRpcException(int code, string msg) : base(msg)
+        {
+            Code = code;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// </summary>
+        public int Code { get; set; }
+
+        #endregion
+    }
+}

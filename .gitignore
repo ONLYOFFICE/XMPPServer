@@ -1,0 +1,10 @@
+**/obj/
+**/bin/
+/packages/
+*.suo
+*.user
+build/*.log
+build/deploy
+.vs/
+.vscode/
+ASC.Xmpp.Server.Launcher/Logs
