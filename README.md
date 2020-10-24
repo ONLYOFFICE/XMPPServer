@@ -1,6 +1,6 @@
 ## Overview
 
-Talk is an instant messaging app used within ONLYOFFICE. 
+Talk is an instant messaging app used within ONLYOFFICE. It's based on agsXMPP SDK. 
 
 ## Functionality
 
@@ -17,15 +17,13 @@ User documentation for Talk is available in [ONLYOFFICE Help Center](https://hel
 
 ## Project information
 
-Official website: [https://www.onlyoffice.com](https://www.onlyoffice.com?utm_source=github&utm_medium=cpc&utm_campaign=GitHubCP "https://www.onlyoffice.com?utm_source=github&utm_medium=cpc&utm_campaign=GitHubCP")
+Official website: [https://www.onlyoffice.com](https://www.onlyoffice.com?utm_source=github&utm_medium=cpc&utm_campaign=GitHubTalk")
 
-Code repository: [https://github.com/ONLYOFFICE/CommunityServer](https://github.com/ONLYOFFICE/CommunityServer "https://github.com/ONLYOFFICE/CommunityServer")
+Code repository: [https://github.com/ONLYOFFICE/CommunityServer](https://github.com/ONLYOFFICE/CommunityServer)
 
-License: [Apache](https://www.apache.org/licenses/LICENSE-2.0)
+License: [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-SaaS version: [https://www.onlyoffice.com/cloud-office.aspx](https://www.onlyoffice.com/cloud-office.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubCP "https://www.onlyoffice.com/cloud-office.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubCP")
-
-ONLYOFFICE Workspace (on-premise installation): [link]
+Use ith the cloud or on-premises: [https://www.onlyoffice.com/workspace.aspx](https://www.onlyoffice.com/workspace.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubTalk)
 
 ## User Feedback and Support
 
