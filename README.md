@@ -23,9 +23,9 @@ Code repository: [https://github.com/ONLYOFFICE/CommunityServer](https://github.
 
 License: [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-Use ith the cloud or on-premises: [https://www.onlyoffice.com/workspace.aspx](https://www.onlyoffice.com/workspace.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubTalk)
+Use it in the cloud or on-premises: [https://www.onlyoffice.com/workspace.aspx](https://www.onlyoffice.com/workspace.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubTalk)
 
-## User Feedback and Support
+## User feedback and support
 
 If you have any problems with or questions about ONLYOFFICE, please visit our official forum: [dev.onlyoffice.org][1] or ask and answer ONLYOFFICE development questions on [Stack Overflow][2].
 
