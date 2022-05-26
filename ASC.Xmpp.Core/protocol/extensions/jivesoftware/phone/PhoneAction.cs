@@ -81,7 +81,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.jivesoftware.phone
         public ActionType Type
         {
             set { SetAttribute("type", value.ToString()); }
-            get { return (ActionType) GetAttributeEnum("type", typeof (ActionType)); }
+            get { return (ActionType)GetAttributeEnum("type", typeof(ActionType)); }
         }
 
         public string Extension

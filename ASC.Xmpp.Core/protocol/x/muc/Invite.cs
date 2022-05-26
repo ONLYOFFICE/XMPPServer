@@ -110,13 +110,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Nickname Nickname
         {
-            get { return SelectSingleElement(typeof (Nickname)) as Nickname; }
+            get { return SelectSingleElement(typeof(Nickname)) as Nickname; }
 
             set
             {
-                if (HasTag(typeof (Nickname)))
+                if (HasTag(typeof(Nickname)))
                 {
-                    RemoveTag(typeof (Nickname));
+                    RemoveTag(typeof(Nickname));
                 }
 
                 if (value != null)

@@ -59,7 +59,7 @@ namespace ASC.Xmpp.Core.protocol.component
         /// </summary>
         public LogType Type
         {
-            get { return (LogType) GetAttributeEnum("type", typeof (LogType)); }
+            get { return (LogType)GetAttributeEnum("type", typeof(LogType)); }
             set
             {
                 if (value == LogType.NONE)

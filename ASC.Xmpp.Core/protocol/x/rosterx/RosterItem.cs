@@ -91,7 +91,7 @@ namespace ASC.Xmpp.Core.protocol.x.rosterx
         /// </summary>
         public Action Action
         {
-            get { return (Action) GetAttributeEnum("action", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("action", typeof(Action)); }
 
             set { SetAttribute("action", value.ToString()); }
         }

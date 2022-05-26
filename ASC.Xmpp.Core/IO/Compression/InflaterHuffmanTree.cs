@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.IO.Compression.Streams;
 
 namespace ASC.Xmpp.Core.IO.Compression
@@ -48,7 +49,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int MAX_BITLEN = 15;
+        private static readonly int MAX_BITLEN = 15;
 
         /// <summary>
         /// </summary>
@@ -228,7 +229,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                 int start = code & 0x1ff80;
                 for (int i = start; i < end; i += 1 << 7)
                 {
-                    tree[DeflaterHuffman.BitReverse(i)] = (short) ((-treePtr << 4) | bits);
+                    tree[DeflaterHuffman.BitReverse(i)] = (short)((-treePtr << 4) | bits);
                     treePtr += 1 << (bits - 9);
                 }
             }
@@ -247,7 +248,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                 {
                     do
                     {
-                        tree[revcode] = (short) ((i << 4) | bits);
+                        tree[revcode] = (short)((i << 4) | bits);
                         revcode += 1 << bits;
                     } while (revcode < 512);
                 }
@@ -258,7 +259,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     subTree = -(subTree >> 4);
                     do
                     {
-                        tree[subTree | (revcode >> 9)] = (short) ((i << 4) | bits);
+                        tree[subTree | (revcode >> 9)] = (short)((i << 4) | bits);
                         revcode += 1 << bits;
                     } while (revcode < treeLen);
                 }

@@ -78,7 +78,7 @@ namespace ASC.Xmpp.Core.protocol.x.muc.iq.admin
         /// <returns> </returns>
         public Item[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (Item));
+            ElementList nl = SelectElements(typeof(Item));
             var items = new Item[nl.Count];
             int i = 0;
             foreach (Item itm in nl)

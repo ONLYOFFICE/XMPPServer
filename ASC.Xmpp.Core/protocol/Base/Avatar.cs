@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.Base

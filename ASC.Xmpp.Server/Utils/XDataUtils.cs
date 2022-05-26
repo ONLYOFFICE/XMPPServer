@@ -19,219 +19,220 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using XmppData = ASC.Xmpp.Core.protocol.x.data;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
+using XmppData = ASC.Xmpp.Core.protocol.x.data;
+
 namespace ASC.Xmpp.Server.Utils
 {
     public class XDataFromsExample
-	{
-		[XDataUtils.XDataAnyOf("any", "all", "one of")]
-		public string[] many { get; set; }
+    {
+        [XDataUtils.XDataAnyOf("any", "all", "one of")]
+        public string[] many { get; set; }
 
-		[XDataUtils.XDataOneOf("any", "all", "one of")]
-		public string oneof { get; set; }
+        [XDataUtils.XDataOneOf("any", "all", "one of")]
+        public string oneof { get; set; }
 
-		[XDataUtils.XDataFixed]
-		public string data1 { get; set; }
+        [XDataUtils.XDataFixed]
+        public string data1 { get; set; }
 
-		[XDataUtils.XDataMultiline]
-		public string data2 { get; set; }
+        [XDataUtils.XDataMultiline]
+        public string data2 { get; set; }
 
-		[XDataUtils.XDataPassword]
-		public string data3 { get; set; }
+        [XDataUtils.XDataPassword]
+        public string data3 { get; set; }
 
-		[XDataUtils.XDataDescription("Label test")]
-		public string data4 { get; set; }
+        [XDataUtils.XDataDescription("Label test")]
+        public string data4 { get; set; }
 
-		public XDataFromsExample()
-		{
-			many = new string[] { "any" };
-			oneof = "all";
-			data1 = "fixed!";
-		}
+        public XDataFromsExample()
+        {
+            many = new string[] { "any" };
+            oneof = "all";
+            data1 = "fixed!";
+        }
 
-	}
+    }
 
 
 
-	public class XDataUtils
-	{
-		public class XDataDescriptionAttribute : Attribute
-		{
-			public string Description { get; set; }
+    public class XDataUtils
+    {
+        public class XDataDescriptionAttribute : Attribute
+        {
+            public string Description { get; set; }
 
-			public XDataDescriptionAttribute(string description)
-			{
-				Description = description;
-			}
-		}
+            public XDataDescriptionAttribute(string description)
+            {
+                Description = description;
+            }
+        }
 
-		public class XDataOneOfAttribute : Attribute
-		{
-			public string[] Variants { get; set; }
+        public class XDataOneOfAttribute : Attribute
+        {
+            public string[] Variants { get; set; }
 
-			public XDataOneOfAttribute(params string[] variants)
-			{
-				Variants = variants;
-			}
-		}
+            public XDataOneOfAttribute(params string[] variants)
+            {
+                Variants = variants;
+            }
+        }
 
-		public class XDataAnyOfAttribute : Attribute
-		{
-			public string[] Variants { get; set; }
+        public class XDataAnyOfAttribute : Attribute
+        {
+            public string[] Variants { get; set; }
 
-			public XDataAnyOfAttribute(params string[] variants)
-			{
-				Variants = variants;
-			}
-		}
+            public XDataAnyOfAttribute(params string[] variants)
+            {
+                Variants = variants;
+            }
+        }
 
-		public class XDataMultiline : Attribute
-		{
-		}
+        public class XDataMultiline : Attribute
+        {
+        }
 
-		public class XDataFixed : Attribute
-		{
-		}
+        public class XDataFixed : Attribute
+        {
+        }
 
-		public class XDataPassword : Attribute
-		{
-		}
+        public class XDataPassword : Attribute
+        {
+        }
 
         public static void FillDataTo(object dataForm, string prefix, XmppData.Data data)
-		{
+        {
             if (data.Type == XmppData.XDataFormType.submit)
-			{
-				//Gen prop map
-				PropertyInfo[] props =
-					dataForm.GetType().GetProperties(BindingFlags.Instance | BindingFlags.SetProperty |
-													 BindingFlags.Public);
-				Dictionary<string, PropertyInfo> propsVar = new Dictionary<string, PropertyInfo>();
-				foreach (PropertyInfo prop in props)
-				{
-					if (prop.CanWrite)
-					{
-						propsVar.Add(string.Format("{0}#{1}", prefix, prop.Name), prop);
-					}
-				}
+            {
+                //Gen prop map
+                PropertyInfo[] props =
+                    dataForm.GetType().GetProperties(BindingFlags.Instance | BindingFlags.SetProperty |
+                                                     BindingFlags.Public);
+                Dictionary<string, PropertyInfo> propsVar = new Dictionary<string, PropertyInfo>();
+                foreach (PropertyInfo prop in props)
+                {
+                    if (prop.CanWrite)
+                    {
+                        propsVar.Add(string.Format("{0}#{1}", prefix, prop.Name), prop);
+                    }
+                }
 
                 XmppData.Field[] fields = data.GetFields();
-				foreach (var field in fields)
-				{
-					if (propsVar.ContainsKey(field.Var))
-					{
-						PropertyInfo prop = propsVar[field.Var];
-						if (prop.PropertyType == typeof(bool))
-						{
-							string val = field.GetValue();
-							if (!string.IsNullOrEmpty(val))
-							{
-								prop.SetValue(dataForm, val == "1", null);
-							}
-						}
-						else if (prop.PropertyType == typeof(string))
-						{
-							string val = field.GetValue();
-							if (!string.IsNullOrEmpty(val))
-							{
-								prop.SetValue(dataForm, val, null);
-							}
-						}
-						else if (prop.PropertyType == typeof(string[]))
-						{
-							string[] val = field.GetValues();
-							if (val != null)
-							{
-								prop.SetValue(dataForm, val, null);
-							}
-						}
+                foreach (var field in fields)
+                {
+                    if (propsVar.ContainsKey(field.Var))
+                    {
+                        PropertyInfo prop = propsVar[field.Var];
+                        if (prop.PropertyType == typeof(bool))
+                        {
+                            string val = field.GetValue();
+                            if (!string.IsNullOrEmpty(val))
+                            {
+                                prop.SetValue(dataForm, val == "1", null);
+                            }
+                        }
+                        else if (prop.PropertyType == typeof(string))
+                        {
+                            string val = field.GetValue();
+                            if (!string.IsNullOrEmpty(val))
+                            {
+                                prop.SetValue(dataForm, val, null);
+                            }
+                        }
+                        else if (prop.PropertyType == typeof(string[]))
+                        {
+                            string[] val = field.GetValues();
+                            if (val != null)
+                            {
+                                prop.SetValue(dataForm, val, null);
+                            }
+                        }
 
-					}
-				}
-			}
-		}
+                    }
+                }
+            }
+        }
 
         public static XmppData.Data GetDataForm(object dataForm, string prefix)
-		{
+        {
             XmppData.Data data = new XmppData.Data(XmppData.XDataFormType.form);
 
-			//Go through public vars
-			PropertyInfo[] props = dataForm.GetType().GetProperties(BindingFlags.Instance | BindingFlags.SetProperty |
-											 BindingFlags.Public);
-			foreach (PropertyInfo prop in props)
-			{
-				if (prop.CanRead)
-				{
+            //Go through public vars
+            PropertyInfo[] props = dataForm.GetType().GetProperties(BindingFlags.Instance | BindingFlags.SetProperty |
+                                             BindingFlags.Public);
+            foreach (PropertyInfo prop in props)
+            {
+                if (prop.CanRead)
+                {
                     XmppData.Field field = new XmppData.Field(XmppData.FieldType.Unknown);
 
-					field.Var = string.Format("{0}#{1}", prefix, prop.Name);
-					object propValue = prop.GetValue(dataForm, null);
+                    field.Var = string.Format("{0}#{1}", prefix, prop.Name);
+                    object propValue = prop.GetValue(dataForm, null);
 
-					foreach (var attribute in prop.GetCustomAttributes(false))
-					{
-						if (attribute is XDataDescriptionAttribute)
-						{
-							field.Label = (attribute as XDataDescriptionAttribute).Description;
-						}
-						else if (attribute is XDataOneOfAttribute)
-						{
+                    foreach (var attribute in prop.GetCustomAttributes(false))
+                    {
+                        if (attribute is XDataDescriptionAttribute)
+                        {
+                            field.Label = (attribute as XDataDescriptionAttribute).Description;
+                        }
+                        else if (attribute is XDataOneOfAttribute)
+                        {
                             field.Type = XmppData.FieldType.List_Single;
-							field.FieldValue = (string)propValue;
-							foreach (var vars in (attribute as XDataOneOfAttribute).Variants)
-							{
-								field.AddOption(vars, vars);
-							}
-						}
-						else if (attribute is XDataAnyOfAttribute)
-						{
+                            field.FieldValue = (string)propValue;
+                            foreach (var vars in (attribute as XDataOneOfAttribute).Variants)
+                            {
+                                field.AddOption(vars, vars);
+                            }
+                        }
+                        else if (attribute is XDataAnyOfAttribute)
+                        {
                             field.Type = XmppData.FieldType.List_Multi;
-							field.AddValues((string[])propValue);
-							foreach (var vars in (attribute as XDataAnyOfAttribute).Variants)
-							{
-								field.AddOption(vars, vars);
-							}
-						}
-						else if (attribute is XDataMultiline)
-						{
+                            field.AddValues((string[])propValue);
+                            foreach (var vars in (attribute as XDataAnyOfAttribute).Variants)
+                            {
+                                field.AddOption(vars, vars);
+                            }
+                        }
+                        else if (attribute is XDataMultiline)
+                        {
                             field.Type = XmppData.FieldType.Text_Multi;
-							field.FieldValue = (string)propValue;
-						}
-						else if (attribute is XDataPassword)
-						{
+                            field.FieldValue = (string)propValue;
+                        }
+                        else if (attribute is XDataPassword)
+                        {
                             field.Type = XmppData.FieldType.Text_Private;
-							field.FieldValue = (string)propValue;
-						}
-						else if (attribute is XDataFixed)
-						{
+                            field.FieldValue = (string)propValue;
+                        }
+                        else if (attribute is XDataFixed)
+                        {
                             field.Type = XmppData.FieldType.Fixed;
-							field.FieldValue = (string)propValue;
-						}
-					}
+                            field.FieldValue = (string)propValue;
+                        }
+                    }
                     if (field.Type == XmppData.FieldType.Unknown)
-					{
-						if (prop.PropertyType == typeof(bool))
-						{
+                    {
+                        if (prop.PropertyType == typeof(bool))
+                        {
                             field.Type = XmppData.FieldType.Boolean;
-							field.FieldValue = (bool)propValue ? "1" : "0";
-						}
-						else if (prop.PropertyType == typeof(string))
-						{
+                            field.FieldValue = (bool)propValue ? "1" : "0";
+                        }
+                        else if (prop.PropertyType == typeof(string))
+                        {
                             field.Type = XmppData.FieldType.Text_Single;
-							field.FieldValue = (string)propValue;
-						}
-					}
-					if (field.Label == null)
-					{
-						field.Label = prop.Name;
-					}
-					data.AddField(field);
-				}
-			}
+                            field.FieldValue = (string)propValue;
+                        }
+                    }
+                    if (field.Label == null)
+                    {
+                        field.Label = prop.Name;
+                    }
+                    data.AddField(field);
+                }
+            }
 
-			return data;
-		}
-	}
+            return data;
+        }
+    }
 }

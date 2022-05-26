@@ -23,8 +23,8 @@ using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Configuration
 {
-	public interface IConfigurable
-	{
-		void Configure(IDictionary<string, string> properties);
-	}
+    public interface IConfigurable
+    {
+        void Configure(IDictionary<string, string> properties);
+    }
 }

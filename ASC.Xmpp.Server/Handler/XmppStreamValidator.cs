@@ -27,6 +27,7 @@ using ASC.Xmpp.Core.protocol.iq.register;
 using ASC.Xmpp.Core.utils.Idn;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Streams;
+
 using Error = ASC.Xmpp.Core.protocol.Error;
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 

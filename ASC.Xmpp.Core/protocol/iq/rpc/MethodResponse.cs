@@ -22,9 +22,10 @@
 using System;
 using System.Collections;
 using System.Globalization;
+
 using ASC.Xmpp.Core.utils;
-using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Core.utils.exceptions;
+using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.iq.rpc
 {
@@ -82,7 +83,7 @@ namespace ASC.Xmpp.Core.protocol.iq.rpc
             if (fault != null)
             {
                 Hashtable ht = ParseStruct(fault.SelectSingleElement("struct", true));
-                al.Add(new XmlRpcException((int) ht["faultCode"], (string) ht["faultString"]));
+                al.Add(new XmlRpcException((int)ht["faultCode"], (string)ht["faultString"]));
             }
             else
             {

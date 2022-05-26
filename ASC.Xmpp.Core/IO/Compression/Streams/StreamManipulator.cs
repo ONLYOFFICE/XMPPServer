@@ -109,7 +109,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
                 bits_in_buffer += 16;
             }
 
-            return (int) (buffer & ((1 << n) - 1));
+            return (int)(buffer & ((1 << n) - 1));
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
             int count = 0;
             while (bits_in_buffer > 0 && length > 0)
             {
-                output[offset++] = (byte) buffer;
+                output[offset++] = (byte)buffer;
                 buffer >>= 8;
                 bits_in_buffer -= 8;
                 length--;
@@ -196,7 +196,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
             if (((window_start - window_end) & 1) != 0)
             {
                 /* We always want an even number of bytes in input, see peekBits */
-                buffer = (uint) (window[window_start++] & 0xff);
+                buffer = (uint)(window[window_start++] & 0xff);
                 bits_in_buffer = 8;
             }
 
@@ -208,7 +208,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
         /// </summary>
         public void Reset()
         {
-            buffer = (uint) (window_start = window_end = bits_in_buffer = 0);
+            buffer = (uint)(window_start = window_end = bits_in_buffer = 0);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
             if ((len & 1) != 0)
             {
                 /* We always want an even number of bytes in input, see peekBits */
-                buffer |= (uint) ((buf[off++] & 0xff) << bits_in_buffer);
+                buffer |= (uint)((buf[off++] & 0xff) << bits_in_buffer);
                 bits_in_buffer += 8;
             }
 

@@ -23,7 +23,6 @@ using ASC.Core;
 using ASC.Core.Configuration;
 using ASC.Core.Tenants;
 using ASC.Xmpp.Server.Configuration;
-using System.Configuration;
 
 namespace ASC.Xmpp.Host
 {
@@ -52,7 +51,7 @@ namespace ASC.Xmpp.Host
 
         public static void SetCurrentTenant(string domain)
         {
-            SecurityContext.AuthenticateMe(Constants.CoreSystem);
+            SecurityContext.AuthenticateMe(Constants.CoreSystem.ID);
             // for migration from teamlab.com to onlyoffice.com
             if (JabberConfiguration.ReplaceDomain && domain.EndsWith(JabberConfiguration.ReplaceFromDomain))
             {

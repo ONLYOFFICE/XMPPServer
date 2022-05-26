@@ -45,7 +45,7 @@ namespace ASC.Xmpp.Server.Storage
             }
 
             dbid = properties["connectionStringName"];
-            using (var db = new DbManager(dbid, false))
+            using (var db = DbManager.FromHttpContext(dbid))
             {
                 if (!properties.ContainsKey("generateSchema") || Convert.ToBoolean(properties["generateSchema"]))
                 {
@@ -88,14 +88,14 @@ namespace ASC.Xmpp.Server.Storage
             return ExecWithAttempts(db => db.ExecuteBatch(batch), ATTEMPTS_COUNT);
         }
 
-        private T ExecWithAttempts<T>(Func<DbManager, T> action, int attempsCount)
+        private T ExecWithAttempts<T>(Func<IDbManager, T> action, int attempsCount)
         {
             var counter = 0;
-            while(true)
+            while (true)
             {
                 try
                 {
-                    using (var db = new DbManager(dbid, false))
+                    using (var db = DbManager.FromHttpContext(dbid))
                     {
                         return action(db);
                     }

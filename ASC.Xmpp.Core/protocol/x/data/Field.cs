@@ -220,7 +220,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public string GetValue()
         {
-            return GetTag(typeof (Value));
+            return GetTag(typeof(Value));
 
             // return GetTag("value");			
         }
@@ -247,7 +247,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <param name="val"> </param>
         public void SetValue(string val)
         {
-            SetTag(typeof (Value), val);
+            SetTag(typeof(Value), val);
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <param name="vals"> </param>
         public void SetValues(string[] vals)
         {
-            ElementList nl = SelectElements(typeof (Value));
+            ElementList nl = SelectElements(typeof(Value));
 
             foreach (Element e in nl)
             {
@@ -344,7 +344,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> string Array that contains all the values </returns>
         public string[] GetValues()
         {
-            ElementList nl = SelectElements(typeof (Value));
+            ElementList nl = SelectElements(typeof(Value));
             var values = new string[nl.Count];
             int i = 0;
             foreach (Element val in nl)
@@ -391,7 +391,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public Option[] GetOptions()
         {
-            ElementList nl = SelectElements(typeof (Option));
+            ElementList nl = SelectElements(typeof(Option));
             int i = 0;
             var result = new Option[nl.Count];
             foreach (Option o in nl)

@@ -19,14 +19,15 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Common.Data.Sql;
-using ASC.Xmpp.Core.protocol;
-using ASC.Xmpp.Server.Storage.Interface;
-using ASC.Xmpp.Server.Users;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+
+using ASC.Common.Data.Sql;
+using ASC.Xmpp.Core.protocol;
+using ASC.Xmpp.Server.Storage.Interface;
+using ASC.Xmpp.Server.Users;
 
 namespace ASC.Xmpp.Server.Storage
 {

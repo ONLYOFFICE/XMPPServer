@@ -24,8 +24,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
+
 using ASC.Common.Logging;
 using ASC.Core;
+using ASC.Core.Common.Contracts;
 using ASC.Core.Common.Notify.Jabber;
 using ASC.Core.Notify.Jabber;
 using ASC.Core.Notify.Signalr;
@@ -45,9 +47,9 @@ using Stream = ASC.Xmpp.Core.protocol.Stream;
 
 namespace ASC.Xmpp.Host
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, IncludeExceptionDetailInFaults = true,
+    [System.ServiceModel.ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, IncludeExceptionDetailInFaults = true,
         InstanceContextMode = InstanceContextMode.Single, AddressFilterMode = AddressFilterMode.Any)]
-    public class JabberService : IJabberService
+    public class JabberService : IJabberService, IHealthCheckService
     {
         private static readonly ILog _log = LogManager.GetLogger("ASC");
         private readonly XmppServer _xmppServer;
@@ -119,7 +121,7 @@ namespace ASC.Xmpp.Host
                         if (session != null && !session.IsSignalRFake)
                         {
                             ((IXmppSender)_xmppServer.GetService(typeof(IXmppSender))).SendTo(session, message);
-                           
+
                         }
                     }
                 }
@@ -448,6 +450,15 @@ namespace ASC.Xmpp.Host
                 }
             }
             return new Jid(userName, domain, resource);
+        }
+
+        public HealthCheckResponse CheckHealth()
+        {
+            return HealthCheckResult.ToResponse(new HealthCheckResult
+            {
+                Message = "Service Jabber is OK! Warning: Method is not implement. Always return the Healthy status",
+                Status = HealthStatus.Healthy
+            });
         }
     }
 }

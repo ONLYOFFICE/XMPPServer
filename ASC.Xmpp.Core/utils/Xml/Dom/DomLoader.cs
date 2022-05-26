@@ -22,6 +22,7 @@
 using System;
 using System.IO;
 using System.Text;
+
 using ASC.Common.Logging;
 
 
@@ -66,8 +67,8 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
             sp.OnStreamElement += sp_OnStreamElement;
             sp.OnStreamEnd += sp_OnStreamEnd;
             sp.OnStreamError += sp_OnStreamError;
-            sp.OnError += sp_OnError; 
-                
+            sp.OnError += sp_OnError;
+
             byte[] b = Encoding.UTF8.GetBytes(xml);
             sp.Push(b, 0, b.Length);
         }

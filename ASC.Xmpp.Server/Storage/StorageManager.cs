@@ -19,16 +19,17 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Server.Storage.Interface;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+
+using ASC.Xmpp.Server.Storage.Interface;
 
 namespace ASC.Xmpp.Server.Storage
 {
     public class StorageManager : IDisposable
     {
-        private IDictionary<string, object> storages = new ConcurrentDictionary<string, object>();
+        private readonly IDictionary<string, object> storages = new ConcurrentDictionary<string, object>();
 
         public IOfflineStore OfflineStorage
         {

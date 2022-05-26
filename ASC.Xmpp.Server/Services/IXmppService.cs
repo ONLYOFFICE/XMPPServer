@@ -19,51 +19,52 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.disco;
 using ASC.Xmpp.Core.protocol.iq.vcard;
 using ASC.Xmpp.Server.Configuration;
-using System;
 
 namespace ASC.Xmpp.Server.Services
 {
-	public interface IXmppService : IConfigurable
-	{
-		Jid Jid
-		{
-			get;
-			set;
-		}
+    public interface IXmppService : IConfigurable
+    {
+        Jid Jid
+        {
+            get;
+            set;
+        }
 
-		string Name
-		{
-			get;
-			set;
-		}
-		
-		DiscoInfo DiscoInfo
-		{
-			get;
-		}
+        string Name
+        {
+            get;
+            set;
+        }
 
-		DiscoItem DiscoItem
-		{
-			get;
-		}
+        DiscoInfo DiscoInfo
+        {
+            get;
+        }
 
-		Vcard Vcard
-		{
-			get;
-		}
+        DiscoItem DiscoItem
+        {
+            get;
+        }
 
-		IXmppService ParentService
-		{
-			get;
-			set;
-		}
+        Vcard Vcard
+        {
+            get;
+        }
 
-		void OnRegister(IServiceProvider serviceProvider);
+        IXmppService ParentService
+        {
+            get;
+            set;
+        }
 
-		void OnUnregister(IServiceProvider serviceProvider);
-	}
+        void OnRegister(IServiceProvider serviceProvider);
+
+        void OnUnregister(IServiceProvider serviceProvider);
+    }
 }

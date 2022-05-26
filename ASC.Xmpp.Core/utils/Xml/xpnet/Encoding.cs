@@ -1148,29 +1148,29 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                 case BT_APOS:
                     return scanLit(BT_APOS, buf, off + minBPC, end, token);
                 case BT_LT:
+                {
+                    off += minBPC;
+                    if (off == end)
                     {
-                        off += minBPC;
-                        if (off == end)
-                        {
-                            throw new PartialTokenException();
-                        }
-
-                        switch (byteType(buf, off))
-                        {
-                            case BT_EXCL:
-                                return scanDecl(buf, off + minBPC, end, token);
-                            case BT_QUEST:
-                                return scanPi(buf, off + minBPC, end, token);
-                            case BT_NMSTRT:
-                            case BT_LEAD2:
-                            case BT_LEAD3:
-                            case BT_LEAD4:
-                                token.TokenEnd = off - minBPC;
-                                throw new EndOfPrologException();
-                        }
-
-                        throw new InvalidTokenException(off);
+                        throw new PartialTokenException();
                     }
+
+                    switch (byteType(buf, off))
+                    {
+                        case BT_EXCL:
+                            return scanDecl(buf, off + minBPC, end, token);
+                        case BT_QUEST:
+                            return scanPi(buf, off + minBPC, end, token);
+                        case BT_NMSTRT:
+                        case BT_LEAD2:
+                        case BT_LEAD3:
+                        case BT_LEAD4:
+                            token.TokenEnd = off - minBPC;
+                            throw new EndOfPrologException();
+                    }
+
+                    throw new InvalidTokenException(off);
+                }
 
                 case BT_CR:
                     if (off + minBPC == end)
@@ -1182,7 +1182,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                     goto case BT_S;
                 case BT_S:
                 case BT_LF:
-                    for (;;)
+                    for (; ; )
                     {
                         off += minBPC;
                         if (off == end)
@@ -1237,7 +1237,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
 
                         if (charMatches(buf, off + minBPC, '>'))
                         {
-                            token.TokenEnd = off + 2*minBPC;
+                            token.TokenEnd = off + 2 * minBPC;
                             return TOK.COND_SECT_CLOSE;
                         }
                     }
@@ -1872,7 +1872,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                 }
             }
 
-            loop:
+        loop:
             throw new PartialTokenException();
         }
 
@@ -1980,7 +1980,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         public bool matchesXMLstring(byte[] buf, int off, int end, string str)
         {
             int len = str.Length;
-            if (len*minBPC != end - off)
+            if (len * minBPC != end - off)
             {
                 return false;
             }
@@ -2026,7 +2026,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                 }
             }
 
-            loop:
+        loop:
             return off;
         }
 
@@ -2179,7 +2179,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
             {
                 if ((min & 0xFF) == 0)
                 {
-                    for (; min + (char) 0xFF <= max; min += (char) 0x100)
+                    for (; min + (char)0xFF <= max; min += (char)0x100)
                     {
                         if (shared == null)
                         {
@@ -2436,7 +2436,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         private bool targetIsXml(byte[] buf, int off, int end)
         {
             bool upper = false;
-            if (end - off != minBPC*3)
+            if (end - off != minBPC * 3)
             {
                 return false;
             }
@@ -2700,7 +2700,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         private TOK scanCdataSection(byte[] buf, int off, int end, Token token)
         {
             /* "CDATA[".length() == 6 */
-            if (end - off < 6*minBPC)
+            if (end - off < 6 * minBPC)
             {
                 throw new PartialTokenException();
             }
@@ -3103,7 +3103,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                         case '7':
                         case '8':
                         case '9':
-                            num = num*10 + (c - '0');
+                            num = num * 10 + (c - '0');
                             if (num < 0x110000)
                             {
                                 break;
@@ -3143,14 +3143,14 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                         throw new InvalidTokenException(token.TokenEnd - minBPC);
                 }
 
-                token.RefChar1 = (char) num;
+                token.RefChar1 = (char)num;
                 return TOK.CHAR_REF;
             }
             else
             {
                 num -= 0x10000;
-                token.RefChar1 = (char) ((num >> 10) + 0xD800);
-                token.RefChar2 = (char) ((num & ((1 << 10) - 1)) + 0xDC00);
+                token.RefChar1 = (char)((num >> 10) + 0xD800);
+                token.RefChar2 = (char)((num & ((1 << 10) - 1)) + 0xDC00);
                 return TOK.CHAR_PAIR_REF;
             }
         }
@@ -3167,7 +3167,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
             switch (byteToAscii(buf, off))
             {
                 case 'a':
-                    if (end - off < minBPC*4)
+                    if (end - off < minBPC * 4)
                     {
                         break;
                     }
@@ -3175,19 +3175,19 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                     switch (byteToAscii(buf, off + minBPC))
                     {
                         case 'm':
-                            if (charMatches(buf, off + minBPC*2, 'p') && charMatches(buf, off + minBPC*3, ';'))
+                            if (charMatches(buf, off + minBPC * 2, 'p') && charMatches(buf, off + minBPC * 3, ';'))
                             {
-                                token.TokenEnd = off + minBPC*4;
+                                token.TokenEnd = off + minBPC * 4;
                                 token.RefChar1 = '&';
                                 return true;
                             }
 
                             break;
                         case 'p':
-                            if (end - off >= minBPC*5 && charMatches(buf, off + minBPC*2, 'o') &&
-                                charMatches(buf, off + minBPC*3, 's') && charMatches(buf, off + minBPC*4, ';'))
+                            if (end - off >= minBPC * 5 && charMatches(buf, off + minBPC * 2, 'o') &&
+                                charMatches(buf, off + minBPC * 3, 's') && charMatches(buf, off + minBPC * 4, ';'))
                             {
-                                token.TokenEnd = off + minBPC*5;
+                                token.TokenEnd = off + minBPC * 5;
                                 token.RefChar1 = '\'';
                                 return true;
                             }
@@ -3197,31 +3197,31 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
 
                     break;
                 case 'l':
-                    if (end - off >= minBPC*3 && charMatches(buf, off + minBPC, 't') &&
-                        charMatches(buf, off + minBPC*2, ';'))
+                    if (end - off >= minBPC * 3 && charMatches(buf, off + minBPC, 't') &&
+                        charMatches(buf, off + minBPC * 2, ';'))
                     {
-                        token.TokenEnd = off + minBPC*3;
+                        token.TokenEnd = off + minBPC * 3;
                         token.RefChar1 = '<';
                         return true;
                     }
 
                     break;
                 case 'g':
-                    if (end - off >= minBPC*3 && charMatches(buf, off + minBPC, 't') &&
-                        charMatches(buf, off + minBPC*2, ';'))
+                    if (end - off >= minBPC * 3 && charMatches(buf, off + minBPC, 't') &&
+                        charMatches(buf, off + minBPC * 2, ';'))
                     {
-                        token.TokenEnd = off + minBPC*3;
+                        token.TokenEnd = off + minBPC * 3;
                         token.RefChar1 = '>';
                         return true;
                     }
 
                     break;
                 case 'q':
-                    if (end - off >= minBPC*5 && charMatches(buf, off + minBPC, 'u') &&
-                        charMatches(buf, off + minBPC*2, 'o') && charMatches(buf, off + minBPC*3, 't') &&
-                        charMatches(buf, off + minBPC*4, ';'))
+                    if (end - off >= minBPC * 5 && charMatches(buf, off + minBPC, 'u') &&
+                        charMatches(buf, off + minBPC * 2, 'o') && charMatches(buf, off + minBPC * 3, 't') &&
+                        charMatches(buf, off + minBPC * 4, ';'))
                     {
-                        token.TokenEnd = off + minBPC*5;
+                        token.TokenEnd = off + minBPC * 5;
                         token.RefChar1 = '"';
                         return true;
                     }
@@ -3435,7 +3435,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                     case BT_CR:
                     case BT_LF:
                         NameEnd = off;
-                        for (;;)
+                        for (; ; )
                         {
                             off += minBPC;
                             if (off == end)
@@ -3456,132 +3456,233 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                             }
                         }
 
-                        loop:
+                    loop:
                         ;
 
                         /* fall through */
                         goto case BT_EQUALS;
                     case BT_EQUALS:
+                    {
+                        if (NameEnd < 0)
                         {
-                            if (NameEnd < 0)
+                            NameEnd = off;
+                        }
+
+                        int open;
+                        for (; ; )
+                        {
+                            off += minBPC;
+                            if (off == end)
                             {
-                                NameEnd = off;
+                                throw new PartialTokenException();
                             }
 
-                            int open;
-                            for (;;)
+                            open = byteType(buf, off);
+                            if (open == BT_QUOT || open == BT_APOS)
                             {
+                                break;
+                            }
+
+                            switch (open)
+                            {
+                                case BT_S:
+                                case BT_LF:
+                                case BT_CR:
+                                    break;
+                                default:
+                                    throw new InvalidTokenException(off);
+                            }
+                        }
+
+                        off += minBPC;
+                        int valueStart = off;
+                        bool normalized = true;
+                        int t;
+
+                        /* in attribute value */
+                        for (; ; )
+                        {
+                            if (off == end)
+                            {
+                                throw new PartialTokenException();
+                            }
+
+                            t = byteType(buf, off);
+                            if (t == open)
+                            {
+                                break;
+                            }
+
+                            switch (t)
+                            {
+                                case BT_NONXML:
+                                case BT_MALFORM:
+                                    throw new InvalidTokenException(off);
+                                case BT_LEAD2:
+                                    if (end - off < 2)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    check2(buf, off);
+                                    off += 2;
+                                    break;
+                                case BT_LEAD3:
+                                    if (end - off < 3)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    check3(buf, off);
+                                    off += 3;
+                                    break;
+                                case BT_LEAD4:
+                                    if (end - off < 4)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    check4(buf, off);
+                                    off += 4;
+                                    break;
+                                case BT_AMP:
+                                {
+                                    normalized = false;
+                                    int saveNameEnd = token.NameEnd;
+                                    scanRef(buf, off + minBPC, end, token);
+                                    token.NameEnd = saveNameEnd;
+                                    off = token.TokenEnd;
+                                    break;
+                                }
+
+                                case BT_S:
+                                    if (normalized &&
+                                        (off == valueStart || byteToAscii(buf, off) != ' ' ||
+                                         (off + minBPC != end &&
+                                          (byteToAscii(buf, off + minBPC) == ' ' ||
+                                           byteType(buf, off + minBPC) == open))))
+                                    {
+                                        normalized = false;
+                                    }
+
+                                    off += minBPC;
+                                    break;
+                                case BT_LT:
+                                    throw new InvalidTokenException(off);
+                                case BT_LF:
+                                case BT_CR:
+                                    normalized = false;
+
+                                    /* fall through */
+                                    goto default;
+                                default:
+                                    off += minBPC;
+                                    break;
+                            }
+                        }
+
+                        token.appendAttribute(nameStart, NameEnd, valueStart, off, normalized);
+                        off += minBPC;
+                        if (off == end)
+                        {
+                            throw new PartialTokenException();
+                        }
+
+                        t = byteType(buf, off);
+                        switch (t)
+                        {
+                            case BT_S:
+                            case BT_CR:
+                            case BT_LF:
                                 off += minBPC;
                                 if (off == end)
                                 {
                                     throw new PartialTokenException();
                                 }
 
-                                open = byteType(buf, off);
-                                if (open == BT_QUOT || open == BT_APOS)
-                                {
-                                    break;
-                                }
-
-                                switch (open)
-                                {
-                                    case BT_S:
-                                    case BT_LF:
-                                    case BT_CR:
-                                        break;
-                                    default:
-                                        throw new InvalidTokenException(off);
-                                }
-                            }
-
-                            off += minBPC;
-                            int valueStart = off;
-                            bool normalized = true;
-                            int t;
-
-                            /* in attribute value */
-                            for (;;)
-                            {
-                                if (off == end)
-                                {
-                                    throw new PartialTokenException();
-                                }
-
                                 t = byteType(buf, off);
-                                if (t == open)
-                                {
+                                break;
+                            case BT_GT:
+                            case BT_SOL:
+                                break;
+                            default:
+                                throw new InvalidTokenException(off);
+                        }
+
+                        /* off points to closing quote */
+                        for (; ; )
+                        {
+                            switch (t)
+                            {
+                                case BT_NMSTRT:
+                                    nameStart = off;
+                                    off += minBPC;
+                                    goto skipToName;
+                                case BT_LEAD2:
+                                    if (end - off < 2)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    if (byteType2(buf, off) != BT_NMSTRT)
+                                    {
+                                        throw new InvalidTokenException(off);
+                                    }
+
+                                    nameStart = off;
+                                    off += 2;
+                                    goto skipToName;
+                                case BT_LEAD3:
+                                    if (end - off < 3)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    if (byteType3(buf, off) != BT_NMSTRT)
+                                    {
+                                        throw new InvalidTokenException(off);
+                                    }
+
+                                    nameStart = off;
+                                    off += 3;
+                                    goto skipToName;
+                                case BT_LEAD4:
+                                    if (end - off < 4)
+                                    {
+                                        throw new PartialCharException(off);
+                                    }
+
+                                    if (byteType4(buf, off) != BT_NMSTRT)
+                                    {
+                                        throw new InvalidTokenException(off);
+                                    }
+
+                                    nameStart = off;
+                                    off += 4;
+                                    goto skipToName;
+                                case BT_S:
+                                case BT_CR:
+                                case BT_LF:
                                     break;
-                                }
+                                case BT_GT:
+                                    token.checkAttributeUniqueness(buf);
+                                    token.TokenEnd = off + minBPC;
+                                    return TOK.START_TAG_WITH_ATTS;
+                                case BT_SOL:
+                                    off += minBPC;
+                                    if (off == end)
+                                    {
+                                        throw new PartialTokenException();
+                                    }
 
-                                switch (t)
-                                {
-                                    case BT_NONXML:
-                                    case BT_MALFORM:
-                                        throw new InvalidTokenException(off);
-                                    case BT_LEAD2:
-                                        if (end - off < 2)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        check2(buf, off);
-                                        off += 2;
-                                        break;
-                                    case BT_LEAD3:
-                                        if (end - off < 3)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        check3(buf, off);
-                                        off += 3;
-                                        break;
-                                    case BT_LEAD4:
-                                        if (end - off < 4)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        check4(buf, off);
-                                        off += 4;
-                                        break;
-                                    case BT_AMP:
-                                        {
-                                            normalized = false;
-                                            int saveNameEnd = token.NameEnd;
-                                            scanRef(buf, off + minBPC, end, token);
-                                            token.NameEnd = saveNameEnd;
-                                            off = token.TokenEnd;
-                                            break;
-                                        }
-
-                                    case BT_S:
-                                        if (normalized &&
-                                            (off == valueStart || byteToAscii(buf, off) != ' ' ||
-                                             (off + minBPC != end &&
-                                              (byteToAscii(buf, off + minBPC) == ' ' ||
-                                               byteType(buf, off + minBPC) == open))))
-                                        {
-                                            normalized = false;
-                                        }
-
-                                        off += minBPC;
-                                        break;
-                                    case BT_LT:
-                                        throw new InvalidTokenException(off);
-                                    case BT_LF:
-                                    case BT_CR:
-                                        normalized = false;
-
-                                        /* fall through */
-                                        goto default;
-                                    default:
-                                        off += minBPC;
-                                        break;
-                                }
+                                    checkCharMatches(buf, off, '>');
+                                    token.checkAttributeUniqueness(buf);
+                                    token.TokenEnd = off + minBPC;
+                                    return TOK.EMPTY_ELEMENT_WITH_ATTS;
+                                default:
+                                    throw new InvalidTokenException(off);
                             }
 
-                            token.appendAttribute(nameStart, NameEnd, valueStart, off, normalized);
                             off += minBPC;
                             if (off == end)
                             {
@@ -3589,113 +3690,12 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                             }
 
                             t = byteType(buf, off);
-                            switch (t)
-                            {
-                                case BT_S:
-                                case BT_CR:
-                                case BT_LF:
-                                    off += minBPC;
-                                    if (off == end)
-                                    {
-                                        throw new PartialTokenException();
-                                    }
-
-                                    t = byteType(buf, off);
-                                    break;
-                                case BT_GT:
-                                case BT_SOL:
-                                    break;
-                                default:
-                                    throw new InvalidTokenException(off);
-                            }
-
-                            /* off points to closing quote */
-                            for (;;)
-                            {
-                                switch (t)
-                                {
-                                    case BT_NMSTRT:
-                                        nameStart = off;
-                                        off += minBPC;
-                                        goto skipToName;
-                                    case BT_LEAD2:
-                                        if (end - off < 2)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        if (byteType2(buf, off) != BT_NMSTRT)
-                                        {
-                                            throw new InvalidTokenException(off);
-                                        }
-
-                                        nameStart = off;
-                                        off += 2;
-                                        goto skipToName;
-                                    case BT_LEAD3:
-                                        if (end - off < 3)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        if (byteType3(buf, off) != BT_NMSTRT)
-                                        {
-                                            throw new InvalidTokenException(off);
-                                        }
-
-                                        nameStart = off;
-                                        off += 3;
-                                        goto skipToName;
-                                    case BT_LEAD4:
-                                        if (end - off < 4)
-                                        {
-                                            throw new PartialCharException(off);
-                                        }
-
-                                        if (byteType4(buf, off) != BT_NMSTRT)
-                                        {
-                                            throw new InvalidTokenException(off);
-                                        }
-
-                                        nameStart = off;
-                                        off += 4;
-                                        goto skipToName;
-                                    case BT_S:
-                                    case BT_CR:
-                                    case BT_LF:
-                                        break;
-                                    case BT_GT:
-                                        token.checkAttributeUniqueness(buf);
-                                        token.TokenEnd = off + minBPC;
-                                        return TOK.START_TAG_WITH_ATTS;
-                                    case BT_SOL:
-                                        off += minBPC;
-                                        if (off == end)
-                                        {
-                                            throw new PartialTokenException();
-                                        }
-
-                                        checkCharMatches(buf, off, '>');
-                                        token.checkAttributeUniqueness(buf);
-                                        token.TokenEnd = off + minBPC;
-                                        return TOK.EMPTY_ELEMENT_WITH_ATTS;
-                                    default:
-                                        throw new InvalidTokenException(off);
-                                }
-
-                                off += minBPC;
-                                if (off == end)
-                                {
-                                    throw new PartialTokenException();
-                                }
-
-                                t = byteType(buf, off);
-                            }
-
-                            skipToName:
-                            NameEnd = -1;
-                            break;
                         }
+
+                    skipToName:
+                        NameEnd = -1;
+                        break;
+                    }
 
                     default:
                         throw new InvalidTokenException(off);
@@ -3847,7 +3847,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                     case BT_LF:
                         token.NameEnd = off;
                         off += minBPC;
-                        for (;;)
+                        for (; ; )
                         {
                             if (off == end)
                             {
@@ -3907,7 +3907,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                             }
                         }
 
-                        loop:
+                    loop:
                         break;
                     case BT_GT:
                         if (token.NameEnd < 0)

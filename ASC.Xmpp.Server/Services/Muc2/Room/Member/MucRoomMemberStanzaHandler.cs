@@ -38,7 +38,7 @@ namespace ASC.Xmpp.Server.Services.Muc2.Room.Member
 
         public override IQ HandleIQ(ASC.Xmpp.Server.Streams.XmppStream stream, IQ iq, XmppHandlerContext context)
         {
-            if (iq.Vcard!=null && iq.Type==IqType.get)
+            if (iq.Vcard != null && iq.Type == IqType.get)
             {
                 //Handle vcard
                 iq.Vcard = Member.GetVcard();
@@ -79,9 +79,9 @@ namespace ASC.Xmpp.Server.Services.Muc2.Room.Member
         public override void HandleMessage(Streams.XmppStream stream, Message msg, XmppHandlerContext context)
         {
             //Private msg
-            if (msg.Type==MessageType.chat)
+            if (msg.Type == MessageType.chat)
             {
-                if (Member.ResolveRoomJid(msg.From)==null)
+                if (Member.ResolveRoomJid(msg.From) == null)
                 {
                     //Error
                     msg.SwitchDirection();

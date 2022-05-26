@@ -184,7 +184,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.bosh
 
         public BoshType Type
         {
-            get { return (BoshType) GetAttributeEnum("type", typeof (BoshType)); }
+            get { return (BoshType)GetAttributeEnum("type", typeof(BoshType)); }
             set
             {
                 if (value == BoshType.NONE)

@@ -19,13 +19,14 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Data;
+
 using ASC.Common.Data.Sql;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Data;
 
 namespace ASC.Xmpp.Server.Storage
 {
@@ -42,7 +43,7 @@ namespace ASC.Xmpp.Server.Storage
             return new[] { t1 };
         }
 
-        
+
         #region IPrivateStore Members
 
         public Element GetPrivate(Jid jid, Element element)

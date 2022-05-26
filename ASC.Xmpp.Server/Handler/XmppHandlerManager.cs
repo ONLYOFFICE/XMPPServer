@@ -24,13 +24,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 
+using ASC.Common.Logging;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Configuration;
 using ASC.Xmpp.Server.Gateway;
 using ASC.Xmpp.Server.Streams;
-using ASC.Common.Logging;
+
 using Error = ASC.Xmpp.Core.protocol.Error;
 using Stanza = ASC.Xmpp.Core.protocol.Base.Stanza;
 using StanzaError = ASC.Xmpp.Core.protocol.client.Error;
@@ -286,7 +287,7 @@ namespace ASC.Xmpp.Server.Handler
         {
             try
             {
-                
+
                 if (logMessages.IsDebugEnabled)
                 {
                     var msg = string.Format(RECIEVE_FORMAT, e.ConnectionId, string.Empty, e.Node.ToString(Formatting.Indented));

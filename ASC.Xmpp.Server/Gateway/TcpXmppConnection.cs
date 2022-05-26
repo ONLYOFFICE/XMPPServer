@@ -30,6 +30,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+
 using ASC.Common.Logging;
 using ASC.Xmpp.Core.utils.Xml;
 using ASC.Xmpp.Core.utils.Xml.Dom;
@@ -183,14 +184,14 @@ namespace ASC.Xmpp.Server.Gateway
         public event EventHandler<XmppStreamEventArgs> XmppStreamElement;
 
         public event EventHandler<XmppConnectionCloseEventArgs> Closed;
-        
+
         private void ReadCallback(IAsyncResult asyncResult)
         {
             try
             {
                 var stream = (Stream)asyncResult.AsyncState;
                 int readed = stream.EndRead(asyncResult);
-                
+
                 if (0 < readed)
                 {
                     streamParser.Push(buffer, 0, readed);

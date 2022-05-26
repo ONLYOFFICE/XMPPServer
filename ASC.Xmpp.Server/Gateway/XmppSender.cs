@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+
 using ASC.Common.Logging;
 using ASC.Core.Notify.Signalr;
 using ASC.Xmpp.Core.protocol.client;
@@ -152,7 +153,7 @@ namespace ASC.Xmpp.Server.Gateway
             return 0 < sessions.Count;
         }
 
-        public void SendPresenceToSignalR(Presence presence, XmppSessionManager sessionManager) 
+        public void SendPresenceToSignalR(Presence presence, XmppSessionManager sessionManager)
         {
             try
             {

@@ -25,6 +25,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Xml;
+
 using ASC.Xmpp.Core.IO;
 
 #endregion
@@ -125,7 +126,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
 
         public virtual object Clone()
         {
-            var clone = (Node) MemberwiseClone();
+            var clone = (Node)MemberwiseClone();
             clone.m_ChildNodes = new NodeList();
             foreach (Node a in m_ChildNodes)
             {

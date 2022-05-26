@@ -60,7 +60,7 @@ namespace ASC.Xmpp.Core.protocol.iq.disco
 
         public DiscoAction Action
         {
-            get { return (DiscoAction) GetAttributeEnum("action", typeof (DiscoAction)); }
+            get { return (DiscoAction)GetAttributeEnum("action", typeof(DiscoAction)); }
             set
             {
                 if (value == DiscoAction.NONE)

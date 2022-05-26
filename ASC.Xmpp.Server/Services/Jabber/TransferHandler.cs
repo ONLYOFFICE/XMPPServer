@@ -22,24 +22,25 @@
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.protocol.extensions.bytestreams;
 using ASC.Xmpp.Core.protocol.extensions.filetransfer;
-using XmppIbb = ASC.Xmpp.Core.protocol.extensions.ibb;
 using ASC.Xmpp.Core.protocol.extensions.jivesoftware.phone;
 using ASC.Xmpp.Core.protocol.extensions.si;
 using ASC.Xmpp.Core.protocol.iq.jingle;
 using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Streams;
 
+using XmppIbb = ASC.Xmpp.Core.protocol.extensions.ibb;
+
 namespace ASC.Xmpp.Server.Services.Jabber
 {
     //si
-	[XmppHandler(typeof(SI))]
-	
+    [XmppHandler(typeof(SI))]
+
     //bytestreams
     [XmppHandler(typeof(Activate))]
-	[XmppHandler(typeof(ByteStream))]
-	[XmppHandler(typeof(StreamHost))]
-	[XmppHandler(typeof(StreamHostUsed))]
-	[XmppHandler(typeof(UdpSuccess))]
+    [XmppHandler(typeof(ByteStream))]
+    [XmppHandler(typeof(StreamHost))]
+    [XmppHandler(typeof(StreamHostUsed))]
+    [XmppHandler(typeof(UdpSuccess))]
 
     //filetransfer
     [XmppHandler(typeof(File))]
@@ -62,14 +63,14 @@ namespace ASC.Xmpp.Server.Services.Jabber
     [XmppHandler(typeof(Core.protocol.iq.jingle.Server))]
     [XmppHandler(typeof(Stun))]
     class TransferHandler : XmppStanzaHandler
-	{
-		public override IQ HandleIQ(XmppStream stream, IQ iq, XmppHandlerContext context)
-		{
-			if (!iq.HasTo || !iq.To.HasUser) return XmppStanzaError.ToServiceUnavailable(iq);
+    {
+        public override IQ HandleIQ(XmppStream stream, IQ iq, XmppHandlerContext context)
+        {
+            if (!iq.HasTo || !iq.To.HasUser) return XmppStanzaError.ToServiceUnavailable(iq);
 
-			var session = context.SessionManager.GetSession(iq.To);
-			if (session != null) context.Sender.SendTo(session, iq);
-			return null;
-		}
-	}
+            var session = context.SessionManager.GetSession(iq.To);
+            if (session != null) context.Sender.SendTo(session, iq);
+            return null;
+        }
+    }
 }

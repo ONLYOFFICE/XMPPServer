@@ -19,6 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Text;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.bind;
 using ASC.Xmpp.Core.protocol.sasl;
@@ -29,37 +32,36 @@ using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Gateway;
 using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Storage;
-using System;
-using System.Text;
+
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 
 namespace ASC.Xmpp.Server.Streams
 {
-	class ClientNamespaceHandler : IXmppStreamStartHandler
-	{
-		public string Namespace
-		{
-			get { return Uri.CLIENT; }
-		}
+    class ClientNamespaceHandler : IXmppStreamStartHandler
+    {
+        public string Namespace
+        {
+            get { return Uri.CLIENT; }
+        }
 
-		public void StreamStartHandle(XmppStream xmppStream, Stream stream, XmppHandlerContext context)
-		{
-			var streamHeader = new StringBuilder();
-			streamHeader.AppendLine("<?xml version='1.0' encoding='UTF-8'?>");
-			streamHeader.AppendFormat("<stream:{0} xmlns:{0}='{1}' xmlns='{2}' from='{3}' id='{4}' version='1.0'>",
-				Uri.PREFIX, Uri.STREAM, Uri.CLIENT, stream.To, xmppStream.Id);
+        public void StreamStartHandle(XmppStream xmppStream, Stream stream, XmppHandlerContext context)
+        {
+            var streamHeader = new StringBuilder();
+            streamHeader.AppendLine("<?xml version='1.0' encoding='UTF-8'?>");
+            streamHeader.AppendFormat("<stream:{0} xmlns:{0}='{1}' xmlns='{2}' from='{3}' id='{4}' version='1.0'>",
+                Uri.PREFIX, Uri.STREAM, Uri.CLIENT, stream.To, xmppStream.Id);
             context.Sender.SendTo(xmppStream, streamHeader.ToString());
 
-			var features = new Features();
-			features.Prefix = Uri.PREFIX;
-			if (xmppStream.Authenticated)
-			{
-				features.AddChild(new Bind());
-				features.AddChild(new Core.protocol.iq.session.Session());
-			}
-			else
-			{
-				features.Mechanisms = new Mechanisms();
+            var features = new Features();
+            features.Prefix = Uri.PREFIX;
+            if (xmppStream.Authenticated)
+            {
+                features.AddChild(new Bind());
+                features.AddChild(new Core.protocol.iq.session.Session());
+            }
+            else
+            {
+                features.Mechanisms = new Mechanisms();
                 var connection = context.Sender.GetXmppConnection(xmppStream.ConnectionId);
                 var storage = new DbLdapSettingsStore();
                 storage.GetLdapSettings(xmppStream.Domain);
@@ -73,7 +75,7 @@ namespace ASC.Xmpp.Server.Streams
                     features.Mechanisms.AddChild(new Mechanism(MechanismType.PLAIN));
                 }
                 features.Mechanisms.AddChild(new Element("required"));
-				features.Register = new Register();
+                features.Register = new Register();
                 var auth = new Auth();
                 auth.Namespace = Uri.FEATURE_IQ_AUTH;
                 features.ChildNodes.Add(auth);
@@ -89,18 +91,18 @@ namespace ASC.Xmpp.Server.Streams
                         }
                     }
                 }
-			}
+            }
             context.Sender.SendTo(xmppStream, features);
-		}
+        }
 
-		public void OnRegister(IServiceProvider serviceProvider)
-		{
+        public void OnRegister(IServiceProvider serviceProvider)
+        {
 
-		}
+        }
 
-		public void OnUnregister(IServiceProvider serviceProvider)
-		{
+        public void OnUnregister(IServiceProvider serviceProvider)
+        {
 
-		}
-	}
+        }
+    }
 }

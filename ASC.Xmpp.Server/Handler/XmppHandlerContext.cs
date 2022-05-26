@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Server.Authorization;
 using ASC.Xmpp.Server.Gateway;
 using ASC.Xmpp.Server.Session;

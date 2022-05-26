@@ -72,11 +72,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.si
         /// </summary>
         public FeatureNeg FeatureNeg
         {
-            get { return SelectSingleElement(typeof (FeatureNeg)) as FeatureNeg; }
+            get { return SelectSingleElement(typeof(FeatureNeg)) as FeatureNeg; }
             set
             {
-                if (HasTag(typeof (FeatureNeg)))
-                    RemoveTag(typeof (FeatureNeg));
+                if (HasTag(typeof(FeatureNeg)))
+                    RemoveTag(typeof(FeatureNeg));
 
                 if (value != null)
                     AddChild(value);
@@ -88,11 +88,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.si
         /// </summary>
         public File File
         {
-            get { return SelectSingleElement(typeof (File)) as File; }
+            get { return SelectSingleElement(typeof(File)) as File; }
             set
             {
-                if (HasTag(typeof (File)))
-                    RemoveTag(typeof (File));
+                if (HasTag(typeof(File)))
+                    RemoveTag(typeof(File));
 
                 if (value != null)
                     AddChild(value);

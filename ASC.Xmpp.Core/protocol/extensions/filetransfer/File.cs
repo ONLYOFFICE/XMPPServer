@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
@@ -126,7 +127,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.filetransfer
         {
             get
             {
-                Element range = SelectSingleElement(typeof (Range));
+                Element range = SelectSingleElement(typeof(Range));
                 if (range != null)
                     return range as Range;
                 else
@@ -134,7 +135,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.filetransfer
             }
             set
             {
-                RemoveTag(typeof (Range));
+                RemoveTag(typeof(Range));
                 AddChild(value);
             }
         }

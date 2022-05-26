@@ -45,7 +45,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.multicast
             int i = 0;
             foreach (Element e in nl)
             {
-                addresses[i] = ((Address) e).Jid;
+                addresses[i] = ((Address)e).Jid;
                 i++;
             }
             return addresses;
@@ -70,7 +70,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.multicast
             int i = 0;
             foreach (Element e in nl)
             {
-                addresses[i] = (Address) e;
+                addresses[i] = (Address)e;
                 i++;
             }
             return addresses;

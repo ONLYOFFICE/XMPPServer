@@ -48,8 +48,10 @@ namespace ASC.Xmpp.Core.authorization
 
         /// <summary>
         /// </summary>
-        public string Username { // lower case that until i implement our c# port of libIDN
-            get; set; }
+        public string Username
+        { // lower case that until i implement our c# port of libIDN
+            get; set;
+        }
 
         //public XmppClientConnection XmppClientConnection { get; set; }
 

@@ -22,6 +22,7 @@
 using System;
 using System.Configuration;
 using System.Linq;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.utils.Idn;
 using ASC.Xmpp.Server.Gateway;
@@ -68,7 +69,7 @@ namespace ASC.Xmpp.Server.Configuration
             if (!string.IsNullOrEmpty(replaceSetting))
             {
                 ReplaceDomain = true;
-                var q = replaceSetting.Split(new []{"->"}, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim().ToLowerInvariant());
+                var q = replaceSetting.Split(new[] { "->" }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim().ToLowerInvariant());
                 ReplaceFromDomain = q.ElementAt(0);
                 ReplaceToDomain = q.ElementAt(1);
             }

@@ -27,11 +27,13 @@ using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Web.Script.Serialization;
+
 using ASC.Common.Data;
 using ASC.Common.Data.Sql;
 using ASC.Common.Data.Sql.Expressions;
 using ASC.Common.Logging;
 using ASC.Core;
+using ASC.Core.Common.Configuration;
 using ASC.Core.Tenants;
 using ASC.Web.Core.Jabber;
 using ASC.Web.Core.Users;
@@ -43,26 +45,26 @@ using ASC.Xmpp.Server.Streams;
 
 namespace ASC.Xmpp.Server.Services.Jabber
 {
-	[XmppHandler(typeof(Message))]
-	class MessageHandler : XmppStanzaHandler
-	{
+    [XmppHandler(typeof(Message))]
+    class MessageHandler : XmppStanzaHandler
+    {
         private DbPushStore pushStore;
 
         private static readonly ILog log = LogManager.GetLogger("ASC");
-        
-		public override void HandleMessage(XmppStream stream, Message message, XmppHandlerContext context)
-		{
-            
-			if (!message.HasTo || message.To.IsServer)
-			{
-				context.Sender.SendTo(stream, XmppStanzaError.ToServiceUnavailable(message));
-				return;
-			}
 
-			var sessions = context.SessionManager.GetBareJidSessions(message.To);
+        public override void HandleMessage(XmppStream stream, Message message, XmppHandlerContext context)
+        {
+
+            if (!message.HasTo || message.To.IsServer)
+            {
+                context.Sender.SendTo(stream, XmppStanzaError.ToServiceUnavailable(message));
+                return;
+            }
+
+            var sessions = context.SessionManager.GetBareJidSessions(message.To);
             if (0 < sessions.Count)
             {
-                foreach(var s in sessions)
+                foreach (var s in sessions)
                 {
                     try
                     {
@@ -83,7 +85,7 @@ namespace ASC.Xmpp.Server.Services.Jabber
 
                 if (message.HasTag("active"))
                 {
-                    var fromFullName = message.HasAttribute("username") ? 
+                    var fromFullName = message.HasAttribute("username") ?
                                         message.GetAttribute("username") : message.From.ToString();
 
 
@@ -94,11 +96,13 @@ namespace ASC.Xmpp.Server.Services.Jabber
                     var userPushList = new List<UserPushInfo>();
                     userPushList = pushStore.GetUserEndpoint(message.To.ToString().Split(new char[] { '@' })[0]);
 
+                    var fireBase = ConsumerFactory.Get<FireBase>();
+
                     var firebaseAuthorization = "";
                     try
                     {
                         CallContext.SetData(TenantManager.CURRENT_TENANT, new Tenant(tenantId, ""));
-                        firebaseAuthorization = FireBase.Instance.Authorization;
+                        firebaseAuthorization = fireBase.Authorization;
                     }
                     catch (Exception exp)
                     {
@@ -108,10 +112,10 @@ namespace ASC.Xmpp.Server.Services.Jabber
                     {
                         try
                         {
-                            var from = message.From.ToString().Split(new char[] {'@'})[0];
+                            var from = message.From.ToString().Split(new char[] { '@' })[0];
                             List<string> userId;
                             string photoPath = "";
-                            using (var db = new DbManager("core"))
+                            using (var db = DbManager.FromHttpContext("core"))
                             using (var command = db.Connection.CreateCommand())
                             {
                                 var q = new SqlQuery("core_user").Select("id").Where(Exp.Like("username", from)).Where("tenant", tenantId);
@@ -125,7 +129,7 @@ namespace ASC.Xmpp.Server.Services.Jabber
                                 var guid = new Guid(userId[0]);
                                 photoPath = UserPhotoManager.GetBigPhotoURL(guid);
                             }
-                           
+
                             var tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
                             tRequest.Method = "post";
                             tRequest.ContentType = "application/json";
@@ -137,16 +141,16 @@ namespace ASC.Xmpp.Server.Services.Jabber
                                     msg = message.Body,
                                     fromFullName = fromFullName,
                                     photoPath = photoPath
-                                }    
-                            };       
+                                }
+                            };
                             var serializer = new JavaScriptSerializer();
                             var json = serializer.Serialize(data);
                             var byteArray = Encoding.UTF8.GetBytes(json);
                             tRequest.Headers.Add(string.Format("Authorization: key={0}", firebaseAuthorization));
-                            tRequest.ContentLength = byteArray.Length; 
+                            tRequest.ContentLength = byteArray.Length;
                             using (var dataStream = tRequest.GetRequestStream())
                             {
-                                dataStream.Write(byteArray, 0, byteArray.Length);   
+                                dataStream.Write(byteArray, 0, byteArray.Length);
                                 using (var tResponse = tRequest.GetResponse())
                                 {
                                     using (var dataStreamResponse = tResponse.GetResponseStream())
@@ -155,28 +159,28 @@ namespace ASC.Xmpp.Server.Services.Jabber
                                         {
                                             var sResponseFromServer = tReader.ReadToEnd();
                                             var str = sResponseFromServer;
-                                        }    
-                                    }    
-                                }    
-                            }    
-                        }        
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         catch (Exception ex)
                         {
                             var str = ex.Message;
                             log.DebugFormat("PushRequestERROR: {0}", str);
-                        }          
+                        }
                     }
                 }
                 StoreOffline(message, context.StorageManager.OfflineStorage);
             }
-		}
+        }
 
-		private void StoreOffline(Message message, IOfflineStore offlineStore)
-		{
-			if ((message.Type == MessageType.normal || message.Type == MessageType.chat) && !string.IsNullOrEmpty(message.To.User))
-			{
-				offlineStore.SaveOfflineMessages(message);
-			}
-		}
-	}
+        private void StoreOffline(Message message, IOfflineStore offlineStore)
+        {
+            if ((message.Type == MessageType.normal || message.Type == MessageType.chat) && !string.IsNullOrEmpty(message.To.User))
+            {
+                offlineStore.SaveOfflineMessages(message);
+            }
+        }
+    }
 }

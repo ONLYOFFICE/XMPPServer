@@ -77,7 +77,7 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public StatusCode Code
         {
-            get { return (StatusCode) GetAttributeEnum("code", typeof (StatusCode)); }
+            get { return (StatusCode)GetAttributeEnum("code", typeof(StatusCode)); }
 
             set { SetAttribute("code", value.ToString()); }
         }

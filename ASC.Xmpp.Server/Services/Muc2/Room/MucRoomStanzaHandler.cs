@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.Base;
 using ASC.Xmpp.Core.protocol.client;
@@ -31,6 +32,7 @@ using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Services.Muc2.Room.Member;
 using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Streams;
+
 using Error = ASC.Xmpp.Core.protocol.client.Error;
 
 namespace ASC.Xmpp.Server.Services.Muc2.Room
@@ -64,11 +66,11 @@ namespace ASC.Xmpp.Server.Services.Muc2.Room
                     {
                         Room.OwnerCommand(iq, member);
                     }
-                    else if (iq.Query is Core.protocol.x.tm.history.History  && iq.Type == IqType.get)
+                    else if (iq.Query is Core.protocol.x.tm.history.History && iq.Type == IqType.get)
                     {
                         Jid jid = iq.To;
                         var mucStore = new DbMucStore();
-                        var properties = new Dictionary<string, string>(1) {{"connectionStringName", "core"}};
+                        var properties = new Dictionary<string, string>(1) { { "connectionStringName", "core" } };
                         mucStore.Configure(properties);
 
                         var history = (Core.protocol.x.tm.history.History)iq.Query;

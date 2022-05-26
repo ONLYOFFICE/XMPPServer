@@ -19,12 +19,13 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol;
-using ASC.Xmpp.Core.protocol.client;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+
+using ASC.Xmpp.Core.protocol;
+using ASC.Xmpp.Core.protocol.client;
 
 namespace ASC.Xmpp.Server.Session
 {

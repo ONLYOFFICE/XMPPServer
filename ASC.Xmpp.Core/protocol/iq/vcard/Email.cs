@@ -71,7 +71,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
 
         public EmailType Type
         {
-            get { return (EmailType) HasTagEnum(typeof (EmailType)); }
+            get { return (EmailType)HasTagEnum(typeof(EmailType)); }
             set
             {
                 if (value != EmailType.NONE)

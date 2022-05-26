@@ -19,66 +19,67 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+
 using ASC.Core.Users;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Server;
 using ASC.Xmpp.Server.Storage.Interface;
 using ASC.Xmpp.Server.Users;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Host
 {
-	class ASCUserStore : IUserStore
-	{
-		#region IUserStore Members
+    class ASCUserStore : IUserStore
+    {
+        #region IUserStore Members
 
-		public ICollection<User> GetUsers(string domain)
-		{
-			ASCContext.SetCurrentTenant(domain);
-			var users = new List<User>();
-			foreach (var ui in ASCContext.UserManager.GetUsers())
-			{
-				var u = ToUser(ui, domain);
-				if (u != null) users.Add(u);
-			}
-			return users;
-		}
+        public ICollection<User> GetUsers(string domain)
+        {
+            ASCContext.SetCurrentTenant(domain);
+            var users = new List<User>();
+            foreach (var ui in ASCContext.UserManager.GetUsers())
+            {
+                var u = ToUser(ui, domain);
+                if (u != null) users.Add(u);
+            }
+            return users;
+        }
 
-		public User GetUser(Jid jid)
-		{
-			ASCContext.SetCurrentTenant(jid.Server);
-			var u = ASCContext.UserManager.GetUserByUserName(jid.User);
-			if (Constants.LostUser.Equals(u) || u.Status == EmployeeStatus.Terminated) return null;
-			return ToUser(u, jid.Server);
-		}
+        public User GetUser(Jid jid)
+        {
+            ASCContext.SetCurrentTenant(jid.Server);
+            var u = ASCContext.UserManager.GetUserByUserName(jid.User);
+            if (Constants.LostUser.Equals(u) || u.Status == EmployeeStatus.Terminated) return null;
+            return ToUser(u, jid.Server);
+        }
 
-		public void SaveUser(User user)
-		{
-			throw new JabberException(ErrorCode.Forbidden);
-		}
+        public void SaveUser(User user)
+        {
+            throw new JabberException(ErrorCode.Forbidden);
+        }
 
-		public void RemoveUser(Jid jid)
-		{
-			throw new JabberException(ErrorCode.Forbidden);
-		}
+        public void RemoveUser(Jid jid)
+        {
+            throw new JabberException(ErrorCode.Forbidden);
+        }
 
-		#endregion
+        #endregion
 
-		private User ToUser(UserInfo userInfo, string domain)
-		{
+        private User ToUser(UserInfo userInfo, string domain)
+        {
 
-			try
-			{
-				if (string.IsNullOrEmpty(userInfo.UserName)) return null;
-				return new User(
-					new Jid(userInfo.UserName.ToLowerInvariant() + "@" + domain.ToLowerInvariant()),
-					ASCContext.UserManager.IsUserInGroup(userInfo.ID, Constants.GroupAdmin.ID),
-					userInfo.Sid
-				);
-			}
-			catch { }
-			return null;
-		}
-	}
+            try
+            {
+                if (string.IsNullOrEmpty(userInfo.UserName)) return null;
+                return new User(
+                    new Jid(userInfo.UserName.ToLowerInvariant() + "@" + domain.ToLowerInvariant()),
+                    ASCContext.UserManager.IsUserInGroup(userInfo.ID, Constants.GroupAdmin.ID),
+                    userInfo.Sid
+                );
+            }
+            catch { }
+            return null;
+        }
+    }
 }

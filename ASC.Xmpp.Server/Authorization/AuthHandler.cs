@@ -19,10 +19,11 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using System;
 using System.Collections.Generic;
 
-using ASC.Xmpp.Core.authorization.DigestMD5;
+using ASC.ActiveDirectory.Base.Settings;
+using ASC.ActiveDirectory.Novell;
+using ASC.Common.Logging;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.sasl;
 using ASC.Xmpp.Core.utils.Xml.Dom;
@@ -30,9 +31,6 @@ using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Streams;
 using ASC.Xmpp.Server.Users;
 using ASC.Xmpp.Server.Utils;
-using ASC.ActiveDirectory.Base.Settings;
-using ASC.ActiveDirectory.Novell;
-using ASC.Common.Logging;
 
 namespace ASC.Xmpp.Server.Authorization
 {

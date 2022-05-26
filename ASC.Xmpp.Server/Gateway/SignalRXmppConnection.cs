@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using ASC.Common.Logging;
 using ASC.Core.Notify.Signalr;
 using ASC.Xmpp.Core.protocol;
@@ -39,7 +40,7 @@ namespace ASC.Xmpp.Server.Gateway
         private static readonly ILog _log = LogManager.GetLogger("ASC");
         private static readonly SignalrServiceClient SignalrServiceClient = new SignalrServiceClient("chat");
         private static readonly TimeSpan _inactivityPeriod = TimeSpan.FromSeconds(310);
-        private XmppServer _xmppServer;
+        private readonly XmppServer _xmppServer;
 
         public SignalRXmppConnection(string connectionId, XmppServer xmppServer)
         {
@@ -216,8 +217,8 @@ namespace ASC.Xmpp.Server.Gateway
                 Closed(this, new XmppConnectionCloseEventArgs());
             }
         }
-        
-        
+
+
         public event EventHandler<XmppStreamStartEventArgs> XmppStreamStart = delegate { };
 
         public event EventHandler<XmppStreamEventArgs> XmppStreamElement = delegate { };

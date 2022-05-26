@@ -76,13 +76,13 @@ namespace ASC.Xmpp.Core.protocol.iq.roster
 
         public SubscriptionType Subscription
         {
-            get { return (SubscriptionType) GetAttributeEnum("subscription", typeof (SubscriptionType)); }
+            get { return (SubscriptionType)GetAttributeEnum("subscription", typeof(SubscriptionType)); }
             set { SetAttribute("subscription", value.ToString()); }
         }
 
         public AskType Ask
         {
-            get { return (AskType) GetAttributeEnum("ask", typeof (AskType)); }
+            get { return (AskType)GetAttributeEnum("ask", typeof(AskType)); }
             set
             {
                 if (value == AskType.NONE)

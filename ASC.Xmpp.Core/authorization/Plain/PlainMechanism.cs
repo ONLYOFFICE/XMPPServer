@@ -23,6 +23,7 @@
 
 using System;
 using System.Text;
+
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 #endregion
@@ -81,9 +82,9 @@ namespace ASC.Xmpp.Core.authorization.Plain
 
             // sb.Append( (char) 0 );
             // sb.Append(this.m_XmppClient.MyJID.Bare);
-            sb.Append((char) 0);
+            sb.Append((char)0);
             sb.Append(Username);
-            sb.Append((char) 0);
+            sb.Append((char)0);
             sb.Append(Password);
 
             byte[] msg = Encoding.UTF8.GetBytes(sb.ToString());

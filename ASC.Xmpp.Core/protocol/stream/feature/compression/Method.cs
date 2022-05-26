@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.protocol.extensions.compression;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
@@ -63,7 +64,7 @@ namespace ASC.Xmpp.Core.protocol.stream.feature.compression
 #if CF
 				return (CompressionMethod) util.Enum.Parse(typeof(CompressionMethod), this.Value, true);
 #else
-                return (CompressionMethod) Enum.Parse(typeof (CompressionMethod), Value, true);
+                return (CompressionMethod)Enum.Parse(typeof(CompressionMethod), Value, true);
 #endif
             }
             set { Value = value.ToString(); }

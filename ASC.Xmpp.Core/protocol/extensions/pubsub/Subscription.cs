@@ -178,17 +178,17 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public SubscriptionState SubscriptionState
         {
-            get { return (SubscriptionState) GetAttributeEnum("subscription", typeof (SubscriptionState)); }
+            get { return (SubscriptionState)GetAttributeEnum("subscription", typeof(SubscriptionState)); }
             set { SetAttribute("subscription", value.ToString()); }
         }
 
         public SubscribeOptions SubscribeOptions
         {
-            get { return SelectSingleElement(typeof (SubscribeOptions)) as SubscribeOptions; }
+            get { return SelectSingleElement(typeof(SubscribeOptions)) as SubscribeOptions; }
             set
             {
-                if (HasTag(typeof (SubscribeOptions)))
-                    RemoveTag(typeof (SubscribeOptions));
+                if (HasTag(typeof(SubscribeOptions)))
+                    RemoveTag(typeof(SubscribeOptions));
 
                 if (value != null)
                     AddChild(value);

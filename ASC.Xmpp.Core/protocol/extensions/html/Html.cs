@@ -47,11 +47,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.html
         /// </summary>
         public Body Body
         {
-            get { return SelectSingleElement(typeof (Body)) as Body; }
+            get { return SelectSingleElement(typeof(Body)) as Body; }
             set
             {
-                if (HasTag(typeof (Body)))
-                    RemoveTag(typeof (Body));
+                if (HasTag(typeof(Body)))
+                    RemoveTag(typeof(Body));
 
                 if (value != null)
                     AddChild(value);

@@ -19,8 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.utils.Xml.Dom;
 using System;
+
+using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.Base
 {

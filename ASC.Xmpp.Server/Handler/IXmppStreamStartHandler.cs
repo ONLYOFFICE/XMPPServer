@@ -24,13 +24,13 @@ using ASC.Xmpp.Server.Streams;
 
 namespace ASC.Xmpp.Server.Handler
 {
-	public interface IXmppStreamStartHandler : IXmppHandler
-	{
-		string Namespace
-		{
-			get;
-		}
+    public interface IXmppStreamStartHandler : IXmppHandler
+    {
+        string Namespace
+        {
+            get;
+        }
 
-		void StreamStartHandle(XmppStream xmppStream, Stream stream, XmppHandlerContext context);
-	}
+        void StreamStartHandle(XmppStream xmppStream, Stream stream, XmppHandlerContext context);
+    }
 }

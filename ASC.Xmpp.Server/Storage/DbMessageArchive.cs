@@ -25,22 +25,22 @@ using System.Collections.Generic;
 using System.Data;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
+
 using ASC.Common.Data.Sql;
 using ASC.Common.Data.Sql.Expressions;
-using ASC.Common.Utils;
 using ASC.Core;
+using ASC.ElasticSearch;
+using ASC.Web.Talk;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.protocol.x;
 using ASC.Xmpp.Core.utils;
-using ASC.ElasticSearch;
-using ASC.Web.Talk;
 
 namespace ASC.Xmpp.Server.Storage
 {
     public class DbMessageArchive : DbStoreBase
     {
-        private IDictionary<string, bool> loggingCache = new ConcurrentDictionary<string, bool>();
+        private readonly IDictionary<string, bool> loggingCache = new ConcurrentDictionary<string, bool>();
 
         protected override SqlCreate[] GetCreateSchemaScript()
         {

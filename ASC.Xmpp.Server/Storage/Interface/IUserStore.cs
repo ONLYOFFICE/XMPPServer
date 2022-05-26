@@ -19,20 +19,21 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Server.Users;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Storage.Interface
 {
-	public interface IUserStore
-	{
-		ICollection<User> GetUsers(string domain);
+    public interface IUserStore
+    {
+        ICollection<User> GetUsers(string domain);
 
-		void SaveUser(User user);
+        void SaveUser(User user);
 
-		User GetUser(Jid jid);
+        User GetUser(Jid jid);
 
-		void RemoveUser(Jid jid);
-	}
+        void RemoveUser(Jid jid);
+    }
 }

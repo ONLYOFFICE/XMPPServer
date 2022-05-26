@@ -48,7 +48,7 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
         /// <returns> </returns>
         public Item[] GetItems()
         {
-            ElementList el = SelectElements(typeof (Item));
+            ElementList el = SelectElements(typeof(Item));
             int i = 0;
             var result = new Item[el.Count];
             foreach (Item itm in el)
@@ -81,7 +81,7 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
         /// </summary>
         public void RemoveAllItems()
         {
-            RemoveTags(typeof (Item));
+            RemoveTags(typeof(Item));
         }
     }
 }

@@ -19,24 +19,25 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol;
 using System;
+
+using ASC.Xmpp.Core.protocol;
 
 namespace ASC.Xmpp.Server.Users
 {
-	public class User
-	{
-		public Jid Jid
-		{
-			get;
-			private set;
-		}
+    public class User
+    {
+        public Jid Jid
+        {
+            get;
+            private set;
+        }
 
-		public bool IsAdmin
-		{
-			get;
-			set;
-		}
+        public bool IsAdmin
+        {
+            get;
+            set;
+        }
 
         public string Sid
         {
@@ -45,19 +46,19 @@ namespace ASC.Xmpp.Server.Users
         }
 
 
-		public User(Jid jid)
-			: this(jid, true)
-		{
+        public User(Jid jid)
+            : this(jid, true)
+        {
 
-		}
+        }
 
-		public User(Jid jid, bool admin)
-		{
-			if (jid == null) throw new ArgumentNullException("jid");
+        public User(Jid jid, bool admin)
+        {
+            if (jid == null) throw new ArgumentNullException("jid");
 
-			Jid = jid;
-			IsAdmin = admin;
-		}
+            Jid = jid;
+            IsAdmin = admin;
+        }
 
         public User(Jid jid, bool admin, string sid)
         {
@@ -68,20 +69,20 @@ namespace ASC.Xmpp.Server.Users
             Sid = sid;
         }
 
-		public override string ToString()
-		{
-			return Jid.ToString();
-		}
+        public override string ToString()
+        {
+            return Jid.ToString();
+        }
 
-		public override int GetHashCode()
-		{
-			return Jid.GetHashCode();
-		}
+        public override int GetHashCode()
+        {
+            return Jid.GetHashCode();
+        }
 
-		public override bool Equals(object obj)
-		{
-			var u = obj as User;
-			return u != null && Jid.Equals(u.Jid);
-		}
-	}
+        public override bool Equals(object obj)
+        {
+            var u = obj as User;
+            return u != null && Jid.Equals(u.Jid);
+        }
+    }
 }

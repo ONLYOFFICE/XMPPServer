@@ -108,50 +108,50 @@ namespace ASC.Xmpp.Core.protocol.sasl
         {
             switch (mechanism)
             {
-                    //case "KERBEROS_V4":
-                    //    return MechanismType.KERBEROS_V4;
-                    //case "GSSAPI":
-                    //    return MechanismType.GSSAPI;
-                    //case "SKEY":
-                    //    return MechanismType.SKEY;
-                    //case "EXTERNAL":
-                    //    return MechanismType.EXTERNAL;
-                    //case "CRAM-MD5":
-                    //    return MechanismType.CRAM_MD5;
-                    //case "ANONYMOUS":
-                    //    return MechanismType.ANONYMOUS;
-                    //case "OTP":
-                    //    return MechanismType.OTP;
-                    //case "GSS-SPNEGO":
-                    //    return MechanismType.GSS_SPNEGO;
+                //case "KERBEROS_V4":
+                //    return MechanismType.KERBEROS_V4;
+                //case "GSSAPI":
+                //    return MechanismType.GSSAPI;
+                //case "SKEY":
+                //    return MechanismType.SKEY;
+                //case "EXTERNAL":
+                //    return MechanismType.EXTERNAL;
+                //case "CRAM-MD5":
+                //    return MechanismType.CRAM_MD5;
+                //case "ANONYMOUS":
+                //    return MechanismType.ANONYMOUS;
+                //case "OTP":
+                //    return MechanismType.OTP;
+                //case "GSS-SPNEGO":
+                //    return MechanismType.GSS_SPNEGO;
                 case "PLAIN":
                     return MechanismType.PLAIN;
-                    //case "SECURID":
-                    //    return MechanismType.SECURID;
-                    //case "NTLM":
-                    //    return MechanismType.NTLM;
-                    //case "NMAS_LOGIN":
-                    //    return MechanismType.NMAS_LOGIN;
-                    //case "NMAS_AUTHEN":
-                    //    return MechanismType.NMAS_AUTHEN;
+                //case "SECURID":
+                //    return MechanismType.SECURID;
+                //case "NTLM":
+                //    return MechanismType.NTLM;
+                //case "NMAS_LOGIN":
+                //    return MechanismType.NMAS_LOGIN;
+                //case "NMAS_AUTHEN":
+                //    return MechanismType.NMAS_AUTHEN;
                 case "DIGEST-MD5":
                     return MechanismType.DIGEST_MD5;
-                    //case "9798-U-RSA-SHA1-ENC":
-                    //    return MechanismType.ISO_9798_U_RSA_SHA1_ENC;
-                    //case "9798-M-RSA-SHA1-ENC":
-                    //    return MechanismType.ISO_9798_M_RSA_SHA1_ENC;
-                    //case "9798-U-DSA-SHA1":
-                    //    return MechanismType.ISO_9798_U_DSA_SHA1;
-                    //case "9798-M-DSA-SHA1":
-                    //    return MechanismType.ISO_9798_M_DSA_SHA1;
-                    //case "9798-U-ECDSA-SHA1":
-                    //    return MechanismType.ISO_9798_U_ECDSA_SHA1;
-                    //case "9798-M-ECDSA-SHA1":
-                    //    return MechanismType.ISO_9798_M_ECDSA_SHA1;
-                    //case "KERBEROS_V5":
-                    //    return MechanismType.KERBEROS_V5;
-                    //case "NMAS-SAMBA-AUTH":
-                    //    return MechanismType.NMAS_SAMBA_AUTH;				
+                //case "9798-U-RSA-SHA1-ENC":
+                //    return MechanismType.ISO_9798_U_RSA_SHA1_ENC;
+                //case "9798-M-RSA-SHA1-ENC":
+                //    return MechanismType.ISO_9798_M_RSA_SHA1_ENC;
+                //case "9798-U-DSA-SHA1":
+                //    return MechanismType.ISO_9798_U_DSA_SHA1;
+                //case "9798-M-DSA-SHA1":
+                //    return MechanismType.ISO_9798_M_DSA_SHA1;
+                //case "9798-U-ECDSA-SHA1":
+                //    return MechanismType.ISO_9798_U_ECDSA_SHA1;
+                //case "9798-M-ECDSA-SHA1":
+                //    return MechanismType.ISO_9798_M_ECDSA_SHA1;
+                //case "KERBEROS_V5":
+                //    return MechanismType.KERBEROS_V5;
+                //case "NMAS-SAMBA-AUTH":
+                //    return MechanismType.NMAS_SAMBA_AUTH;				
                 case "X-GOOGLE-TOKEN":
                     return MechanismType.X_GOOGLE_TOKEN;
                 default:

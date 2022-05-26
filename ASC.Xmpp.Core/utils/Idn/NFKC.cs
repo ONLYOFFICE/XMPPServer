@@ -69,11 +69,11 @@ namespace ASC.Xmpp.Core.utils.Idn
 
         /// <summary>
         /// </summary>
-        internal static readonly int NCount = VCount*TCount;
+        internal static readonly int NCount = VCount * TCount;
 
         /// <summary>
         /// </summary>
-        internal static readonly int SCount = LCount*NCount;
+        internal static readonly int SCount = LCount * NCount;
 
         #endregion
 
@@ -135,7 +135,7 @@ namespace ASC.Xmpp.Core.utils.Idn
 
                     if (c != -1)
                     {
-                        sbOut[last_start] = (char) c;
+                        sbOut[last_start] = (char)c;
 
                         // sbOut.deleteCharAt(i);
                         sbOut.Remove(i, 1);
@@ -177,16 +177,16 @@ namespace ASC.Xmpp.Core.utils.Idn
         internal static int decomposeIndex(char c)
         {
             int start = 0;
-            int end = DecompositionKeys.k.Length/2;
+            int end = DecompositionKeys.k.Length / 2;
 
             while (true)
             {
-                int half = (start + end)/2;
-                int code = DecompositionKeys.k[half*2];
+                int half = (start + end) / 2;
+                int code = DecompositionKeys.k[half * 2];
 
                 if (c == code)
                 {
-                    return DecompositionKeys.k[half*2 + 1];
+                    return DecompositionKeys.k[half * 2 + 1];
                 }
 
                 if (half == start)
@@ -370,14 +370,14 @@ namespace ASC.Xmpp.Core.utils.Idn
             }
 
             var result = new StringBuilder();
-            int L = LBase + SIndex/NCount;
-            int V = VBase + (SIndex%NCount)/TCount;
-            int T = TBase + SIndex%TCount;
-            result.Append((char) L);
-            result.Append((char) V);
+            int L = LBase + SIndex / NCount;
+            int V = VBase + (SIndex % NCount) / TCount;
+            int T = TBase + SIndex % TCount;
+            result.Append((char)L);
+            result.Append((char)V);
             if (T != TBase)
             {
-                result.Append((char) T);
+                result.Append((char)T);
             }
 
             return result.ToString();
@@ -399,13 +399,13 @@ namespace ASC.Xmpp.Core.utils.Idn
                 if (0 <= VIndex && VIndex < VCount)
                 {
                     // make syllable of form LV
-                    return SBase + (LIndex*VCount + VIndex)*TCount;
+                    return SBase + (LIndex * VCount + VIndex) * TCount;
                 }
             }
 
             // 2. check to see if two current characters are LV and T
             int SIndex = a - SBase;
-            if (0 <= SIndex && SIndex < SCount && (SIndex%TCount) == 0)
+            if (0 <= SIndex && SIndex < SCount && (SIndex % TCount) == 0)
             {
                 int TIndex = b - TBase;
                 if (0 <= TIndex && TIndex <= TCount)

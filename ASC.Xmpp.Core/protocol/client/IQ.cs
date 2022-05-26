@@ -111,11 +111,11 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public virtual Bind Bind
         {
-            get { return SelectSingleElement(typeof (Bind)) as Bind; }
+            get { return SelectSingleElement(typeof(Bind)) as Bind; }
 
             set
             {
-                RemoveTag(typeof (Bind));
+                RemoveTag(typeof(Bind));
                 if (value != null)
                 {
                     AddChild(value);
@@ -125,11 +125,11 @@ namespace ASC.Xmpp.Core.protocol.client
 
         public virtual Blocklist Blocklist
         {
-            get { return SelectSingleElement(typeof (Blocklist)) as Blocklist; }
+            get { return SelectSingleElement(typeof(Blocklist)) as Blocklist; }
 
             set
             {
-                RemoveTag(typeof (Blocklist));
+                RemoveTag(typeof(Blocklist));
                 if (value != null)
                 {
                     AddChild(value);
@@ -139,11 +139,11 @@ namespace ASC.Xmpp.Core.protocol.client
 
         public virtual Jingle Jingle
         {
-            get { return SelectSingleElement(typeof (Jingle)) as Jingle; }
+            get { return SelectSingleElement(typeof(Jingle)) as Jingle; }
 
             set
             {
-                RemoveTag(typeof (Jingle));
+                RemoveTag(typeof(Jingle));
                 if (value != null)
                 {
                     AddChild(value);
@@ -156,13 +156,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Error Error
         {
-            get { return SelectSingleElement(typeof (Error)) as Error; }
+            get { return SelectSingleElement(typeof(Error)) as Error; }
 
             set
             {
-                if (HasTag(typeof (Error)))
+                if (HasTag(typeof(Error)))
                 {
-                    RemoveTag(typeof (Error));
+                    RemoveTag(typeof(Error));
                 }
 
                 if (value != null)
@@ -197,11 +197,11 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public virtual Session Session
         {
-            get { return SelectSingleElement(typeof (Session)) as Session; }
+            get { return SelectSingleElement(typeof(Session)) as Session; }
 
             set
             {
-                RemoveTag(typeof (Session));
+                RemoveTag(typeof(Session));
                 if (value != null)
                 {
                     AddChild(value);
@@ -213,7 +213,7 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public IqType Type
         {
-            get { return (IqType) GetAttributeEnum("type", typeof (IqType)); }
+            get { return (IqType)GetAttributeEnum("type", typeof(IqType)); }
 
             set { SetAttribute("type", value.ToString()); }
         }

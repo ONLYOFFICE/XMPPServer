@@ -21,12 +21,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
+
+using ASC.Common.Data.Sql;
 using ASC.Common.Data.Sql.Expressions;
 using ASC.Core.Notify.Signalr;
-using ASC.Common.Data.Sql;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.protocol.x;
@@ -37,7 +37,7 @@ namespace ASC.Xmpp.Server.Storage
 {
     public class DbOfflineStore : DbStoreBase, IOfflineStore
     {
-        private Dictionary<string, int> countCache = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> countCache = new Dictionary<string, int>();
         private static readonly SignalrServiceClient signalrServiceClient = new SignalrServiceClient("counters");
         protected override SqlCreate[] GetCreateSchemaScript()
         {

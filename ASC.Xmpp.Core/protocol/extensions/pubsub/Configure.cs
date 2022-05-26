@@ -21,7 +21,6 @@
 
 #region using
 
-using ASC.Xmpp.Core.protocol.x.data;
 
 #endregion
 
@@ -55,7 +54,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Access Access
         {
-            get { return (Access) GetAttributeEnum("access", typeof (Access)); }
+            get { return (Access)GetAttributeEnum("access", typeof(Access)); }
             set
             {
                 if (value == Access.NONE)
@@ -70,11 +69,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
         /// </summary>
         public x.data.Data Data
         {
-            get { return SelectSingleElement(typeof (x.data.Data)) as x.data.Data; }
+            get { return SelectSingleElement(typeof(x.data.Data)) as x.data.Data; }
             set
             {
-                if (HasTag(typeof (x.data.Data)))
-                    RemoveTag(typeof (x.data.Data));
+                if (HasTag(typeof(x.data.Data)))
+                    RemoveTag(typeof(x.data.Data));
 
                 if (value != null)
                     AddChild(value);

@@ -19,13 +19,14 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol.tls;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Gateway;
 using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Streams;
-using System;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Services.Jabber
 {

@@ -116,12 +116,12 @@ namespace ASC.Xmpp.Core.utils.Idn
                     }
                 }
 
-                if (m - n > (Int32.MaxValue - delta)/(h + 1))
+                if (m - n > (Int32.MaxValue - delta) / (h + 1))
                 {
                     throw new PunycodeException(PunycodeException.OVERFLOW);
                 }
 
-                delta = delta + (m - n)*(h + 1);
+                delta = delta + (m - n) * (h + 1);
                 n = m;
 
                 for (int j = 0; j < input.Length; j++)
@@ -140,7 +140,7 @@ namespace ASC.Xmpp.Core.utils.Idn
                     {
                         int q = delta;
 
-                        for (int k = BASE;; k += BASE)
+                        for (int k = BASE; ; k += BASE)
                         {
                             int t;
                             if (k <= bias)
@@ -161,11 +161,11 @@ namespace ASC.Xmpp.Core.utils.Idn
                                 break;
                             }
 
-                            output.Append((char) Digit2Codepoint(t + (q - t)%(BASE - t)));
-                            q = (q - t)/(BASE - t);
+                            output.Append((char)Digit2Codepoint(t + (q - t) % (BASE - t)));
+                            q = (q - t) / (BASE - t);
                         }
 
-                        output.Append((char) Digit2Codepoint(q));
+                        output.Append((char)Digit2Codepoint(q));
                         bias = Adapt(delta, h + 1, h == b);
                         delta = 0;
                         h++;
@@ -217,7 +217,7 @@ namespace ASC.Xmpp.Core.utils.Idn
                 int oldi = i;
                 int w = 1;
 
-                for (int k = BASE;; k += BASE)
+                for (int k = BASE; ; k += BASE)
                 {
                     if (d == input.Length)
                     {
@@ -226,12 +226,12 @@ namespace ASC.Xmpp.Core.utils.Idn
 
                     int c = input[d++];
                     int digit = Codepoint2Digit(c);
-                    if (digit > (Int32.MaxValue - i)/w)
+                    if (digit > (Int32.MaxValue - i) / w)
                     {
                         throw new PunycodeException(PunycodeException.OVERFLOW);
                     }
 
-                    i = i + digit*w;
+                    i = i + digit * w;
 
                     int t;
                     if (k <= bias)
@@ -252,22 +252,22 @@ namespace ASC.Xmpp.Core.utils.Idn
                         break;
                     }
 
-                    w = w*(BASE - t);
+                    w = w * (BASE - t);
                 }
 
                 bias = Adapt(i - oldi, output.Length + 1, oldi == 0);
 
-                if (i/(output.Length + 1) > Int32.MaxValue - n)
+                if (i / (output.Length + 1) > Int32.MaxValue - n)
                 {
                     throw new PunycodeException(PunycodeException.OVERFLOW);
                 }
 
-                n = n + i/(output.Length + 1);
-                i = i%(output.Length + 1);
+                n = n + i / (output.Length + 1);
+                i = i % (output.Length + 1);
 
                 // following overload is not supported on CF
                 // output.Insert(i,(char) n);
-                output.Insert(i, new[] {(char) n});
+                output.Insert(i, new[] { (char)n });
                 i++;
             }
 
@@ -284,23 +284,23 @@ namespace ASC.Xmpp.Core.utils.Idn
         {
             if (first)
             {
-                delta = delta/DAMP;
+                delta = delta / DAMP;
             }
             else
             {
-                delta = delta/2;
+                delta = delta / 2;
             }
 
-            delta = delta + (delta/numpoints);
+            delta = delta + (delta / numpoints);
 
             int k = 0;
-            while (delta > ((BASE - TMIN)*TMAX)/2)
+            while (delta > ((BASE - TMIN) * TMAX) / 2)
             {
-                delta = delta/(BASE - TMIN);
+                delta = delta / (BASE - TMIN);
                 k = k + BASE;
             }
 
-            return k + ((BASE - TMIN + 1)*delta)/(delta + SKEW);
+            return k + ((BASE - TMIN + 1) * delta) / (delta + SKEW);
         }
 
         /// <summary>

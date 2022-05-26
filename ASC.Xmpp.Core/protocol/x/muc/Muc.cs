@@ -60,13 +60,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public History History
         {
-            get { return SelectSingleElement(typeof (History)) as History; }
+            get { return SelectSingleElement(typeof(History)) as History; }
 
             set
             {
-                if (HasTag(typeof (History)))
+                if (HasTag(typeof(History)))
                 {
-                    RemoveTag(typeof (History));
+                    RemoveTag(typeof(History));
                 }
 
                 if (value != null)

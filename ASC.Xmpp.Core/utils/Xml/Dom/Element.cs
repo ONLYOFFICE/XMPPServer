@@ -27,6 +27,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
+
 using ASC.Common.Logging;
 using ASC.Xmpp.Core.protocol;
 
@@ -224,7 +225,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         {
             if (HasAttribute(name))
             {
-                return (string) m_Attributes[name];
+                return (string)m_Attributes[name];
             }
             else
             {
@@ -240,7 +241,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         {
             if (HasAttribute(name))
             {
-                return int.Parse((string) m_Attributes[name]);
+                return int.Parse((string)m_Attributes[name]);
             }
             else
             {
@@ -256,7 +257,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         {
             if (HasAttribute(name))
             {
-                return long.Parse((string) m_Attributes[name]);
+                return long.Parse((string)m_Attributes[name]);
             }
             else
             {
@@ -273,7 +274,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         {
             if (HasAttribute(name))
             {
-                var tmp = (string) m_Attributes[name];
+                var tmp = (string)m_Attributes[name];
                 if (tmp.ToLower() == "true")
                 {
                     return true;
@@ -316,7 +317,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
             {
                 try
                 {
-                    return double.Parse((string) m_Attributes[name], ifp);
+                    return double.Parse((string)m_Attributes[name], ifp);
                 }
                 catch
                 {
@@ -460,7 +461,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
             if (HasTag(type) == false)
             {
                 Element newel;
-                newel = (Element) Activator.CreateInstance(type);
+                newel = (Element)Activator.CreateInstance(type);
                 newel.Value = argText;
                 AddChild(newel);
             }
@@ -480,7 +481,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                 RemoveTag(type);
             }
 
-            AddChild((Element) Activator.CreateInstance(type));
+            AddChild((Element)Activator.CreateInstance(type));
         }
 
         /// <summary>
@@ -878,7 +879,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         /// <returns> </returns>
         public string Attribute(string name)
         {
-            return (string) m_Attributes[name];
+            return (string)m_Attributes[name];
         }
 
         /// <summary>
@@ -1264,7 +1265,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         /// <returns> </returns>
         public T SelectSingleElement<T>() where T : Element
         {
-            return (T) _SelectElement(this, typeof (T));
+            return (T)_SelectElement(this, typeof(T));
         }
 
         /// <summary>
@@ -1274,7 +1275,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         /// <returns> </returns>
         public T SelectSingleElement<T>(bool traverseChildren) where T : Element
         {
-            return (T) _SelectElement(this, typeof (T), traverseChildren);
+            return (T)_SelectElement(this, typeof(T), traverseChildren);
         }
 
 #endif
@@ -1359,7 +1360,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
 
                         if (traverseChildren)
                         {
-                            _SelectElements((Element) n, type, es, true);
+                            _SelectElements((Element)n, type, es, true);
                         }
                     }
                 }
@@ -1396,9 +1397,9 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                 {
                     if (ch.NodeType == NodeType.Element)
                     {
-                        if (((Element) ch).TagName == tagname)
+                        if (((Element)ch).TagName == tagname)
                         {
-                            rElement = (Element) ch;
+                            rElement = (Element)ch;
                             return rElement;
                         }
                         else
@@ -1447,7 +1448,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                     {
                         if (ch.GetType() == type)
                         {
-                            rElement = (Element) ch;
+                            rElement = (Element)ch;
                             return rElement;
                         }
                         else
@@ -1531,7 +1532,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                         var e = ch as Element;
                         if (e.TagName == tagname && e.Namespace == nameSpace)
                         {
-                            rElement = (Element) ch;
+                            rElement = (Element)ch;
                             return rElement;
                         }
                         else
@@ -1567,14 +1568,14 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                 {
                     if (n.NodeType == NodeType.Element)
                     {
-                        if (((Element) n).m_TagName == tagname)
+                        if (((Element)n).m_TagName == tagname)
                         {
                             es.Add(n);
                         }
 
                         if (traverseChildren)
                         {
-                            _SelectElements((Element) n, tagname, es, true);
+                            _SelectElements((Element)n, tagname, es, true);
                         }
                     }
                 }
@@ -1620,14 +1621,14 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
                 {
                     if (n.NodeType == NodeType.Element)
                     {
-                        if (n.GetType() == typeof (T))
+                        if (n.GetType() == typeof(T))
                         {
                             list.Add(n as T);
                         }
 
                         if (traverseChildren)
                         {
-                            _SelectElements((Element) n, list, true);
+                            _SelectElements((Element)n, list, true);
                         }
                     }
                 }
@@ -1642,7 +1643,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
 
         public override object Clone()
         {
-            var clone = (Element) base.Clone();
+            var clone = (Element)base.Clone();
             clone.m_Attributes = new ListDictionary();
             foreach (DictionaryEntry a in m_Attributes) clone.m_Attributes.Add(a.Key, a.Value);
             return clone;

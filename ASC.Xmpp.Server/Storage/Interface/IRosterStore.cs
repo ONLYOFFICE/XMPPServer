@@ -19,23 +19,24 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.roster;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Storage.Interface
 {
-	public interface IRosterStore
-	{
+    public interface IRosterStore
+    {
 
-		List<UserRosterItem> GetRosterItems(Jid rosterJid);
+        List<UserRosterItem> GetRosterItems(Jid rosterJid);
 
-		List<UserRosterItem> GetRosterItems(Jid rosterJid, SubscriptionType subscriptionType);
+        List<UserRosterItem> GetRosterItems(Jid rosterJid, SubscriptionType subscriptionType);
 
-		UserRosterItem GetRosterItem(Jid rosterJid, Jid itemJid);
+        UserRosterItem GetRosterItem(Jid rosterJid, Jid itemJid);
 
-		UserRosterItem SaveRosterItem(Jid rosterJid, UserRosterItem item);
+        UserRosterItem SaveRosterItem(Jid rosterJid, UserRosterItem item);
 
-		void RemoveRosterItem(Jid rosterJid, Jid itemJid);
-	}
+        void RemoveRosterItem(Jid rosterJid, Jid itemJid);
+    }
 }

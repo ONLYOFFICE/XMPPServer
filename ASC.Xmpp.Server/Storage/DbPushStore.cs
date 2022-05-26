@@ -22,14 +22,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+
 using ASC.Common.Data.Sql;
 using ASC.Common.Data.Sql.Expressions;
 using ASC.Common.Logging;
-using ASC.Xmpp.Server.Handler;
 
 namespace ASC.Xmpp.Server.Storage
 {
-   
+
     public class UserPushInfo
     {
         public int id { get; set; }
@@ -68,7 +68,7 @@ namespace ASC.Xmpp.Server.Storage
             if (username == null) throw new ArgumentNullException("push");
 
             List<UserPushInfo> userPushList = new List<UserPushInfo>();
-            userPushList = GetUserEndpoint(username,browser);
+            userPushList = GetUserEndpoint(username, browser);
 
             if (userPushList.Count > 0)
             {
@@ -77,7 +77,7 @@ namespace ASC.Xmpp.Server.Storage
                 {
                     ExecuteNonQuery(new SqlUpdate("jabber_push")
                         .Set("endpoint", endpoint)
-                        .Where("id",user.id));
+                        .Where("id", user.id));
                 }
             }
             else

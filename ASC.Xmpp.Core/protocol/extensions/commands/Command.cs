@@ -19,7 +19,6 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol.x.data;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.extensions.commands
@@ -73,7 +72,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
 
         public Action Action
         {
-            get { return (Action) GetAttributeEnum("action", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("action", typeof(Action)); }
             set
             {
                 if (value == Action.NONE)
@@ -85,7 +84,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
 
         public Status Status
         {
-            get { return (Status) GetAttributeEnum("status", typeof (Status)); }
+            get { return (Status)GetAttributeEnum("status", typeof(Status)); }
             set
             {
                 if (value == Status.NONE)
@@ -119,11 +118,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
         /// </summary>
         public x.data.Data Data
         {
-            get { return SelectSingleElement(typeof (x.data.Data)) as x.data.Data; }
+            get { return SelectSingleElement(typeof(x.data.Data)) as x.data.Data; }
             set
             {
-                if (HasTag(typeof (x.data.Data)))
-                    RemoveTag(typeof (x.data.Data));
+                if (HasTag(typeof(x.data.Data)))
+                    RemoveTag(typeof(x.data.Data));
 
                 if (value != null)
                     AddChild(value);
@@ -132,11 +131,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
 
         public Note Note
         {
-            get { return SelectSingleElement(typeof (Note)) as Note; }
+            get { return SelectSingleElement(typeof(Note)) as Note; }
             set
             {
-                if (HasTag(typeof (Note)))
-                    RemoveTag(typeof (Note));
+                if (HasTag(typeof(Note)))
+                    RemoveTag(typeof(Note));
 
                 if (value != null)
                     AddChild(value);
@@ -145,11 +144,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
 
         public Actions Actions
         {
-            get { return SelectSingleElement(typeof (Actions)) as Actions; }
+            get { return SelectSingleElement(typeof(Actions)) as Actions; }
             set
             {
-                if (HasTag(typeof (Actions)))
-                    RemoveTag(typeof (Actions));
+                if (HasTag(typeof(Actions)))
+                    RemoveTag(typeof(Actions));
 
                 if (value != null)
                     AddChild(value);

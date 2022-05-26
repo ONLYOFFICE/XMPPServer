@@ -81,8 +81,8 @@ namespace ASC.Xmpp.Core.IO.Compression.Checksums
             uint s1 = checksum & 0xFFFF;
             uint s2 = checksum >> 16;
 
-            s1 = (s1 + ((uint) bval & 0xFF))%BASE;
-            s2 = (s1 + s2)%BASE;
+            s1 = (s1 + ((uint)bval & 0xFF)) % BASE;
+            s2 = (s1 + s2) % BASE;
 
             checksum = (s2 << 16) + s1;
         }
@@ -132,7 +132,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Checksums
                 len -= n;
                 while (--n >= 0)
                 {
-                    s1 = s1 + (uint) (buf[off++] & 0xFF);
+                    s1 = s1 + (uint)(buf[off++] & 0xFF);
                     s2 = s2 + s1;
                 }
 

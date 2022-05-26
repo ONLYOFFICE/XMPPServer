@@ -34,11 +34,11 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
 
         /// <summary>
         /// </summary>
-        private char refChar1 = (char) 0;
+        private char refChar1 = (char)0;
 
         /// <summary>
         /// </summary>
-        private char refChar2 = (char) 0;
+        private char refChar2 = (char)0;
 
         /// <summary>
         /// </summary>

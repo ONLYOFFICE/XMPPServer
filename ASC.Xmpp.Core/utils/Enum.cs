@@ -31,7 +31,7 @@ namespace ASC.Xmpp.Core.utils
     public class Enum
     {
 #if CF
-		#region << Enum.Parse() for CF, credits to OpenNetCF.net for this function>>
+        #region << Enum.Parse() for CF, credits to OpenNetCF.net for this function>>
 		/// <summary>
 		/// Use this on CF 1.0, CF 2 includes Enum.Parse() now
 		/// </summary>
@@ -104,7 +104,7 @@ namespace ASC.Xmpp.Core.utils
 				}				
 			}
 		}
-		#endregion
+        #endregion
 #endif
 
 #if CF || CF_2 || SL

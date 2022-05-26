@@ -94,11 +94,11 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// </summary>
         public Reported Reported
         {
-            get { return SelectSingleElement(typeof (Reported)) as Reported; }
+            get { return SelectSingleElement(typeof(Reported)) as Reported; }
 
             set
             {
-                RemoveTag(typeof (Reported));
+                RemoveTag(typeof(Reported));
                 AddChild(value);
             }
         }
@@ -117,7 +117,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// </summary>
         public XDataFormType Type
         {
-            get { return (XDataFormType) GetAttributeEnum("type", typeof (XDataFormType)); }
+            get { return (XDataFormType)GetAttributeEnum("type", typeof(XDataFormType)); }
 
             set { SetAttribute("type", value.ToString()); }
         }
@@ -152,12 +152,12 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public Item[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (Item));
+            ElementList nl = SelectElements(typeof(Item));
             var items = new Item[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Item) e;
+                items[i] = (Item)e;
                 i++;
             }
 

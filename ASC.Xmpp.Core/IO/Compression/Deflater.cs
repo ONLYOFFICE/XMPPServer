@@ -47,11 +47,11 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int BUSY_STATE = 0x10;
+        private static readonly int BUSY_STATE = 0x10;
 
         /// <summary>
         /// </summary>
-        private static int CLOSED_STATE = 0x7f;
+        private static readonly int CLOSED_STATE = 0x7f;
 
         /// <summary>
         ///   The default compression level.
@@ -65,15 +65,15 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int FINISHED_STATE = 0x1e;
+        private static readonly int FINISHED_STATE = 0x1e;
 
         /// <summary>
         /// </summary>
-        private static int FINISHING_STATE = 0x1c;
+        private static readonly int FINISHING_STATE = 0x1c;
 
         /// <summary>
         /// </summary>
-        private static int FLUSHING_STATE = 0x14;
+        private static readonly int FLUSHING_STATE = 0x14;
 
         /*
 		* The Deflater can do the following state transitions:
@@ -112,19 +112,19 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int INIT_STATE = 0;
+        private static readonly int INIT_STATE = 0;
 
         /// <summary>
         /// </summary>
-        private static int IS_FINISHING = 0x08;
+        private static readonly int IS_FINISHING = 0x08;
 
         /// <summary>
         /// </summary>
-        private static int IS_FLUSHING = 0x04;
+        private static readonly int IS_FLUSHING = 0x04;
 
         /// <summary>
         /// </summary>
-        private static int IS_SETDICT = 0x01;
+        private static readonly int IS_SETDICT = 0x01;
 
         /// <summary>
         ///   This level won't compress at all but output uncompressed blocks.
@@ -133,7 +133,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int SETDICT_STATE = 0x01;
+        private static readonly int SETDICT_STATE = 0x01;
 
         /// <summary>
         ///   The deflater engine.
@@ -400,7 +400,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     header |= DeflaterConstants.PRESET_DICT;
                 }
 
-                header += 31 - (header%31);
+                header += 31 - (header % 31);
 
                 pending.WriteShortMSB(header);
                 if ((state & IS_SETDICT) != 0)
@@ -414,7 +414,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                 state = BUSY_STATE | (state & (IS_FLUSHING | IS_FINISHING));
             }
 
-            for (;;)
+            for (; ; )
             {
                 int count = pending.Flush(output, offset, length);
                 offset += count;

@@ -47,7 +47,7 @@ namespace ASC.Xmpp.Core.protocol.sasl
             int i = 0;
             foreach (Element e in elements)
             {
-                items[i] = (Mechanism) e;
+                items[i] = (Mechanism)e;
                 i++;
             }
             return items;

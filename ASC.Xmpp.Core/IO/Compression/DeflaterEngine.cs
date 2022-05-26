@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.IO.Compression.Checksums;
 
 namespace ASC.Xmpp.Core.IO.Compression
@@ -69,7 +70,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static int TOO_FAR = 4096;
+        private static readonly int TOO_FAR = 4096;
 
         /// <summary>
         ///   The adler checksum
@@ -189,7 +190,7 @@ namespace ASC.Xmpp.Core.IO.Compression
             huffman = new DeflaterHuffman(pending);
             adler = new Adler32();
 
-            window = new byte[2*WSIZE];
+            window = new byte[2 * WSIZE];
             head = new short[HASH_SIZE];
             prev = new short[WSIZE];
 
@@ -207,7 +208,7 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// </summary>
         public int Adler
         {
-            get { return (int) adler.Value; }
+            get { return (int)adler.Value; }
         }
 
         /// <summary>
@@ -341,7 +342,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 			 */
             while (lookahead < MIN_LOOKAHEAD && inputOff < inputEnd)
             {
-                int more = 2*WSIZE - lookahead - strstart;
+                int more = 2 * WSIZE - lookahead - strstart;
 
                 if (more > inputEnd - inputOff)
                 {
@@ -514,7 +515,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 			}
 */
             prev[strstart & WMASK] = match = head[hash];
-            head[hash] = (short) strstart;
+            head[hash] = (short)strstart;
             ins_h = hash;
             return match & 0xffff;
         }
@@ -534,14 +535,14 @@ namespace ASC.Xmpp.Core.IO.Compression
             for (int i = 0; i < HASH_SIZE; ++i)
             {
                 int m = head[i] & 0xffff;
-                head[i] = (short) (m >= WSIZE ? (m - WSIZE) : 0);
+                head[i] = (short)(m >= WSIZE ? (m - WSIZE) : 0);
             }
 
             /* Slide the prev table. */
             for (int i = 0; i < WSIZE; i++)
             {
                 int m = prev[i] & 0xffff;
-                prev[i] = (short) (m >= WSIZE ? (m - WSIZE) : 0);
+                prev[i] = (short)(m >= WSIZE ? (m - WSIZE) : 0);
             }
         }
 
@@ -700,7 +701,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     return false;
                 }
 
-                if (strstart > 2*WSIZE - MIN_LOOKAHEAD)
+                if (strstart > 2 * WSIZE - MIN_LOOKAHEAD)
                 {
                     /* slide window, as findLongestMatch needs this.
 					 * This should only happen when flushing and the window
@@ -809,7 +810,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     return false;
                 }
 
-                if (strstart >= 2*WSIZE - MIN_LOOKAHEAD)
+                if (strstart >= 2 * WSIZE - MIN_LOOKAHEAD)
                 {
                     /* slide window, as findLongestMatch need this.
 					 * This should only happen when flushing and the window
@@ -860,7 +861,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                             InsertString();
                         }
                     } while (--prevLen > 0);
-                    strstart ++;
+                    strstart++;
                     lookahead--;
                     prevAvailable = false;
                     matchLen = MIN_MATCH - 1;

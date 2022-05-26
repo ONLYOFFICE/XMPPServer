@@ -142,7 +142,7 @@ namespace ASC.Xmpp.Core.protocol.component
         }
 
         public Message(Jid to, Jid from, MessageType type, string body)
-            : base(to, from,type, body)
+            : base(to, from, type, body)
         {
             Namespace = Uri.ACCEPT;
         }
@@ -166,11 +166,11 @@ namespace ASC.Xmpp.Core.protocol.component
         /// </summary>
         public new Error Error
         {
-            get { return SelectSingleElement(typeof (Error)) as Error; }
+            get { return SelectSingleElement(typeof(Error)) as Error; }
             set
             {
-                if (HasTag(typeof (Error)))
-                    RemoveTag(typeof (Error));
+                if (HasTag(typeof(Error)))
+                    RemoveTag(typeof(Error));
 
                 if (value != null)
                     AddChild(value);

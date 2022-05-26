@@ -77,7 +77,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public SubscriptionState SubscriptionState
         {
-            get { return (SubscriptionState) GetAttributeEnum("subscription", typeof (SubscriptionState)); }
+            get { return (SubscriptionState)GetAttributeEnum("subscription", typeof(SubscriptionState)); }
             set { SetAttribute("subscription", value.ToString()); }
         }
 

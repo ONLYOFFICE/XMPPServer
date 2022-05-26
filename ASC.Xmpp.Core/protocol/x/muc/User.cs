@@ -56,13 +56,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Decline Decline
         {
-            get { return SelectSingleElement(typeof (Decline)) as Decline; }
+            get { return SelectSingleElement(typeof(Decline)) as Decline; }
 
             set
             {
-                if (HasTag(typeof (Decline)))
+                if (HasTag(typeof(Decline)))
                 {
-                    RemoveTag(typeof (Decline));
+                    RemoveTag(typeof(Decline));
                 }
 
                 if (value != null)
@@ -77,13 +77,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Invite Invite
         {
-            get { return SelectSingleElement(typeof (Invite)) as Invite; }
+            get { return SelectSingleElement(typeof(Invite)) as Invite; }
 
             set
             {
-                if (HasTag(typeof (Invite)))
+                if (HasTag(typeof(Invite)))
                 {
-                    RemoveTag(typeof (Invite));
+                    RemoveTag(typeof(Invite));
                 }
 
                 if (value != null)
@@ -97,11 +97,11 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Item Item
         {
-            get { return SelectSingleElement(typeof (Item)) as Item; }
+            get { return SelectSingleElement(typeof(Item)) as Item; }
 
             set
             {
-                RemoveTag(typeof (Item));
+                RemoveTag(typeof(Item));
                 AddChild(value);
             }
         }
@@ -120,13 +120,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Status Status
         {
-            get { return SelectSingleElement(typeof (Status)) as Status; }
+            get { return SelectSingleElement(typeof(Status)) as Status; }
 
             set
             {
-                if (HasTag(typeof (Status)))
+                if (HasTag(typeof(Status)))
                 {
-                    RemoveTag(typeof (Status));
+                    RemoveTag(typeof(Status));
                 }
 
                 if (value != null)

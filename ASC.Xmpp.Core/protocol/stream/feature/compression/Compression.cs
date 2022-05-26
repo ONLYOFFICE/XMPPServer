@@ -56,7 +56,7 @@ namespace ASC.Xmpp.Core.protocol.stream.feature.compression
                 if (value != CompressionMethod.Unknown)
                     SetTag("method", value.ToString());
             }
-            get { return (CompressionMethod) GetTagEnum("method", typeof (CompressionMethod)); }
+            get { return (CompressionMethod)GetTagEnum("method", typeof(CompressionMethod)); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace ASC.Xmpp.Core.protocol.stream.feature.compression
         /// <returns> </returns>
         public bool SupportsMethod(CompressionMethod method)
         {
-            ElementList nList = SelectElements(typeof (Method));
+            ElementList nList = SelectElements(typeof(Method));
             foreach (Method m in nList)
             {
                 if (m.CompressionMethod == method)
@@ -87,7 +87,7 @@ namespace ASC.Xmpp.Core.protocol.stream.feature.compression
 
         public Method[] GetMethods()
         {
-            ElementList methods = SelectElements(typeof (Method));
+            ElementList methods = SelectElements(typeof(Method));
 
             var items = new Method[methods.Count];
             int i = 0;

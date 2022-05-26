@@ -19,58 +19,53 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using System;
-using ASC.Xmpp.Core;
-using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.protocol.iq.auth;
-using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Streams;
-using ASC.Xmpp.Server.Users;
 
 namespace ASC.Xmpp.Server.Authorization
 {
-	[XmppHandler(typeof(AuthIq))]
-	class AuthIQHandler : XmppStreamHandler
-	{
-		public override void ElementHandle(XmppStream stream, Element element, XmppHandlerContext context)
-		{
-			var iq = (AuthIq)element;
+    [XmppHandler(typeof(AuthIq))]
+    class AuthIQHandler : XmppStreamHandler
+    {
+        public override void ElementHandle(XmppStream stream, Element element, XmppHandlerContext context)
+        {
+            var iq = (AuthIq)element;
 
-			if (stream.Authenticated)
-			{
-				context.Sender.SendTo(stream, XmppStanzaError.ToConflict(iq));
-				return;
-			}
+            if (stream.Authenticated)
+            {
+                context.Sender.SendTo(stream, XmppStanzaError.ToConflict(iq));
+                return;
+            }
 
-			if (iq.Type == IqType.get) ProcessAuthIQGet(stream, iq, context);
-			else if (iq.Type == IqType.set) ProcessAuthIQSet(stream, iq, context);
-			else context.Sender.SendTo(stream, XmppStanzaError.ToNotAcceptable(iq));
-		}
+            if (iq.Type == IqType.get) ProcessAuthIQGet(stream, iq, context);
+            else if (iq.Type == IqType.set) ProcessAuthIQSet(stream, iq, context);
+            else context.Sender.SendTo(stream, XmppStanzaError.ToNotAcceptable(iq));
+        }
 
-		private void ProcessAuthIQSet(XmppStream stream, AuthIq iq, XmppHandlerContext context)
-		{
-			if (string.IsNullOrEmpty(iq.Query.Username) || string.IsNullOrEmpty(iq.Query.Resource))
-			{
-				context.Sender.SendTo(stream, XmppStanzaError.ToNotAcceptable(iq));
-				return;
-			}
+        private void ProcessAuthIQSet(XmppStream stream, AuthIq iq, XmppHandlerContext context)
+        {
+            if (string.IsNullOrEmpty(iq.Query.Username) || string.IsNullOrEmpty(iq.Query.Resource))
+            {
+                context.Sender.SendTo(stream, XmppStanzaError.ToNotAcceptable(iq));
+                return;
+            }
 
-			context.Sender.SendTo(stream, XmppStanzaError.ToNotAuthorized(iq));
+            context.Sender.SendTo(stream, XmppStanzaError.ToNotAuthorized(iq));
 
-		}
+        }
 
-		private void ProcessAuthIQGet(XmppStream stream, AuthIq iq, XmppHandlerContext context)
-		{
-			iq.SwitchDirection();
-			iq.Type = IqType.result;
-			iq.Query.AddChild(new Element("password"));
-			iq.Query.AddChild(new Element("digest"));
-			iq.Query.AddChild(new Element("resource"));
-			context.Sender.SendTo(stream, iq);
-		}
+        private void ProcessAuthIQGet(XmppStream stream, AuthIq iq, XmppHandlerContext context)
+        {
+            iq.SwitchDirection();
+            iq.Type = IqType.result;
+            iq.Query.AddChild(new Element("password"));
+            iq.Query.AddChild(new Element("digest"));
+            iq.Query.AddChild(new Element("resource"));
+            context.Sender.SendTo(stream, iq);
+        }
 
-	}
+    }
 }

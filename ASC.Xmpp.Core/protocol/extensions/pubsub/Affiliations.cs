@@ -67,12 +67,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Affiliation[] GetAffiliations()
         {
-            ElementList nl = SelectElements(typeof (Affiliation));
+            ElementList nl = SelectElements(typeof(Affiliation));
             var items = new Affiliation[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Affiliation) e;
+                items[i] = (Affiliation)e;
                 i++;
             }
             return items;

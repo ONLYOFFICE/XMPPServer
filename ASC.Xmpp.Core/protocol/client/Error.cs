@@ -221,7 +221,7 @@ namespace ASC.Xmpp.Core.protocol.client
 
         public Error(ErrorCode code) : this()
         {
-            SetAttribute("code", (int) code);
+            SetAttribute("code", (int)code);
         }
 
         public Error(ErrorType type) : this()
@@ -256,13 +256,13 @@ namespace ASC.Xmpp.Core.protocol.client
 
         public ErrorCode Code
         {
-            get { return (ErrorCode) GetAttributeInt("code"); }
-            set { SetAttribute("code", (int) value); }
+            get { return (ErrorCode)GetAttributeInt("code"); }
+            set { SetAttribute("code", (int)value); }
         }
 
         public ErrorType Type
         {
-            get { return (ErrorType) GetAttributeEnum("type", typeof (ErrorType)); }
+            get { return (ErrorType)GetAttributeEnum("type", typeof(ErrorType)); }
             set { SetAttribute("type", value.ToString()); }
         }
 

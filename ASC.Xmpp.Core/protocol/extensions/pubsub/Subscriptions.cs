@@ -84,12 +84,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Subscription[] GetSubscriptions()
         {
-            ElementList nl = SelectElements(typeof (Subscription));
+            ElementList nl = SelectElements(typeof(Subscription));
             var items = new Subscription[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Subscription) e;
+                items[i] = (Subscription)e;
                 i++;
             }
             return items;

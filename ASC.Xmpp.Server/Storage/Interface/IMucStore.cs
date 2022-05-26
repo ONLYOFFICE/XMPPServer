@@ -19,19 +19,20 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Storage.Interface
 {
     using Services.Muc2.Room.Settings;
 
     public interface IMucStore
-	{
-		List<MucRoomInfo> GetMucs(string server);
+    {
+        List<MucRoomInfo> GetMucs(string server);
 
-		MucRoomInfo GetMuc(Jid mucName);
+        MucRoomInfo GetMuc(Jid mucName);
 
         void SaveMuc(MucRoomInfo muc);
 
@@ -46,5 +47,5 @@ namespace ASC.Xmpp.Server.Storage.Interface
         MucRoomSettings GetMucRoomSettings(Jid roomName);
 
         void SetMucRoomSettings(Jid roomName, MucRoomSettings settings);
-	}
+    }
 }

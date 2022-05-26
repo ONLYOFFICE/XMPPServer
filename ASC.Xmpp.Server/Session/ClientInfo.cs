@@ -19,20 +19,21 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol.iq.disco;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
+using ASC.Xmpp.Core.protocol.iq.disco;
+
 namespace ASC.Xmpp.Server.Session
 {
-	public class ClientInfo
-	{
-		private const string DEFAULT_NODE = "DEFAULT_NODE";
+    public class ClientInfo
+    {
+        private const string DEFAULT_NODE = "DEFAULT_NODE";
 
-        private IDictionary<string, DiscoInfo> discoCache = new ConcurrentDictionary<string, DiscoInfo>();
+        private readonly IDictionary<string, DiscoInfo> discoCache = new ConcurrentDictionary<string, DiscoInfo>();
 
-		public DiscoInfo GetDiscoInfo(string node)
-		{
+        public DiscoInfo GetDiscoInfo(string node)
+        {
             if (string.IsNullOrEmpty(node))
             {
                 node = DEFAULT_NODE;
@@ -41,16 +42,16 @@ namespace ASC.Xmpp.Server.Session
             DiscoInfo info;
             discoCache.TryGetValue(node, out info);
             return info;
-		}
+        }
 
-		public void SetDiscoInfo(DiscoInfo discoInfo)
-		{
+        public void SetDiscoInfo(DiscoInfo discoInfo)
+        {
             if (discoInfo == null)
             {
                 return;
             }
-			var node = !string.IsNullOrEmpty(discoInfo.Node) ? discoInfo.Node : DEFAULT_NODE;
-			discoCache[node] = discoInfo;
-		}
-	}
+            var node = !string.IsNullOrEmpty(discoInfo.Node) ? discoInfo.Node : DEFAULT_NODE;
+            discoCache[node] = discoInfo;
+        }
+    }
 }

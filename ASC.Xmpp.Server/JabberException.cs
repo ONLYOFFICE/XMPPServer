@@ -21,9 +21,11 @@
 
 using System;
 using System.Runtime.Serialization;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.utils.Xml.Dom;
+
 using StanzaError = ASC.Xmpp.Core.protocol.client.Error;
 using StreamError = ASC.Xmpp.Core.protocol.Error;
 

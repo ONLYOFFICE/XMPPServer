@@ -61,7 +61,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public Field GetField(string var)
         {
-            ElementList nl = SelectElements(typeof (Field));
+            ElementList nl = SelectElements(typeof(Field));
             foreach (Element e in nl)
             {
                 var f = e as Field;
@@ -80,12 +80,12 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public Field[] GetFields()
         {
-            ElementList nl = SelectElements(typeof (Field));
+            ElementList nl = SelectElements(typeof(Field));
             var fields = new Field[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                fields[i] = (Field) e;
+                fields[i] = (Field)e;
                 i++;
             }
 

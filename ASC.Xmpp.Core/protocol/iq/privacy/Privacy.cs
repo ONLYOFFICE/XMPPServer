@@ -36,11 +36,11 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
         /// </summary>
         public Active Active
         {
-            get { return SelectSingleElement(typeof (Active)) as Active; }
+            get { return SelectSingleElement(typeof(Active)) as Active; }
             set
             {
-                if (HasTag(typeof (Active)))
-                    RemoveTag(typeof (Active));
+                if (HasTag(typeof(Active)))
+                    RemoveTag(typeof(Active));
 
                 if (value != null)
                     AddChild(value);
@@ -52,11 +52,11 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
         /// </summary>
         public Default Default
         {
-            get { return SelectSingleElement(typeof (Default)) as Default; }
+            get { return SelectSingleElement(typeof(Default)) as Default; }
             set
             {
-                if (HasTag(typeof (Default)))
-                    RemoveTag(typeof (Default));
+                if (HasTag(typeof(Default)))
+                    RemoveTag(typeof(Default));
 
                 AddChild(value);
             }
@@ -77,7 +77,7 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
         /// <returns> Array of all privacy lists </returns>
         public List[] GetList()
         {
-            ElementList el = SelectElements(typeof (List));
+            ElementList el = SelectElements(typeof(List));
             int i = 0;
             var result = new List[el.Count];
             foreach (List list in el)

@@ -21,8 +21,6 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using ASC.Common.Module;
-using ASC.Xmpp.Host;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information

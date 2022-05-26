@@ -33,7 +33,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.multicast
 
         public AddressType Type
         {
-            get { return (AddressType) GetAttributeEnum("type", typeof (AddressType)); }
+            get { return (AddressType)GetAttributeEnum("type", typeof(AddressType)); }
 
             set { SetAttribute("type", value.ToString()); }
         }

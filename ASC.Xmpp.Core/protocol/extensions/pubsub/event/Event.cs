@@ -34,11 +34,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.@event
 
         public Delete Delete
         {
-            get { return SelectSingleElement(typeof (Delete)) as Delete; }
+            get { return SelectSingleElement(typeof(Delete)) as Delete; }
             set
             {
-                if (HasTag(typeof (Delete)))
-                    RemoveTag(typeof (Delete));
+                if (HasTag(typeof(Delete)))
+                    RemoveTag(typeof(Delete));
 
                 if (value != null)
                     AddChild(value);
@@ -47,11 +47,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.@event
 
         public Purge Purge
         {
-            get { return SelectSingleElement(typeof (Purge)) as Purge; }
+            get { return SelectSingleElement(typeof(Purge)) as Purge; }
             set
             {
-                if (HasTag(typeof (Purge)))
-                    RemoveTag(typeof (Purge));
+                if (HasTag(typeof(Purge)))
+                    RemoveTag(typeof(Purge));
 
                 if (value != null)
                     AddChild(value);
@@ -60,11 +60,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.@event
 
         public Items Items
         {
-            get { return SelectSingleElement(typeof (Items)) as Items; }
+            get { return SelectSingleElement(typeof(Items)) as Items; }
             set
             {
-                if (HasTag(typeof (Items)))
-                    RemoveTag(typeof (Items));
+                if (HasTag(typeof(Items)))
+                    RemoveTag(typeof(Items));
 
                 if (value != null)
                     AddChild(value);

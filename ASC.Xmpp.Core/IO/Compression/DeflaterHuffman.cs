@@ -37,43 +37,43 @@ namespace ASC.Xmpp.Core.IO.Compression
 
         /// <summary>
         /// </summary>
-        private static readonly byte[] bit4Reverse = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
+        private static readonly byte[] bit4Reverse = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
 
         /// <summary>
         /// </summary>
-        private static int BITLEN_NUM = 19;
+        private static readonly int BITLEN_NUM = 19;
 
         /// <summary>
         /// </summary>
-        private static readonly int[] BL_ORDER = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+        private static readonly int[] BL_ORDER = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
 
         /// <summary>
         /// </summary>
-        private static int BUFSIZE = 1 << (DeflaterConstants.DEFAULT_MEM_LEVEL + 6);
+        private static readonly int BUFSIZE = 1 << (DeflaterConstants.DEFAULT_MEM_LEVEL + 6);
 
         /// <summary>
         /// </summary>
-        private static int DIST_NUM = 30;
+        private static readonly int DIST_NUM = 30;
 
         /// <summary>
         /// </summary>
-        private static int EOF_SYMBOL = 256;
+        private static readonly int EOF_SYMBOL = 256;
 
         /// <summary>
         /// </summary>
-        private static int LITERAL_NUM = 286;
+        private static readonly int LITERAL_NUM = 286;
 
         /// <summary>
         /// </summary>
-        private static int REP_11_138 = 18;
+        private static readonly int REP_11_138 = 18;
 
         /// <summary>
         /// </summary>
-        private static int REP_3_10 = 17;
+        private static readonly int REP_3_10 = 17;
 
         /// <summary>
         /// </summary>
-        private static int REP_3_6 = 16;
+        private static readonly int REP_3_6 = 16;
 
         /// <summary>
         /// </summary>
@@ -258,7 +258,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     int lc = Lcode(litlen);
                     literalTree.WriteSymbol(lc);
 
-                    int bits = (lc - 261)/4;
+                    int bits = (lc - 261) / 4;
                     if (bits > 0 && bits <= 5)
                     {
                         pending.WriteBits(litlen & ((1 << bits) - 1), bits);
@@ -267,7 +267,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     int dc = Dcode(dist);
                     distTree.WriteSymbol(dc);
 
-                    bits = dc/2 - 1;
+                    bits = dc / 2 - 1;
                     if (bits > 0)
                     {
                         pending.WriteBits(dist & ((1 << bits) - 1), bits);
@@ -348,18 +348,18 @@ namespace ASC.Xmpp.Core.IO.Compression
                 }
             }
 
-            int opt_len = 14 + blTreeCodes*3 + blTree.GetEncodedLength() + literalTree.GetEncodedLength() +
+            int opt_len = 14 + blTreeCodes * 3 + blTree.GetEncodedLength() + literalTree.GetEncodedLength() +
                           distTree.GetEncodedLength() + extra_bits;
 
             int static_len = extra_bits;
             for (int i = 0; i < LITERAL_NUM; i++)
             {
-                static_len += literalTree.freqs[i]*staticLLength[i];
+                static_len += literalTree.freqs[i] * staticLLength[i];
             }
 
             for (int i = 0; i < DIST_NUM; i++)
             {
-                static_len += distTree.freqs[i]*staticDLength[i];
+                static_len += distTree.freqs[i] * staticDLength[i];
             }
 
             if (opt_len >= static_len)
@@ -420,7 +420,7 @@ namespace ASC.Xmpp.Core.IO.Compression
             // 				}
             // 			}
             d_buf[last_lit] = 0;
-            l_buf[last_lit++] = (byte) lit;
+            l_buf[last_lit++] = (byte)lit;
             literalTree.freqs[lit]++;
             return IsFull();
         }
@@ -436,21 +436,21 @@ namespace ASC.Xmpp.Core.IO.Compression
             // 			if (DeflaterConstants.DEBUGGING) {
             // 				//Console.WriteLine("["+dist+","+len+"]");
             // 			}
-            d_buf[last_lit] = (short) dist;
-            l_buf[last_lit++] = (byte) (len - 3);
+            d_buf[last_lit] = (short)dist;
+            l_buf[last_lit++] = (byte)(len - 3);
 
             int lc = Lcode(len - 3);
             literalTree.freqs[lc]++;
             if (lc >= 265 && lc < 285)
             {
-                extra_bits += (lc - 261)/4;
+                extra_bits += (lc - 261) / 4;
             }
 
             int dc = Dcode(dist - 1);
             distTree.freqs[dc]++;
             if (dc >= 4)
             {
-                extra_bits += dc/2 - 1;
+                extra_bits += dc / 2 - 1;
             }
 
             return IsFull();
@@ -695,7 +695,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                         /* Insert n into heap */
                         int pos = heapLen++;
                         int ppos;
-                        while (pos > 0 && freqs[heap[ppos = (pos - 1)/2]] > freq)
+                        while (pos > 0 && freqs[heap[ppos = (pos - 1) / 2]] > freq)
                         {
                             heap[pos] = heap[ppos];
                             pos = ppos;
@@ -721,14 +721,14 @@ namespace ASC.Xmpp.Core.IO.Compression
                 numCodes = Math.Max(maxCode + 1, minNumCodes);
 
                 int numLeafs = heapLen;
-                var childs = new int[4*heapLen - 2];
-                var values = new int[2*heapLen - 1];
+                var childs = new int[4 * heapLen - 2];
+                var values = new int[2 * heapLen - 1];
                 int numNodes = numLeafs;
                 for (int i = 0; i < heapLen; i++)
                 {
                     int node = heap[i];
-                    childs[2*i] = node;
-                    childs[2*i + 1] = -1;
+                    childs[2 * i] = node;
+                    childs[2 * i + 1] = -1;
                     values[i] = freqs[node] << 8;
                     heap[i] = i;
                 }
@@ -754,14 +754,14 @@ namespace ASC.Xmpp.Core.IO.Compression
 
                         heap[ppos] = heap[path];
                         ppos = path;
-                        path = path*2 + 1;
+                        path = path * 2 + 1;
                     }
 
                     /* Now propagate the last element down along path.  Normally
 					* it shouldn't go too deep.
 					*/
                     int lastVal = values[last];
-                    while ((path = ppos) > 0 && values[heap[ppos = (path - 1)/2]] > lastVal)
+                    while ((path = ppos) > 0 && values[heap[ppos = (path - 1) / 2]] > lastVal)
                     {
                         heap[path] = heap[ppos];
                     }
@@ -772,8 +772,8 @@ namespace ASC.Xmpp.Core.IO.Compression
 
                     /* Create a new node father of first and second */
                     last = numNodes++;
-                    childs[2*last] = first;
-                    childs[2*last + 1] = second;
+                    childs[2 * last] = first;
+                    childs[2 * last + 1] = second;
                     int mindepth = Math.Min(values[first] & 0xff, values[second] & 0xff);
                     values[last] = lastVal = values[first] + values[second] - mindepth + 1;
 
@@ -790,11 +790,11 @@ namespace ASC.Xmpp.Core.IO.Compression
 
                         heap[ppos] = heap[path];
                         ppos = path;
-                        path = ppos*2 + 1;
+                        path = ppos * 2 + 1;
                     }
 
                     /* Now propagate the new element down along path */
-                    while ((path = ppos) > 0 && values[heap[ppos = (path - 1)/2]] > lastVal)
+                    while ((path = ppos) > 0 && values[heap[ppos = (path - 1) / 2]] > lastVal)
                     {
                         heap[path] = heap[ppos];
                     }
@@ -802,7 +802,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                     heap[path] = last;
                 } while (heapLen > 1);
 
-                if (heap[0] != childs.Length/2 - 1)
+                if (heap[0] != childs.Length / 2 - 1)
                 {
                     throw new SharpZipBaseException("Heap invariant violated");
                 }
@@ -819,7 +819,7 @@ namespace ASC.Xmpp.Core.IO.Compression
                 int len = 0;
                 for (int i = 0; i < freqs.Length; i++)
                 {
-                    len += freqs[i]*length[i];
+                    len += freqs[i] * length[i];
                 }
 
                 return len;
@@ -871,7 +871,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
                     if (count < min_count)
                     {
-                        blTree.freqs[curlen] += (short) count;
+                        blTree.freqs[curlen] += (short)count;
                     }
                     else if (curlen != 0)
                     {
@@ -967,8 +967,8 @@ namespace ASC.Xmpp.Core.IO.Compression
             private void BuildLength(int[] childs)
             {
                 length = new byte[freqs.Length];
-                int numNodes = childs.Length/2;
-                int numLeafs = (numNodes + 1)/2;
+                int numNodes = childs.Length / 2;
+                int numLeafs = (numNodes + 1) / 2;
                 int overflow = 0;
 
                 for (int i = 0; i < maxLength; i++)
@@ -982,7 +982,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
                 for (int i = numNodes - 1; i >= 0; i--)
                 {
-                    if (childs[2*i + 1] != -1)
+                    if (childs[2 * i + 1] != -1)
                     {
                         int bitLength = lengths[i] + 1;
                         if (bitLength > maxLength)
@@ -991,14 +991,14 @@ namespace ASC.Xmpp.Core.IO.Compression
                             overflow++;
                         }
 
-                        lengths[childs[2*i]] = lengths[childs[2*i + 1]] = bitLength;
+                        lengths[childs[2 * i]] = lengths[childs[2 * i + 1]] = bitLength;
                     }
                     else
                     {
                         /* A leaf node */
                         int bitLength = lengths[i];
                         bl_counts[bitLength - 1]++;
-                        length[childs[2*i]] = (byte) lengths[i];
+                        length[childs[2 * i]] = (byte)lengths[i];
                     }
                 }
 
@@ -1048,17 +1048,17 @@ namespace ASC.Xmpp.Core.IO.Compression
 				* The nodes were inserted with decreasing frequency into the childs
 				* array.
 				*/
-                int nodePtr = 2*numLeafs;
+                int nodePtr = 2 * numLeafs;
                 for (int bits = maxLength; bits != 0; bits--)
                 {
                     int n = bl_counts[bits - 1];
                     while (n > 0)
                     {
-                        int childPtr = 2*childs[nodePtr++];
+                        int childPtr = 2 * childs[nodePtr++];
                         if (childs[childPtr + 1] == -1)
                         {
                             /* We found another leaf */
-                            length[childs[childPtr]] = (byte) bits;
+                            length[childs[childPtr]] = (byte)bits;
                             n--;
                         }
                     }

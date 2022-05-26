@@ -107,12 +107,12 @@ namespace ASC.Xmpp.Core.protocol.iq.disco
 
         public DiscoItem[] GetDiscoItems()
         {
-            ElementList nl = SelectElements(typeof (DiscoItem));
+            ElementList nl = SelectElements(typeof(DiscoItem));
             var items = new DiscoItem[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (DiscoItem) e;
+                items[i] = (DiscoItem)e;
                 i++;
             }
             return items;

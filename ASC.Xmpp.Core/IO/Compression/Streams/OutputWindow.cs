@@ -41,7 +41,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
 
         /// <summary>
         /// </summary>
-        private static int WINDOW_SIZE = 1 << 15;
+        private static readonly int WINDOW_SIZE = 1 << 15;
 
         /// <summary>
         /// </summary>
@@ -71,7 +71,7 @@ namespace ASC.Xmpp.Core.IO.Compression.Streams
                 throw new InvalidOperationException("Window full");
             }
 
-            window[windowEnd++] = (byte) abyte;
+            window[windowEnd++] = (byte)abyte;
             windowEnd &= WINDOW_MASK;
         }
 

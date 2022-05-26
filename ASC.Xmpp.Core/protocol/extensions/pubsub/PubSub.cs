@@ -36,11 +36,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
         /// </summary>
         public Create Create
         {
-            get { return SelectSingleElement(typeof (Create)) as Create; }
+            get { return SelectSingleElement(typeof(Create)) as Create; }
             set
             {
-                if (HasTag(typeof (Create)))
-                    RemoveTag(typeof (Create));
+                if (HasTag(typeof(Create)))
+                    RemoveTag(typeof(Create));
 
                 if (value != null)
                     AddChild(value);
@@ -49,11 +49,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Publish Publish
         {
-            get { return SelectSingleElement(typeof (Publish)) as Publish; }
+            get { return SelectSingleElement(typeof(Publish)) as Publish; }
             set
             {
-                if (HasTag(typeof (Publish)))
-                    RemoveTag(typeof (Publish));
+                if (HasTag(typeof(Publish)))
+                    RemoveTag(typeof(Publish));
 
                 if (value != null)
                     AddChild(value);
@@ -62,11 +62,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Retract Retract
         {
-            get { return SelectSingleElement(typeof (Retract)) as Retract; }
+            get { return SelectSingleElement(typeof(Retract)) as Retract; }
             set
             {
-                if (HasTag(typeof (Retract)))
-                    RemoveTag(typeof (Retract));
+                if (HasTag(typeof(Retract)))
+                    RemoveTag(typeof(Retract));
 
                 if (value != null)
                     AddChild(value);
@@ -75,11 +75,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Subscribe Subscribe
         {
-            get { return SelectSingleElement(typeof (Subscribe)) as Subscribe; }
+            get { return SelectSingleElement(typeof(Subscribe)) as Subscribe; }
             set
             {
-                if (HasTag(typeof (Subscribe)))
-                    RemoveTag(typeof (Subscribe));
+                if (HasTag(typeof(Subscribe)))
+                    RemoveTag(typeof(Subscribe));
 
                 if (value != null)
                     AddChild(value);
@@ -88,11 +88,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Unsubscribe Unsubscribe
         {
-            get { return SelectSingleElement(typeof (Unsubscribe)) as Unsubscribe; }
+            get { return SelectSingleElement(typeof(Unsubscribe)) as Unsubscribe; }
             set
             {
-                if (HasTag(typeof (Unsubscribe)))
-                    RemoveTag(typeof (Unsubscribe));
+                if (HasTag(typeof(Unsubscribe)))
+                    RemoveTag(typeof(Unsubscribe));
 
                 if (value != null)
                     AddChild(value);
@@ -101,11 +101,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Subscriptions Subscriptions
         {
-            get { return SelectSingleElement(typeof (Subscriptions)) as Subscriptions; }
+            get { return SelectSingleElement(typeof(Subscriptions)) as Subscriptions; }
             set
             {
-                if (HasTag(typeof (Subscriptions)))
-                    RemoveTag(typeof (Subscriptions));
+                if (HasTag(typeof(Subscriptions)))
+                    RemoveTag(typeof(Subscriptions));
 
                 if (value != null)
                     AddChild(value);
@@ -114,11 +114,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Affiliations Affiliations
         {
-            get { return SelectSingleElement(typeof (Affiliations)) as Affiliations; }
+            get { return SelectSingleElement(typeof(Affiliations)) as Affiliations; }
             set
             {
-                if (HasTag(typeof (Affiliations)))
-                    RemoveTag(typeof (Affiliations));
+                if (HasTag(typeof(Affiliations)))
+                    RemoveTag(typeof(Affiliations));
 
                 if (value != null)
                     AddChild(value);
@@ -127,11 +127,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Options Options
         {
-            get { return SelectSingleElement(typeof (Options)) as Options; }
+            get { return SelectSingleElement(typeof(Options)) as Options; }
             set
             {
-                if (HasTag(typeof (Options)))
-                    RemoveTag(typeof (Options));
+                if (HasTag(typeof(Options)))
+                    RemoveTag(typeof(Options));
 
                 if (value != null)
                     AddChild(value);
@@ -140,11 +140,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Items Items
         {
-            get { return SelectSingleElement(typeof (Items)) as Items; }
+            get { return SelectSingleElement(typeof(Items)) as Items; }
             set
             {
-                if (HasTag(typeof (Items)))
-                    RemoveTag(typeof (Items));
+                if (HasTag(typeof(Items)))
+                    RemoveTag(typeof(Items));
 
                 if (value != null)
                     AddChild(value);
@@ -156,11 +156,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
         /// </summary>
         public Configure Configure
         {
-            get { return SelectSingleElement(typeof (Configure)) as Configure; }
+            get { return SelectSingleElement(typeof(Configure)) as Configure; }
             set
             {
-                if (HasTag(typeof (Configure)))
-                    RemoveTag(typeof (Configure));
+                if (HasTag(typeof(Configure)))
+                    RemoveTag(typeof(Configure));
 
                 if (value != null)
                     AddChild(value);

@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 // Send:	<iq type='get' id='MX_5' to='jfrankel@coversant.net/SoapBox'>

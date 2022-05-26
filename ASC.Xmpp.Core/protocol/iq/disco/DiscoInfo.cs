@@ -120,12 +120,12 @@ namespace ASC.Xmpp.Core.protocol.iq.disco
 
         public DiscoIdentity[] GetIdentities()
         {
-            ElementList nl = SelectElements(typeof (DiscoIdentity));
+            ElementList nl = SelectElements(typeof(DiscoIdentity));
             var items = new DiscoIdentity[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (DiscoIdentity) e;
+                items[i] = (DiscoIdentity)e;
                 i++;
             }
             return items;
@@ -137,12 +137,12 @@ namespace ASC.Xmpp.Core.protocol.iq.disco
         /// <returns> </returns>
         public DiscoFeature[] GetFeatures()
         {
-            ElementList nl = SelectElements(typeof (DiscoFeature));
+            ElementList nl = SelectElements(typeof(DiscoFeature));
             var items = new DiscoFeature[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (DiscoFeature) e;
+                items[i] = (DiscoFeature)e;
                 i++;
             }
             return items;

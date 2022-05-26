@@ -21,6 +21,9 @@
 
 #region using
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol.Base;
 using ASC.Xmpp.Core.protocol.component;
 using ASC.Xmpp.Core.protocol.extensions.amp;
@@ -76,8 +79,7 @@ using ASC.Xmpp.Core.protocol.x.rosterx;
 using ASC.Xmpp.Core.protocol.x.tm.history;
 using ASC.Xmpp.Core.protocol.x.vcard_update;
 using ASC.Xmpp.Core.utils.Xml.Dom;
-using System;
-using System.Collections.Generic;
+
 using Active = ASC.Xmpp.Core.protocol.iq.privacy.Active;
 using Address = ASC.Xmpp.Core.protocol.extensions.multicast.Address;
 using Affiliation = ASC.Xmpp.Core.protocol.extensions.pubsub.Affiliation;
@@ -85,7 +87,6 @@ using Auth = ASC.Xmpp.Core.protocol.iq.auth.Auth;
 using Avatar = ASC.Xmpp.Core.protocol.iq.avatar.Avatar;
 using Conference = ASC.Xmpp.Core.protocol.x.Conference;
 using Configure = ASC.Xmpp.Core.protocol.extensions.pubsub.owner.Configure;
-using Data = ASC.Xmpp.Core.protocol.x.data.Data;
 using Delete = ASC.Xmpp.Core.protocol.extensions.pubsub.owner.Delete;
 using Event = ASC.Xmpp.Core.protocol.x.Event;
 using Failure = ASC.Xmpp.Core.protocol.tls.Failure;
@@ -131,122 +132,122 @@ namespace ASC.Xmpp.Core.protocol
         /// </summary>
         static ElementFactory()
         {
-            AddElementType("iq", Uri.CLIENT, typeof (IQ));
-            AddElementType("message", Uri.CLIENT, typeof (Message));
-            AddElementType("presence", Uri.CLIENT, typeof (Presence));
-            AddElementType("error", Uri.CLIENT, typeof (client.Error));
+            AddElementType("iq", Uri.CLIENT, typeof(IQ));
+            AddElementType("message", Uri.CLIENT, typeof(Message));
+            AddElementType("presence", Uri.CLIENT, typeof(Presence));
+            AddElementType("error", Uri.CLIENT, typeof(client.Error));
 
-            AddElementType("agent", Uri.IQ_AGENTS, typeof (Agent));
+            AddElementType("agent", Uri.IQ_AGENTS, typeof(Agent));
 
-            AddElementType("item", Uri.IQ_ROSTER, typeof (RosterItem));
-            AddElementType("group", Uri.IQ_ROSTER, typeof (Group));
-            AddElementType("group", Uri.X_ROSTERX, typeof (Group));
+            AddElementType("item", Uri.IQ_ROSTER, typeof(RosterItem));
+            AddElementType("group", Uri.IQ_ROSTER, typeof(Group));
+            AddElementType("group", Uri.X_ROSTERX, typeof(Group));
 
-            AddElementType("item", Uri.IQ_SEARCH, typeof (SearchItem));
+            AddElementType("item", Uri.IQ_SEARCH, typeof(SearchItem));
 
             // Stream stuff
-            AddElementType("stream", Uri.STREAM, typeof (Stream));
-            AddElementType("error", Uri.STREAM, typeof (Error));
+            AddElementType("stream", Uri.STREAM, typeof(Stream));
+            AddElementType("error", Uri.STREAM, typeof(Error));
 
-            AddElementType("server", Uri.IQ_GOOGLE_JINGLE, typeof (Server));
-            AddElementType("stun", Uri.IQ_GOOGLE_JINGLE, typeof (Stun));
-            AddElementType("query", Uri.IQ_GOOGLE_JINGLE, typeof (GoogleJingle));
+            AddElementType("server", Uri.IQ_GOOGLE_JINGLE, typeof(Server));
+            AddElementType("stun", Uri.IQ_GOOGLE_JINGLE, typeof(Stun));
+            AddElementType("query", Uri.IQ_GOOGLE_JINGLE, typeof(GoogleJingle));
 
-            AddElementType("query", Uri.IQ_AUTH, typeof (Auth));
-            AddElementType("query", Uri.IQ_AGENTS, typeof (Agents));
-            AddElementType("query", Uri.IQ_ROSTER, typeof (Roster));
-            AddElementType("query", Uri.IQ_LAST, typeof (Last));
-            AddElementType("query", Uri.IQ_VERSION, typeof (Version));
-            AddElementType("query", Uri.IQ_TIME, typeof (Time));
-            AddElementType("query", Uri.IQ_OOB, typeof (Oob));
-            AddElementType("query", Uri.IQ_SEARCH, typeof (Search));
-            AddElementType("query", Uri.IQ_BROWSE, typeof (Browse));
-            AddElementType("query", Uri.IQ_AVATAR, typeof (Avatar));
-            AddElementType("query", Uri.IQ_REGISTER, typeof (Register));
-            AddElementType("query", Uri.IQ_PRIVATE, typeof (Private));
+            AddElementType("query", Uri.IQ_AUTH, typeof(Auth));
+            AddElementType("query", Uri.IQ_AGENTS, typeof(Agents));
+            AddElementType("query", Uri.IQ_ROSTER, typeof(Roster));
+            AddElementType("query", Uri.IQ_LAST, typeof(Last));
+            AddElementType("query", Uri.IQ_VERSION, typeof(Version));
+            AddElementType("query", Uri.IQ_TIME, typeof(Time));
+            AddElementType("query", Uri.IQ_OOB, typeof(Oob));
+            AddElementType("query", Uri.IQ_SEARCH, typeof(Search));
+            AddElementType("query", Uri.IQ_BROWSE, typeof(Browse));
+            AddElementType("query", Uri.IQ_AVATAR, typeof(Avatar));
+            AddElementType("query", Uri.IQ_REGISTER, typeof(Register));
+            AddElementType("query", Uri.IQ_PRIVATE, typeof(Private));
 
-            AddElementType("blocklist", Uri.IQ_BLOCKLIST, typeof (Blocklist));
-            AddElementType("block", Uri.IQ_BLOCKLIST, typeof (Block));
-            AddElementType("unblock", Uri.IQ_BLOCKLIST, typeof (Unblock));
+            AddElementType("blocklist", Uri.IQ_BLOCKLIST, typeof(Blocklist));
+            AddElementType("block", Uri.IQ_BLOCKLIST, typeof(Block));
+            AddElementType("unblock", Uri.IQ_BLOCKLIST, typeof(Unblock));
 
             // Privacy Lists
-            AddElementType("query", Uri.IQ_PRIVACY, typeof (Privacy));
-            AddElementType("item", Uri.IQ_PRIVACY, typeof (Item));
-            AddElementType("list", Uri.IQ_PRIVACY, typeof (List));
-            AddElementType("active", Uri.IQ_PRIVACY, typeof (Active));
-            AddElementType("default", Uri.IQ_PRIVACY, typeof (Default));
+            AddElementType("query", Uri.IQ_PRIVACY, typeof(Privacy));
+            AddElementType("item", Uri.IQ_PRIVACY, typeof(Item));
+            AddElementType("list", Uri.IQ_PRIVACY, typeof(List));
+            AddElementType("active", Uri.IQ_PRIVACY, typeof(Active));
+            AddElementType("default", Uri.IQ_PRIVACY, typeof(Default));
 
             // Browse
-            AddElementType("service", Uri.IQ_BROWSE, typeof (Service));
-            AddElementType("item", Uri.IQ_BROWSE, typeof (BrowseItem));
+            AddElementType("service", Uri.IQ_BROWSE, typeof(Service));
+            AddElementType("item", Uri.IQ_BROWSE, typeof(BrowseItem));
 
             // Service Discovery			
-            AddElementType("query", Uri.DISCO_ITEMS, typeof (DiscoItems));
-            AddElementType("query", Uri.DISCO_INFO, typeof (DiscoInfo));
-            AddElementType("feature", Uri.DISCO_INFO, typeof (DiscoFeature));
-            AddElementType("identity", Uri.DISCO_INFO, typeof (DiscoIdentity));
-            AddElementType("item", Uri.DISCO_ITEMS, typeof (DiscoItem));
+            AddElementType("query", Uri.DISCO_ITEMS, typeof(DiscoItems));
+            AddElementType("query", Uri.DISCO_INFO, typeof(DiscoInfo));
+            AddElementType("feature", Uri.DISCO_INFO, typeof(DiscoFeature));
+            AddElementType("identity", Uri.DISCO_INFO, typeof(DiscoIdentity));
+            AddElementType("item", Uri.DISCO_ITEMS, typeof(DiscoItem));
 
-            AddElementType("x", Uri.X_DELAY, typeof (Delay));
-            AddElementType("x", Uri.X_AVATAR, typeof (x.Avatar));
-            AddElementType("x", Uri.X_CONFERENCE, typeof (Conference));
-            AddElementType("x", Uri.X_EVENT, typeof (Event));
+            AddElementType("x", Uri.X_DELAY, typeof(Delay));
+            AddElementType("x", Uri.X_AVATAR, typeof(x.Avatar));
+            AddElementType("x", Uri.X_CONFERENCE, typeof(Conference));
+            AddElementType("x", Uri.X_EVENT, typeof(Event));
 
             // AddElementType("x",					Uri.STORAGE_AVATAR,	typeof(agsXMPP.protocol.storage.Avatar));
-            AddElementType("query", Uri.STORAGE_AVATAR, typeof (storage.Avatar));
+            AddElementType("query", Uri.STORAGE_AVATAR, typeof(storage.Avatar));
 
             // XData Stuff
-            AddElementType("x", Uri.X_DATA, typeof (x.data.Data));
-            AddElementType("field", Uri.X_DATA, typeof (Field));
-            AddElementType("option", Uri.X_DATA, typeof (Option));
-            AddElementType("value", Uri.X_DATA, typeof (Value));
-            AddElementType("reported", Uri.X_DATA, typeof (Reported));
-            AddElementType("item", Uri.X_DATA, typeof (x.data.Item));
+            AddElementType("x", Uri.X_DATA, typeof(x.data.Data));
+            AddElementType("field", Uri.X_DATA, typeof(Field));
+            AddElementType("option", Uri.X_DATA, typeof(Option));
+            AddElementType("value", Uri.X_DATA, typeof(Value));
+            AddElementType("reported", Uri.X_DATA, typeof(Reported));
+            AddElementType("item", Uri.X_DATA, typeof(x.data.Item));
 
-            AddElementType("features", Uri.STREAM, typeof (Features));
+            AddElementType("features", Uri.STREAM, typeof(Features));
 
-            AddElementType("register", Uri.FEATURE_IQ_REGISTER, typeof (stream.feature.Register));
-            AddElementType("compression", Uri.FEATURE_COMPRESS, typeof (Compression));
-            AddElementType("method", Uri.FEATURE_COMPRESS, typeof (Method));
+            AddElementType("register", Uri.FEATURE_IQ_REGISTER, typeof(stream.feature.Register));
+            AddElementType("compression", Uri.FEATURE_COMPRESS, typeof(Compression));
+            AddElementType("method", Uri.FEATURE_COMPRESS, typeof(Method));
 
-            AddElementType("jingle", Uri.IQ_JINGLE1, typeof (Jingle));
-            AddElementType("jingle", Uri.IQ_JINGLE0, typeof (Jingle));
-            AddElementType("bind", Uri.BIND, typeof (Bind));
-            AddElementType("unbind", Uri.BIND, typeof (Bind));
-            AddElementType("session", Uri.SESSION, typeof (Session));
+            AddElementType("jingle", Uri.IQ_JINGLE1, typeof(Jingle));
+            AddElementType("jingle", Uri.IQ_JINGLE0, typeof(Jingle));
+            AddElementType("bind", Uri.BIND, typeof(Bind));
+            AddElementType("unbind", Uri.BIND, typeof(Bind));
+            AddElementType("session", Uri.SESSION, typeof(Session));
 
             // TLS stuff
-            AddElementType("failure", Uri.TLS, typeof (Failure));
-            AddElementType("proceed", Uri.TLS, typeof (Proceed));
-            AddElementType("starttls", Uri.TLS, typeof (StartTls));
+            AddElementType("failure", Uri.TLS, typeof(Failure));
+            AddElementType("proceed", Uri.TLS, typeof(Proceed));
+            AddElementType("starttls", Uri.TLS, typeof(StartTls));
 
             // SASL stuff
-            AddElementType("mechanisms", Uri.SASL, typeof (Mechanisms));
-            AddElementType("mechanism", Uri.SASL, typeof (Mechanism));
-            AddElementType("auth", Uri.SASL, typeof (sasl.Auth));
-            AddElementType("x-tmtoken", Uri.SASL, typeof (TMToken)); //TeamLab token
-            AddElementType("response", Uri.SASL, typeof (Response));
-            AddElementType("challenge", Uri.SASL, typeof (Challenge));
+            AddElementType("mechanisms", Uri.SASL, typeof(Mechanisms));
+            AddElementType("mechanism", Uri.SASL, typeof(Mechanism));
+            AddElementType("auth", Uri.SASL, typeof(sasl.Auth));
+            AddElementType("x-tmtoken", Uri.SASL, typeof(TMToken)); //TeamLab token
+            AddElementType("response", Uri.SASL, typeof(Response));
+            AddElementType("challenge", Uri.SASL, typeof(Challenge));
 
             // TODO, this is a dirty hacks for the buggy BOSH Proxy
             // BEGIN
-            AddElementType("challenge", Uri.CLIENT, typeof (Challenge));
-            AddElementType("success", Uri.CLIENT, typeof (Success));
+            AddElementType("challenge", Uri.CLIENT, typeof(Challenge));
+            AddElementType("success", Uri.CLIENT, typeof(Success));
 
             // END
-            AddElementType("failure", Uri.SASL, typeof (sasl.Failure));
-            AddElementType("abort", Uri.SASL, typeof (Abort));
-            AddElementType("success", Uri.SASL, typeof (Success));
+            AddElementType("failure", Uri.SASL, typeof(sasl.Failure));
+            AddElementType("abort", Uri.SASL, typeof(Abort));
+            AddElementType("success", Uri.SASL, typeof(Success));
 
             // Vcard stuff
-            AddElementType("vCard", Uri.VCARD, typeof (Vcard));
-            AddElementType("TEL", Uri.VCARD, typeof (Telephone));
-            AddElementType("ORG", Uri.VCARD, typeof (Organization));
-            AddElementType("N", Uri.VCARD, typeof (Name));
-            AddElementType("EMAIL", Uri.VCARD, typeof (Email));
-            AddElementType("ADR", Uri.VCARD, typeof (Address));
+            AddElementType("vCard", Uri.VCARD, typeof(Vcard));
+            AddElementType("TEL", Uri.VCARD, typeof(Telephone));
+            AddElementType("ORG", Uri.VCARD, typeof(Organization));
+            AddElementType("N", Uri.VCARD, typeof(Name));
+            AddElementType("EMAIL", Uri.VCARD, typeof(Email));
+            AddElementType("ADR", Uri.VCARD, typeof(Address));
 #if !CF
-            AddElementType("PHOTO", Uri.VCARD, typeof (Photo));
+            AddElementType("PHOTO", Uri.VCARD, typeof(Photo));
 #endif
 
             // Server stuff
@@ -254,176 +255,176 @@ namespace ASC.Xmpp.Core.protocol
             // AddElementType("message",           Uri.SERVER,                 typeof(agsXMPP.protocol.server.Message));
 
             // Component stuff
-            AddElementType("handshake", Uri.ACCEPT, typeof (Handshake));
-            AddElementType("log", Uri.ACCEPT, typeof (Log));
-            AddElementType("route", Uri.ACCEPT, typeof (Route));
-            AddElementType("iq", Uri.ACCEPT, typeof (component.IQ));
-            AddElementType("message", Uri.ACCEPT, typeof (component.Message));
-            AddElementType("presence", Uri.ACCEPT, typeof (component.Presence));
-            AddElementType("error", Uri.ACCEPT, typeof (component.Error));
+            AddElementType("handshake", Uri.ACCEPT, typeof(Handshake));
+            AddElementType("log", Uri.ACCEPT, typeof(Log));
+            AddElementType("route", Uri.ACCEPT, typeof(Route));
+            AddElementType("iq", Uri.ACCEPT, typeof(component.IQ));
+            AddElementType("message", Uri.ACCEPT, typeof(component.Message));
+            AddElementType("presence", Uri.ACCEPT, typeof(component.Presence));
+            AddElementType("error", Uri.ACCEPT, typeof(component.Error));
 
             // Extensions (JEPS)
-            AddElementType("headers", Uri.SHIM, typeof (Header));
-            AddElementType("header", Uri.SHIM, typeof (Headers));
-            AddElementType("roster", Uri.ROSTER_DELIMITER, typeof (Delimiter));
-            AddElementType("p", Uri.PRIMARY, typeof (Primary));
-            AddElementType("nick", Uri.NICK, typeof (Nickname));
+            AddElementType("headers", Uri.SHIM, typeof(Header));
+            AddElementType("header", Uri.SHIM, typeof(Headers));
+            AddElementType("roster", Uri.ROSTER_DELIMITER, typeof(Delimiter));
+            AddElementType("p", Uri.PRIMARY, typeof(Primary));
+            AddElementType("nick", Uri.NICK, typeof(Nickname));
 
-            AddElementType("item", Uri.X_ROSTERX, typeof (x.rosterx.RosterItem));
-            AddElementType("x", Uri.X_ROSTERX, typeof (RosterX));
+            AddElementType("item", Uri.X_ROSTERX, typeof(x.rosterx.RosterItem));
+            AddElementType("x", Uri.X_ROSTERX, typeof(RosterX));
 
             // Filetransfer stuff
-            AddElementType("file", Uri.SI_FILE_TRANSFER, typeof (File));
-            AddElementType("range", Uri.SI_FILE_TRANSFER, typeof (Range));
+            AddElementType("file", Uri.SI_FILE_TRANSFER, typeof(File));
+            AddElementType("range", Uri.SI_FILE_TRANSFER, typeof(Range));
 
             // FeatureNeg
-            AddElementType("feature", Uri.FEATURE_NEG, typeof (FeatureNeg));
+            AddElementType("feature", Uri.FEATURE_NEG, typeof(FeatureNeg));
 
             // Bytestreams
-            AddElementType("query", Uri.BYTESTREAMS, typeof (ByteStream));
-            AddElementType("streamhost", Uri.BYTESTREAMS, typeof (StreamHost));
-            AddElementType("streamhost-used", Uri.BYTESTREAMS, typeof (StreamHostUsed));
-            AddElementType("activate", Uri.BYTESTREAMS, typeof (Activate));
-            AddElementType("udpsuccess", Uri.BYTESTREAMS, typeof (UdpSuccess));
+            AddElementType("query", Uri.BYTESTREAMS, typeof(ByteStream));
+            AddElementType("streamhost", Uri.BYTESTREAMS, typeof(StreamHost));
+            AddElementType("streamhost-used", Uri.BYTESTREAMS, typeof(StreamHostUsed));
+            AddElementType("activate", Uri.BYTESTREAMS, typeof(Activate));
+            AddElementType("udpsuccess", Uri.BYTESTREAMS, typeof(UdpSuccess));
 
-            AddElementType("si", Uri.SI, typeof (SI));
+            AddElementType("si", Uri.SI, typeof(SI));
 
-            AddElementType("html", Uri.XHTML_IM, typeof (Html));
-            AddElementType("body", Uri.XHTML, typeof (Body));
+            AddElementType("html", Uri.XHTML_IM, typeof(Html));
+            AddElementType("body", Uri.XHTML, typeof(Body));
 
-            AddElementType("compressed", Uri.COMPRESS, typeof (Compressed));
-            AddElementType("compress", Uri.COMPRESS, typeof (Compress));
-            AddElementType("failure", Uri.COMPRESS, typeof (extensions.compression.Failure));
+            AddElementType("compressed", Uri.COMPRESS, typeof(Compressed));
+            AddElementType("compress", Uri.COMPRESS, typeof(Compress));
+            AddElementType("failure", Uri.COMPRESS, typeof(extensions.compression.Failure));
 
             // MUC (JEP-0045 Multi User Chat)
-            AddElementType("x", Uri.MUC, typeof (Muc));
-            AddElementType("x", Uri.MUC_USER, typeof (User));
-            AddElementType("item", Uri.MUC_USER, typeof (x.muc.Item));
-            AddElementType("status", Uri.MUC_USER, typeof (Status));
-            AddElementType("invite", Uri.MUC_USER, typeof (Invite));
-            AddElementType("decline", Uri.MUC_USER, typeof (Decline));
-            AddElementType("actor", Uri.MUC_USER, typeof (Actor));
-            AddElementType("history", Uri.MUC, typeof (History));
-            AddElementType("query", Uri.MUC_ADMIN, typeof (Admin));
-            AddElementType("item", Uri.MUC_ADMIN, typeof (x.muc.iq.admin.Item));
-            AddElementType("query", Uri.MUC_OWNER, typeof (Owner));
-            AddElementType("destroy", Uri.MUC_OWNER, typeof (Destroy));
-            AddElementType("unique", Uri.MUC_UNIQUE, typeof (Unique));
+            AddElementType("x", Uri.MUC, typeof(Muc));
+            AddElementType("x", Uri.MUC_USER, typeof(User));
+            AddElementType("item", Uri.MUC_USER, typeof(x.muc.Item));
+            AddElementType("status", Uri.MUC_USER, typeof(Status));
+            AddElementType("invite", Uri.MUC_USER, typeof(Invite));
+            AddElementType("decline", Uri.MUC_USER, typeof(Decline));
+            AddElementType("actor", Uri.MUC_USER, typeof(Actor));
+            AddElementType("history", Uri.MUC, typeof(History));
+            AddElementType("query", Uri.MUC_ADMIN, typeof(Admin));
+            AddElementType("item", Uri.MUC_ADMIN, typeof(x.muc.iq.admin.Item));
+            AddElementType("query", Uri.MUC_OWNER, typeof(Owner));
+            AddElementType("destroy", Uri.MUC_OWNER, typeof(Destroy));
+            AddElementType("unique", Uri.MUC_UNIQUE, typeof(Unique));
 
             //Jabber xep-003 Addressing
-            AddElementType("addresses", Uri.ADDRESS, typeof (Addresses));
-            AddElementType("address", Uri.ADDRESS, typeof (Address));
+            AddElementType("addresses", Uri.ADDRESS, typeof(Addresses));
+            AddElementType("address", Uri.ADDRESS, typeof(Address));
 
 
             // Jabber RPC JEP 0009            
-            AddElementType("query", Uri.IQ_RPC, typeof (Rpc));
-            AddElementType("methodCall", Uri.IQ_RPC, typeof (MethodCall));
-            AddElementType("methodResponse", Uri.IQ_RPC, typeof (MethodResponse));
+            AddElementType("query", Uri.IQ_RPC, typeof(Rpc));
+            AddElementType("methodCall", Uri.IQ_RPC, typeof(MethodCall));
+            AddElementType("methodResponse", Uri.IQ_RPC, typeof(MethodResponse));
 
             // Chatstates Jep-0085
-            AddElementType("active", Uri.CHATSTATES, typeof (extensions.chatstates.Active));
-            AddElementType("inactive", Uri.CHATSTATES, typeof (Inactive));
-            AddElementType("composing", Uri.CHATSTATES, typeof (Composing));
-            AddElementType("paused", Uri.CHATSTATES, typeof (Paused));
-            AddElementType("gone", Uri.CHATSTATES, typeof (Gone));
+            AddElementType("active", Uri.CHATSTATES, typeof(extensions.chatstates.Active));
+            AddElementType("inactive", Uri.CHATSTATES, typeof(Inactive));
+            AddElementType("composing", Uri.CHATSTATES, typeof(Composing));
+            AddElementType("paused", Uri.CHATSTATES, typeof(Paused));
+            AddElementType("gone", Uri.CHATSTATES, typeof(Gone));
 
             // Jivesoftware Extenstions
-            AddElementType("phone-event", Uri.JIVESOFTWARE_PHONE, typeof (PhoneEvent));
-            AddElementType("phone-action", Uri.JIVESOFTWARE_PHONE, typeof (PhoneAction));
-            AddElementType("phone-status", Uri.JIVESOFTWARE_PHONE, typeof (PhoneStatus));
+            AddElementType("phone-event", Uri.JIVESOFTWARE_PHONE, typeof(PhoneEvent));
+            AddElementType("phone-action", Uri.JIVESOFTWARE_PHONE, typeof(PhoneAction));
+            AddElementType("phone-status", Uri.JIVESOFTWARE_PHONE, typeof(PhoneStatus));
 
             // Jingle stuff is in heavy development, we commit this once the most changes on the Jeps are done            
             // AddElementType("jingle",            Uri.JINGLE,                 typeof(agsXMPP.protocol.extensions.jingle.Jingle));
             // AddElementType("candidate",         Uri.JINGLE,                 typeof(agsXMPP.protocol.extensions.jingle.Candidate));
-            AddElementType("c", Uri.CAPS, typeof (Capabilities));
+            AddElementType("c", Uri.CAPS, typeof(Capabilities));
 
-            AddElementType("geoloc", Uri.GEOLOC, typeof (GeoLoc));
+            AddElementType("geoloc", Uri.GEOLOC, typeof(GeoLoc));
 
             // Xmpp Ping
-            AddElementType("ping", Uri.PING, typeof (Ping));
+            AddElementType("ping", Uri.PING, typeof(Ping));
 
             // Ad-Hock Commands
-            AddElementType("command", Uri.COMMANDS, typeof (Command));
-            AddElementType("actions", Uri.COMMANDS, typeof (Actions));
-            AddElementType("note", Uri.COMMANDS, typeof (Note));
+            AddElementType("command", Uri.COMMANDS, typeof(Command));
+            AddElementType("actions", Uri.COMMANDS, typeof(Actions));
+            AddElementType("note", Uri.COMMANDS, typeof(Note));
 
             // **********
             // * PubSub *
             // **********
             // Owner namespace
-            AddElementType("affiliate", Uri.PUBSUB_OWNER, typeof (Affiliate));
-            AddElementType("affiliates", Uri.PUBSUB_OWNER, typeof (Affiliates));
-            AddElementType("configure", Uri.PUBSUB_OWNER, typeof (Configure));
-            AddElementType("delete", Uri.PUBSUB_OWNER, typeof (Delete));
-            AddElementType("pending", Uri.PUBSUB_OWNER, typeof (Pending));
-            AddElementType("pubsub", Uri.PUBSUB_OWNER, typeof (PubSub));
-            AddElementType("purge", Uri.PUBSUB_OWNER, typeof (Purge));
-            AddElementType("subscriber", Uri.PUBSUB_OWNER, typeof (Subscriber));
-            AddElementType("subscribers", Uri.PUBSUB_OWNER, typeof (Subscribers));
+            AddElementType("affiliate", Uri.PUBSUB_OWNER, typeof(Affiliate));
+            AddElementType("affiliates", Uri.PUBSUB_OWNER, typeof(Affiliates));
+            AddElementType("configure", Uri.PUBSUB_OWNER, typeof(Configure));
+            AddElementType("delete", Uri.PUBSUB_OWNER, typeof(Delete));
+            AddElementType("pending", Uri.PUBSUB_OWNER, typeof(Pending));
+            AddElementType("pubsub", Uri.PUBSUB_OWNER, typeof(PubSub));
+            AddElementType("purge", Uri.PUBSUB_OWNER, typeof(Purge));
+            AddElementType("subscriber", Uri.PUBSUB_OWNER, typeof(Subscriber));
+            AddElementType("subscribers", Uri.PUBSUB_OWNER, typeof(Subscribers));
 
             // Event namespace
-            AddElementType("delete", Uri.PUBSUB_EVENT, typeof (extensions.pubsub.@event.Delete));
-            AddElementType("event", Uri.PUBSUB_EVENT, typeof (extensions.pubsub.@event.Event));
-            AddElementType("item", Uri.PUBSUB_EVENT, typeof (extensions.pubsub.@event.Item));
-            AddElementType("items", Uri.PUBSUB_EVENT, typeof (Items));
-            AddElementType("purge", Uri.PUBSUB_EVENT, typeof (extensions.pubsub.@event.Purge));
+            AddElementType("delete", Uri.PUBSUB_EVENT, typeof(extensions.pubsub.@event.Delete));
+            AddElementType("event", Uri.PUBSUB_EVENT, typeof(extensions.pubsub.@event.Event));
+            AddElementType("item", Uri.PUBSUB_EVENT, typeof(extensions.pubsub.@event.Item));
+            AddElementType("items", Uri.PUBSUB_EVENT, typeof(Items));
+            AddElementType("purge", Uri.PUBSUB_EVENT, typeof(extensions.pubsub.@event.Purge));
 
             // Main Pubsub namespace
-            AddElementType("affiliation", Uri.PUBSUB, typeof (Affiliation));
-            AddElementType("affiliations", Uri.PUBSUB, typeof (Affiliations));
-            AddElementType("configure", Uri.PUBSUB, typeof (extensions.pubsub.Configure));
-            AddElementType("create", Uri.PUBSUB, typeof (Create));
-            AddElementType("configure", Uri.PUBSUB, typeof (extensions.pubsub.Configure));
-            AddElementType("item", Uri.PUBSUB, typeof (extensions.pubsub.Item));
-            AddElementType("items", Uri.PUBSUB, typeof (extensions.pubsub.Items));
-            AddElementType("options", Uri.PUBSUB, typeof (Options));
-            AddElementType("publish", Uri.PUBSUB, typeof (Publish));
-            AddElementType("pubsub", Uri.PUBSUB, typeof (extensions.pubsub.PubSub));
-            AddElementType("retract", Uri.PUBSUB, typeof (Retract));
-            AddElementType("subscribe", Uri.PUBSUB, typeof (Subscribe));
-            AddElementType("subscribe-options", Uri.PUBSUB, typeof (SubscribeOptions));
-            AddElementType("subscription", Uri.PUBSUB, typeof (Subscription));
-            AddElementType("subscriptions", Uri.PUBSUB, typeof (Subscriptions));
-            AddElementType("unsubscribe", Uri.PUBSUB, typeof (Unsubscribe));
+            AddElementType("affiliation", Uri.PUBSUB, typeof(Affiliation));
+            AddElementType("affiliations", Uri.PUBSUB, typeof(Affiliations));
+            AddElementType("configure", Uri.PUBSUB, typeof(extensions.pubsub.Configure));
+            AddElementType("create", Uri.PUBSUB, typeof(Create));
+            AddElementType("configure", Uri.PUBSUB, typeof(extensions.pubsub.Configure));
+            AddElementType("item", Uri.PUBSUB, typeof(extensions.pubsub.Item));
+            AddElementType("items", Uri.PUBSUB, typeof(extensions.pubsub.Items));
+            AddElementType("options", Uri.PUBSUB, typeof(Options));
+            AddElementType("publish", Uri.PUBSUB, typeof(Publish));
+            AddElementType("pubsub", Uri.PUBSUB, typeof(extensions.pubsub.PubSub));
+            AddElementType("retract", Uri.PUBSUB, typeof(Retract));
+            AddElementType("subscribe", Uri.PUBSUB, typeof(Subscribe));
+            AddElementType("subscribe-options", Uri.PUBSUB, typeof(SubscribeOptions));
+            AddElementType("subscription", Uri.PUBSUB, typeof(Subscription));
+            AddElementType("subscriptions", Uri.PUBSUB, typeof(Subscriptions));
+            AddElementType("unsubscribe", Uri.PUBSUB, typeof(Unsubscribe));
 
             // HTTP Binding XEP-0124
-            AddElementType("body", Uri.HTTP_BIND, typeof (extensions.bosh.Body));
+            AddElementType("body", Uri.HTTP_BIND, typeof(extensions.bosh.Body));
 
             // Message receipts XEP-0184
-            AddElementType("received", Uri.MSG_RECEIPT, typeof (Received));
-            AddElementType("request", Uri.MSG_RECEIPT, typeof (Request));
+            AddElementType("received", Uri.MSG_RECEIPT, typeof(Received));
+            AddElementType("request", Uri.MSG_RECEIPT, typeof(Request));
 
             // Bookmark storage XEP-0048         
-            AddElementType("storage", Uri.STORAGE_BOOKMARKS, typeof (Storage));
-            AddElementType("url", Uri.STORAGE_BOOKMARKS, typeof (Url));
+            AddElementType("storage", Uri.STORAGE_BOOKMARKS, typeof(Storage));
+            AddElementType("url", Uri.STORAGE_BOOKMARKS, typeof(Url));
             AddElementType("conference",
                            Uri.STORAGE_BOOKMARKS,
-                           typeof (extensions.bookmarks.Conference));
+                           typeof(extensions.bookmarks.Conference));
 
             // XEP-0047: In-Band Bytestreams (IBB)
-            AddElementType("open", Uri.IBB, typeof (Open));
-            AddElementType("data", Uri.IBB, typeof (extensions.ibb.Data));
-            AddElementType("close", Uri.IBB, typeof (Close));
+            AddElementType("open", Uri.IBB, typeof(Open));
+            AddElementType("data", Uri.IBB, typeof(extensions.ibb.Data));
+            AddElementType("close", Uri.IBB, typeof(Close));
 
             // XEP-0153: vCard-Based Avatars
-            AddElementType("x", Uri.VCARD_UPDATE, typeof (VcardUpdate));
+            AddElementType("x", Uri.VCARD_UPDATE, typeof(VcardUpdate));
 
             // AMP
-            AddElementType("amp", Uri.AMP, typeof (Amp));
-            AddElementType("rule", Uri.AMP, typeof (Rule));
+            AddElementType("amp", Uri.AMP, typeof(Amp));
+            AddElementType("rule", Uri.AMP, typeof(Rule));
 
             // XEP-0202: Entity Time
-            AddElementType("time", Uri.ENTITY_TIME, typeof (EntityTime));
+            AddElementType("time", Uri.ENTITY_TIME, typeof(EntityTime));
 
             //Team lab
-            AddElementType("query", Uri.X_TM_IQ_HISTORY, typeof (x.tm.history.History));
-            AddElementType("item", Uri.X_TM_IQ_HISTORY, typeof (HistoryItem));
+            AddElementType("query", Uri.X_TM_IQ_HISTORY, typeof(x.tm.history.History));
+            AddElementType("item", Uri.X_TM_IQ_HISTORY, typeof(HistoryItem));
 
             AddElementType("query", Uri.MSG_CHAT_MARKERS, typeof(Chatmarkers));
             AddElementType("item", Uri.MSG_CHAT_MARKERS, typeof(Chatmarkers));
 
-            AddElementType("query", Uri.X_TM_IQ_PRIVATELOG, typeof (PrivateLog));
-            AddElementType("item", Uri.X_TM_IQ_PRIVATELOG, typeof (PrivateLogItem));
+            AddElementType("query", Uri.X_TM_IQ_PRIVATELOG, typeof(PrivateLog));
+            AddElementType("item", Uri.X_TM_IQ_PRIVATELOG, typeof(PrivateLogItem));
         }
 
         #endregion
@@ -467,7 +468,7 @@ namespace ASC.Xmpp.Core.protocol
             Element ret;
             if (m_table.ContainsKey(key))
             {
-                ret = (Element) Activator.CreateInstance(m_table[key]);
+                ret = (Element)Activator.CreateInstance(m_table[key]);
             }
             else
             {
@@ -490,7 +491,7 @@ namespace ASC.Xmpp.Core.protocol
             {
                 if (entry.Value == type)
                 {
-                    var name = (string) entry.Key;
+                    var name = (string)entry.Key;
                     return name.Contains(":") ? name.Substring(0, name.LastIndexOf(":")) : null;
                 }
             }

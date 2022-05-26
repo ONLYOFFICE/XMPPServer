@@ -85,13 +85,13 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
 
         public TelephoneLocation Location
         {
-            get { return (TelephoneLocation) HasTagEnum(typeof (TelephoneLocation)); }
+            get { return (TelephoneLocation)HasTagEnum(typeof(TelephoneLocation)); }
             set { SetTag(value.ToString()); }
         }
 
         public TelephoneType Type
         {
-            get { return (TelephoneType) HasTagEnum(typeof (TelephoneType)); }
+            get { return (TelephoneType)HasTagEnum(typeof(TelephoneType)); }
             set { SetTag(value.ToString()); }
         }
     }

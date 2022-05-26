@@ -19,11 +19,13 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+using System.Net;
+
 using ASC.Xmpp.Core.protocol.extensions.bosh;
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Core.utils.Xml.Dom;
-using System.Collections.Generic;
-using System.Net;
+
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 
 namespace ASC.Xmpp.Server.Gateway

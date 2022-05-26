@@ -51,7 +51,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.amp
         /// </summary>
         public Action Status
         {
-            get { return (Action) GetAttributeEnum("status", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("status", typeof(Action)); }
             set
             {
                 if (value == Action.Unknown)
@@ -89,12 +89,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.amp
         /// <returns> </returns>
         public Rule[] GetRules()
         {
-            ElementList nl = SelectElements(typeof (Rule));
+            ElementList nl = SelectElements(typeof(Rule));
             var items = new Rule[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Rule) e;
+                items[i] = (Rule)e;
                 i++;
             }
             return items;

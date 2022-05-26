@@ -33,11 +33,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public Delete Delete
         {
-            get { return SelectSingleElement(typeof (Delete)) as Delete; }
+            get { return SelectSingleElement(typeof(Delete)) as Delete; }
             set
             {
-                if (HasTag(typeof (Delete)))
-                    RemoveTag(typeof (Delete));
+                if (HasTag(typeof(Delete)))
+                    RemoveTag(typeof(Delete));
 
                 if (value != null)
                     AddChild(value);
@@ -46,11 +46,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public Purge Purge
         {
-            get { return SelectSingleElement(typeof (Purge)) as Purge; }
+            get { return SelectSingleElement(typeof(Purge)) as Purge; }
             set
             {
-                if (HasTag(typeof (Purge)))
-                    RemoveTag(typeof (Purge));
+                if (HasTag(typeof(Purge)))
+                    RemoveTag(typeof(Purge));
 
                 if (value != null)
                     AddChild(value);
@@ -59,11 +59,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public Subscribers Subscribers
         {
-            get { return SelectSingleElement(typeof (Subscribers)) as Subscribers; }
+            get { return SelectSingleElement(typeof(Subscribers)) as Subscribers; }
             set
             {
-                if (HasTag(typeof (Subscribers)))
-                    RemoveTag(typeof (Subscribers));
+                if (HasTag(typeof(Subscribers)))
+                    RemoveTag(typeof(Subscribers));
 
                 if (value != null)
                     AddChild(value);
@@ -72,11 +72,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public Affiliates Affiliates
         {
-            get { return SelectSingleElement(typeof (Affiliates)) as Affiliates; }
+            get { return SelectSingleElement(typeof(Affiliates)) as Affiliates; }
             set
             {
-                if (HasTag(typeof (Affiliates)))
-                    RemoveTag(typeof (Affiliates));
+                if (HasTag(typeof(Affiliates)))
+                    RemoveTag(typeof(Affiliates));
 
                 if (value != null)
                     AddChild(value);
@@ -85,11 +85,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
 
         public Configure Configure
         {
-            get { return SelectSingleElement(typeof (Configure)) as Configure; }
+            get { return SelectSingleElement(typeof(Configure)) as Configure; }
             set
             {
-                if (HasTag(typeof (Configure)))
-                    RemoveTag(typeof (Configure));
+                if (HasTag(typeof(Configure)))
+                    RemoveTag(typeof(Configure));
 
                 if (value != null)
                     AddChild(value);

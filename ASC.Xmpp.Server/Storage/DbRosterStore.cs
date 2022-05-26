@@ -19,13 +19,15 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+
 using ASC.Common.Data.Sql;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.roster;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
-using System.Data;
+
 using UserRosterItemDic = System.Collections.Generic.Dictionary<ASC.Xmpp.Core.protocol.Jid, ASC.Xmpp.Server.Storage.UserRosterItem>;
 
 namespace ASC.Xmpp.Server.Storage

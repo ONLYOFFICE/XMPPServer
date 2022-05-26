@@ -97,7 +97,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         /// <param name="uri"> </param>
         public void AddNamespace(string prefix, string uri)
         {
-            ((Hashtable) m_stack.Peek()).Add(prefix, uri);
+            ((Hashtable)m_stack.Peek()).Add(prefix, uri);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
             {
                 if ((ht.Count > 0) && ht.ContainsKey(prefix))
                 {
-                    return (string) ht[prefix];
+                    return (string)ht[prefix];
                 }
             }
 

@@ -19,20 +19,21 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+
 using ASC.Common.Data.Sql;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.vcard;
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ASC.Xmpp.Server.Storage
 {
     public class DbVCardStore : DbStoreBase, IVCardStore
     {
-        private IDictionary<string, Vcard> vcardsCache = new Dictionary<string, Vcard>();
+        private readonly IDictionary<string, Vcard> vcardsCache = new Dictionary<string, Vcard>();
 
 
         protected override SqlCreate[] GetCreateSchemaScript()

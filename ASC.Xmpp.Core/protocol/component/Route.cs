@@ -67,7 +67,7 @@ namespace ASC.Xmpp.Core.protocol.component
         /// </summary>
         public RouteType Type
         {
-            get { return (RouteType) GetAttributeEnum("type", typeof (RouteType)); }
+            get { return (RouteType)GetAttributeEnum("type", typeof(RouteType)); }
             set
             {
                 if (value == RouteType.NONE)

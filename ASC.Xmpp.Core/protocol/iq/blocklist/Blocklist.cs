@@ -57,7 +57,7 @@ namespace ASC.Xmpp.Core.protocol.iq.blocklist
 
         public BlockItem[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (BlockItem));
+            ElementList nl = SelectElements(typeof(BlockItem));
             int i = 0;
             var result = new BlockItem[nl.Count];
             foreach (BlockItem ri in nl)

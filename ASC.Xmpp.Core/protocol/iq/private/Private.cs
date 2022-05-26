@@ -43,11 +43,11 @@ namespace ASC.Xmpp.Core.protocol.iq.@private
         /// </summary>
         public Storage Storage
         {
-            get { return SelectSingleElement(typeof (Storage)) as Storage; }
+            get { return SelectSingleElement(typeof(Storage)) as Storage; }
             set
             {
-                if (HasTag(typeof (Storage)))
-                    RemoveTag(typeof (Storage));
+                if (HasTag(typeof(Storage)))
+                    RemoveTag(typeof(Storage));
 
                 if (value != null)
                     AddChild(value);

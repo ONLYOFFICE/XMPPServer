@@ -104,7 +104,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <returns> </returns>
         public string GetValue()
         {
-            return GetTag(typeof (Value));
+            return GetTag(typeof(Value));
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace ASC.Xmpp.Core.protocol.x.data
         /// <param name="val"> </param>
         public void SetValue(string val)
         {
-            SetTag(typeof (Value), val);
+            SetTag(typeof(Value), val);
         }
 
         #endregion

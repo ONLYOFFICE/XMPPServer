@@ -19,33 +19,34 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Storage.Interface
 {
-	public interface IOfflineStore
-	{
-		List<Message> GetOfflineMessages(Jid jid);
+    public interface IOfflineStore
+    {
+        List<Message> GetOfflineMessages(Jid jid);
 
         int GetOfflineMessagesCount(Jid jid);
 
-		void SaveOfflineMessages(params Message[] messages);
+        void SaveOfflineMessages(params Message[] messages);
 
-		void RemoveAllOfflineMessages(Jid jid, Jid jidFrom);
+        void RemoveAllOfflineMessages(Jid jid, Jid jidFrom);
 
         void RemoveAllOfflineMessages(Jid jid);
 
-		List<Presence> GetOfflinePresences(Jid jid);
+        List<Presence> GetOfflinePresences(Jid jid);
 
-		void SaveOfflinePresence(Presence presence);
+        void SaveOfflinePresence(Presence presence);
 
-		void RemoveAllOfflinePresences(Jid jid);
+        void RemoveAllOfflinePresences(Jid jid);
 
 
-		void SaveLastActivity(Jid jid, LastActivity lastActivity);
+        void SaveLastActivity(Jid jid, LastActivity lastActivity);
 
-		LastActivity GetLastActivity(Jid jid);
-	}
+        LastActivity GetLastActivity(Jid jid);
+    }
 }

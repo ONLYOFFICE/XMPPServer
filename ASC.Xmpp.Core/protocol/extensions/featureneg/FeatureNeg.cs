@@ -19,7 +19,6 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol.x.data;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.extensions.featureneg
@@ -65,7 +64,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.featureneg
         {
             get
             {
-                Element data = SelectSingleElement(typeof (x.data.Data));
+                Element data = SelectSingleElement(typeof(x.data.Data));
                 if (data != null)
                     return data as x.data.Data;
                 else
@@ -73,8 +72,8 @@ namespace ASC.Xmpp.Core.protocol.extensions.featureneg
             }
             set
             {
-                if (HasTag(typeof (x.data.Data)))
-                    RemoveTag(typeof (x.data.Data));
+                if (HasTag(typeof(x.data.Data)))
+                    RemoveTag(typeof(x.data.Data));
 
                 AddChild(value);
             }

@@ -19,6 +19,8 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Server.Authorization;
 using ASC.Xmpp.Server.Gateway;
@@ -28,37 +30,36 @@ using ASC.Xmpp.Server.Session;
 using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Streams;
 using ASC.Xmpp.Server.Users;
-using System;
 
 namespace ASC.Xmpp.Server
 {
     public class XmppServer : IServiceProvider, IDisposable
-	{
-		private UserManager userManager;
+    {
+        private readonly UserManager userManager;
 
-		private XmppGateway gateway;
+        private readonly XmppGateway gateway;
 
-		private XmppSender sender;
+        private readonly XmppSender sender;
 
-		private XmppServiceManager serviceManager;
+        private readonly XmppServiceManager serviceManager;
 
-		public StorageManager StorageManager
-		{
-			get;
-			private set;
-		}
+        public StorageManager StorageManager
+        {
+            get;
+            private set;
+        }
 
-		public AuthManager AuthManager
-		{
-			get;
-			private set;
-		}
+        public AuthManager AuthManager
+        {
+            get;
+            private set;
+        }
 
-		public XmppSessionManager SessionManager
-		{
-			get;
-			private set;
-		}
+        public XmppSessionManager SessionManager
+        {
+            get;
+            private set;
+        }
 
         public XmppStreamManager StreamManager
         {
@@ -72,101 +73,101 @@ namespace ASC.Xmpp.Server
             private set;
         }
 
-		public XmppServer()
-		{
-			StorageManager = new StorageManager();
-			userManager = new UserManager(StorageManager);
-			AuthManager = new AuthManager();
+        public XmppServer()
+        {
+            StorageManager = new StorageManager();
+            userManager = new UserManager(StorageManager);
+            AuthManager = new AuthManager();
 
-			StreamManager = new XmppStreamManager();
-			SessionManager = new XmppSessionManager();
+            StreamManager = new XmppStreamManager();
+            SessionManager = new XmppSessionManager();
 
-			gateway = new XmppGateway();
-			sender = new XmppSender(gateway);
+            gateway = new XmppGateway();
+            sender = new XmppSender(gateway);
 
-			serviceManager = new XmppServiceManager(this);
+            serviceManager = new XmppServiceManager(this);
             HandlerManager = new XmppHandlerManager(StreamManager, gateway, sender, this);
-		}
+        }
 
-		public void AddXmppListener(IXmppListener listener)
-		{
-			gateway.AddXmppListener(listener);
-		}
+        public void AddXmppListener(IXmppListener listener)
+        {
+            gateway.AddXmppListener(listener);
+        }
 
-		public void RemoveXmppListener(string name)
-		{
-			gateway.RemoveXmppListener(name);
-		}
+        public void RemoveXmppListener(string name)
+        {
+            gateway.RemoveXmppListener(name);
+        }
 
-		public void StartListen()
-		{
-			gateway.Start();
-		}
+        public void StartListen()
+        {
+            gateway.Start();
+        }
 
-		public void StopListen()
-		{
-			gateway.Stop();
-		}
+        public void StopListen()
+        {
+            gateway.Stop();
+        }
 
-		public void RegisterXmppService(IXmppService service)
-		{
-			serviceManager.RegisterService(service);
-		}
+        public void RegisterXmppService(IXmppService service)
+        {
+            serviceManager.RegisterService(service);
+        }
 
-		public void UnregisterXmppService(Jid jid)
-		{
-			serviceManager.UnregisterService(jid);
-		}
+        public void UnregisterXmppService(Jid jid)
+        {
+            serviceManager.UnregisterService(jid);
+        }
 
-		public IXmppService GetXmppService(Jid jid)
-		{
-			return serviceManager.GetService(jid);
-		}
+        public IXmppService GetXmppService(Jid jid)
+        {
+            return serviceManager.GetService(jid);
+        }
 
-		public void Dispose()
+        public void Dispose()
         {
             StorageManager.Dispose();
         }
 
-		public object GetService(Type serviceType)
-		{
-			if (serviceType == typeof(IXmppReceiver))
-			{
-				return gateway;
-			}
-			if (serviceType == typeof(IXmppSender))
-			{
-				return sender;
-			}
-			if (serviceType == typeof(XmppSessionManager))
-			{
-				return SessionManager;
-			}
-			if (serviceType == typeof(XmppStreamManager))
-			{
-				return StreamManager;
-			}
-			if (serviceType == typeof(UserManager))
-			{
-				return userManager;
-			}
-			if (serviceType == typeof(StorageManager))
-			{
-				return StorageManager;
-			}
-			if (serviceType == typeof(XmppServiceManager))
-			{
-				return serviceManager;
-			}
-			if (serviceType == typeof(AuthManager))
-			{
-				return AuthManager;
-			}
-			if (serviceType == typeof(XmppHandlerManager))
-			{
+        public object GetService(Type serviceType)
+        {
+            if (serviceType == typeof(IXmppReceiver))
+            {
+                return gateway;
+            }
+            if (serviceType == typeof(IXmppSender))
+            {
+                return sender;
+            }
+            if (serviceType == typeof(XmppSessionManager))
+            {
+                return SessionManager;
+            }
+            if (serviceType == typeof(XmppStreamManager))
+            {
+                return StreamManager;
+            }
+            if (serviceType == typeof(UserManager))
+            {
+                return userManager;
+            }
+            if (serviceType == typeof(StorageManager))
+            {
+                return StorageManager;
+            }
+            if (serviceType == typeof(XmppServiceManager))
+            {
+                return serviceManager;
+            }
+            if (serviceType == typeof(AuthManager))
+            {
+                return AuthManager;
+            }
+            if (serviceType == typeof(XmppHandlerManager))
+            {
                 return HandlerManager;
-			}
-			return null;
-		}
-	}
+            }
+            return null;
+        }
+    }
 }

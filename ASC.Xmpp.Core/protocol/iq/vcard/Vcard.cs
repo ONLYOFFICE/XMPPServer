@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 // JEP-0054
@@ -194,10 +195,10 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
         /// </summary>
         public Name Name
         {
-            get { return SelectSingleElement(typeof (Name)) as Name; }
+            get { return SelectSingleElement(typeof(Name)) as Name; }
             set
             {
-                Element n = SelectSingleElement(typeof (Name));
+                Element n = SelectSingleElement(typeof(Name));
                 if (n != null)
                     n.Remove();
 
@@ -211,10 +212,10 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
         /// </summary>
         public Photo Photo
         {
-            get { return SelectSingleElement(typeof (Photo)) as Photo; }
+            get { return SelectSingleElement(typeof(Photo)) as Photo; }
             set
             {
-                Element p = SelectSingleElement(typeof (Photo));
+                Element p = SelectSingleElement(typeof(Photo));
                 if (p != null)
                     p.Remove();
 
@@ -227,10 +228,10 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
         /// </summary>
         public Organization Organization
         {
-            get { return SelectSingleElement(typeof (Organization)) as Organization; }
+            get { return SelectSingleElement(typeof(Organization)) as Organization; }
             set
             {
-                Element org = SelectSingleElement(typeof (Organization));
+                Element org = SelectSingleElement(typeof(Organization));
                 if (org != null)
                     org.Remove();
 
@@ -240,7 +241,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
 
         public Gender Gender
         {
-            get { return (Gender) GetTagEnum("GENDER", typeof (Gender)); }
+            get { return (Gender)GetTagEnum("GENDER", typeof(Gender)); }
             set
             {
                 if (value == Gender.NONE) RemoveTag("GENDER");
@@ -253,7 +254,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
         /// <returns> </returns>
         public Address[] GetAddresses()
         {
-            ElementList el = SelectElements(typeof (Address));
+            ElementList el = SelectElements(typeof(Address));
             int i = 0;
             var result = new Address[el.Count];
             foreach (Address add in el)
@@ -301,7 +302,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
 
         public Telephone[] GetTelephoneNumbers()
         {
-            ElementList el = SelectElements(typeof (Telephone));
+            ElementList el = SelectElements(typeof(Telephone));
             int i = 0;
             var result = new Telephone[el.Count];
             foreach (Telephone tel in el)
@@ -350,7 +351,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
         /// <returns> </returns>
         public Email[] GetEmailAddresses()
         {
-            ElementList el = SelectElements(typeof (Email));
+            ElementList el = SelectElements(typeof(Email));
             int i = 0;
             var result = new Email[el.Count];
             foreach (Email mail in el)

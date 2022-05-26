@@ -106,12 +106,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
         /// <returns> </returns>
         public Affiliate[] GetAffiliates()
         {
-            ElementList nl = SelectElements(typeof (Affiliate));
+            ElementList nl = SelectElements(typeof(Affiliate));
             var affiliates = new Affiliate[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                affiliates[i] = (Affiliate) e;
+                affiliates[i] = (Affiliate)e;
                 i++;
             }
             return affiliates;

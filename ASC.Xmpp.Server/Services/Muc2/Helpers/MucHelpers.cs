@@ -26,7 +26,7 @@ namespace ASC.Xmpp.Server.Services.Muc2.Helpers
 {
     #region usings
 
-    
+
 
     #endregion
 
@@ -44,7 +44,7 @@ namespace ASC.Xmpp.Server.Services.Muc2.Helpers
         /// </returns>
         public static Muc GetMuc(Presence presence)
         {
-            return (Muc) presence.SelectSingleElement(typeof (Muc));
+            return (Muc)presence.SelectSingleElement(typeof(Muc));
         }
 
         /// <summary>

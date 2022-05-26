@@ -24,14 +24,14 @@ using System.IO;
 
 namespace ASC.Xmpp.Server.Utils
 {
-	static class PathUtils
-	{
+    static class PathUtils
+    {
         private const string DATA_DIRECTORY = "|DataDirectory|";
         private const string DATA_DIRECTORY_KEY = "DataDirectory";
 
 
         public static string GetAbsolutePath(string path)
-		{
+        {
             var currDir = AppDomain.CurrentDomain.BaseDirectory;
             if (path.Trim(Path.DirectorySeparatorChar).StartsWith(DATA_DIRECTORY, StringComparison.CurrentCultureIgnoreCase))
             {
@@ -41,5 +41,5 @@ namespace ASC.Xmpp.Server.Utils
             }
             return Path.IsPathRooted(path) ? path : Path.Combine(currDir, path);
         }
-	}
+    }
 }

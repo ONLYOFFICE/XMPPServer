@@ -25,12 +25,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+
 using ASC.Common.Logging;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.extensions.bosh;
 using ASC.Xmpp.Core.utils.Xml.Dom;
-using ASC.Xmpp.Server.Utils;
 using ASC.Xmpp.Server.Storage;
+using ASC.Xmpp.Server.Utils;
+
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 
 namespace ASC.Xmpp.Server.Gateway
@@ -157,12 +159,12 @@ namespace ASC.Xmpp.Server.Gateway
                     properties.Add("connectionStringName", "default");
                     dbPushStore.Configure(properties);
                     dbPushStore.SaveUserEndpoint(
-                        body.FirstChild.GetAttribute("username"), 
+                        body.FirstChild.GetAttribute("username"),
                         body.FirstChild.GetAttribute("endpoint"),
                         body.FirstChild.GetAttribute("browser"));
                 }
             }
-            
+
             if (body.Type == BoshType.terminate)
             {
                 Close();
@@ -174,7 +176,7 @@ namespace ASC.Xmpp.Server.Gateway
                 CloseRequest(true);
                 return;
             }
-           
+
             IdleWatcher.UpdateTimeout(Id, waitTimeout);
 
             if (string.IsNullOrEmpty(body.Sid) || body.XmppRestart)

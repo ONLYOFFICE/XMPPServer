@@ -19,23 +19,24 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Server.Utils;
 using System;
 using System.Collections.Generic;
 
+using ASC.Xmpp.Server.Utils;
+
 namespace ASC.Xmpp.Server.Authorization
 {
-	public class AuthManager
-	{
-		private readonly Dictionary<string, AuthToken> tokenInfos = new Dictionary<string, AuthToken>();
+    public class AuthManager
+    {
+        private readonly Dictionary<string, AuthToken> tokenInfos = new Dictionary<string, AuthToken>();
 
-		private const int tokenValidity = 30; //30 min
+        private const int tokenValidity = 30; //30 min
 
-		public string GetUserToken(string username)
-		{
-			if (string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+        public string GetUserToken(string username)
+        {
+            if (string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
 
-			var token = new AuthToken(username);
+            var token = new AuthToken(username);
             lock (tokenInfos)
             {
                 if (!tokenInfos.ContainsKey(token.Token))
@@ -44,12 +45,12 @@ namespace ASC.Xmpp.Server.Authorization
                     return token.Token;
                 }
             }
-			return string.Empty;
-		}
+            return string.Empty;
+        }
 
-		public string RestoreUserToken(string token)
-		{
-			if (string.IsNullOrEmpty(token)) throw new ArgumentNullException("token");
+        public string RestoreUserToken(string token)
+        {
+            if (string.IsNullOrEmpty(token)) throw new ArgumentNullException("token");
             lock (tokenInfos)
             {
                 if (tokenInfos.ContainsKey(token) && (DateTime.UtcNow - tokenInfos[token].Created).TotalMinutes < tokenValidity)
@@ -59,48 +60,48 @@ namespace ASC.Xmpp.Server.Authorization
                     return user;
                 }
             }
-			return null;
-		}
+            return null;
+        }
 
-		private void CleanTokens(string tokeset)
-		{
-			tokenInfos.Remove(tokeset);
-			foreach (var info in new Dictionary<string, AuthToken>(tokenInfos))
-			{
-				if ((DateTime.UtcNow - info.Value.Created).TotalMinutes > tokenValidity)
-				{
-					tokenInfos.Remove(info.Key); //remove token
-				}
-			}
-		}
+        private void CleanTokens(string tokeset)
+        {
+            tokenInfos.Remove(tokeset);
+            foreach (var info in new Dictionary<string, AuthToken>(tokenInfos))
+            {
+                if ((DateTime.UtcNow - info.Value.Created).TotalMinutes > tokenValidity)
+                {
+                    tokenInfos.Remove(info.Key); //remove token
+                }
+            }
+        }
 
 
-		private class AuthToken
-		{
-			public string Username
-			{
-				get;
-				private set;
-			}
+        private class AuthToken
+        {
+            public string Username
+            {
+                get;
+                private set;
+            }
 
-			public DateTime Created
-			{
-				get;
-				private set;
-			}
+            public DateTime Created
+            {
+                get;
+                private set;
+            }
 
-			public string Token
-			{
-				get;
-				private set;
-			}
+            public string Token
+            {
+                get;
+                private set;
+            }
 
-			public AuthToken(string username)
-			{
-				Username = username;
-				Created = DateTime.UtcNow;
-				Token = UniqueId.CreateNewId(50);
-			}
-		}
-	}
+            public AuthToken(string username)
+            {
+                Username = username;
+                Created = DateTime.UtcNow;
+                Token = UniqueId.CreateNewId(50);
+            }
+        }
+    }
 }

@@ -824,7 +824,7 @@ namespace ASC.Xmpp.Core.utils.Idn
 
         /// <summary>
         /// </summary>
-        public static char[] C11 = new[] {'\u0020',};
+        public static char[] C11 = new[] { '\u0020', };
 
         /// <summary>
         /// </summary>
@@ -837,7 +837,7 @@ namespace ASC.Xmpp.Core.utils.Idn
 
         /// <summary>
         /// </summary>
-        public static char[][] C21 = new[] {new[] {'\u0000', '\u001F'}, new[] {'\u007F'},};
+        public static char[][] C21 = new[] { new[] { '\u0000', '\u001F' }, new[] { '\u007F' }, };
 
         /// <summary>
         /// </summary>
@@ -853,15 +853,15 @@ namespace ASC.Xmpp.Core.utils.Idn
 
         /// <summary>
         /// </summary>
-        public static char[][] C3 = new[] {new[] {'\uE000', '\uF8FF'},};
+        public static char[][] C3 = new[] { new[] { '\uE000', '\uF8FF' }, };
 
         /// <summary>
         /// </summary>
-        public static char[][] C4 = new[] {new[] {'\uFDD0', '\uFDEF'}, new[] {'\uFFFE', '\uFFFF'},};
+        public static char[][] C4 = new[] { new[] { '\uFDD0', '\uFDEF' }, new[] { '\uFFFE', '\uFFFF' }, };
 
         /// <summary>
         /// </summary>
-        public static char[][] C5 = new[] {new[] {'\uD800', '\uDFFF'},};
+        public static char[][] C5 = new[] { new[] { '\uD800', '\uDFFF' }, };
 
         /// <summary>
         /// </summary>
@@ -873,7 +873,7 @@ namespace ASC.Xmpp.Core.utils.Idn
 
         /// <summary>
         /// </summary>
-        public static char[][] C7 = new[] {new[] {'\u2FF0', '\u2FFB'},};
+        public static char[][] C7 = new[] { new[] { '\u2FF0', '\u2FFB' }, };
 
         /// <summary>
         /// </summary>

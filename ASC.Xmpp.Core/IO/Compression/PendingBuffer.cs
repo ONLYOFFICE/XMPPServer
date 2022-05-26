@@ -109,7 +109,7 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// <param name="b"> value to write </param>
         public void WriteByte(int b)
         {
-            buf[end++] = (byte) b;
+            buf[end++] = (byte)b;
         }
 
         /// <summary>
@@ -118,8 +118,8 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// <param name="s"> value to write </param>
         public void WriteShort(int s)
         {
-            buf[end++] = (byte) s;
-            buf[end++] = (byte) (s >> 8);
+            buf[end++] = (byte)s;
+            buf[end++] = (byte)(s >> 8);
         }
 
         /// <summary>
@@ -128,10 +128,10 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// <param name="s"> value to write </param>
         public void WriteInt(int s)
         {
-            buf[end++] = (byte) s;
-            buf[end++] = (byte) (s >> 8);
-            buf[end++] = (byte) (s >> 16);
-            buf[end++] = (byte) (s >> 24);
+            buf[end++] = (byte)s;
+            buf[end++] = (byte)(s >> 8);
+            buf[end++] = (byte)(s >> 16);
+            buf[end++] = (byte)(s >> 24);
         }
 
         /// <summary>
@@ -153,10 +153,10 @@ namespace ASC.Xmpp.Core.IO.Compression
         {
             if (bitCount > 0)
             {
-                buf[end++] = (byte) bits;
+                buf[end++] = (byte)bits;
                 if (bitCount > 8)
                 {
-                    buf[end++] = (byte) (bits >> 8);
+                    buf[end++] = (byte)(bits >> 8);
                 }
             }
 
@@ -174,12 +174,12 @@ namespace ASC.Xmpp.Core.IO.Compression
             // 			if (DeflaterConstants.DEBUGGING) {
             // 				//Console.WriteLine("writeBits("+b+","+count+")");
             // 			}
-            bits |= (uint) (b << bitCount);
+            bits |= (uint)(b << bitCount);
             bitCount += count;
             if (bitCount >= 16)
             {
-                buf[end++] = (byte) bits;
-                buf[end++] = (byte) (bits >> 8);
+                buf[end++] = (byte)bits;
+                buf[end++] = (byte)(bits >> 8);
                 bits >>= 16;
                 bitCount -= 16;
             }
@@ -191,8 +191,8 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// <param name="s"> value to write </param>
         public void WriteShortMSB(int s)
         {
-            buf[end++] = (byte) (s >> 8);
-            buf[end++] = (byte) s;
+            buf[end++] = (byte)(s >> 8);
+            buf[end++] = (byte)s;
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace ASC.Xmpp.Core.IO.Compression
         {
             if (bitCount >= 8)
             {
-                buf[end++] = (byte) bits;
+                buf[end++] = (byte)bits;
                 bits >>= 8;
                 bitCount -= 8;
             }

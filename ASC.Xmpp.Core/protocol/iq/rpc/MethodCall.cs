@@ -22,6 +22,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
@@ -109,31 +110,31 @@ namespace ASC.Xmpp.Core.protocol.iq.rpc
             }
             else if (param is Int32)
             {
-                value.AddChild(new Element("i4", ((Int32) param).ToString()));
+                value.AddChild(new Element("i4", ((Int32)param).ToString()));
             }
             else if (param is Double)
             {
                 var numberInfo = new NumberFormatInfo();
                 numberInfo.NumberDecimalSeparator = ".";
                 //numberInfo.NumberGroupSeparator = ",";
-                value.AddChild(new Element("double", ((Double) param).ToString(numberInfo)));
+                value.AddChild(new Element("double", ((Double)param).ToString(numberInfo)));
             }
             else if (param is Boolean)
             {
-                value.AddChild(new Element("boolean", ((bool) param) ? "1" : "0"));
+                value.AddChild(new Element("boolean", ((bool)param) ? "1" : "0"));
             }
-                // XML-RPC dates are formatted in iso8601 standard, same as xmpp,
+            // XML-RPC dates are formatted in iso8601 standard, same as xmpp,
             else if (param is DateTime)
             {
-                value.AddChild(new Element("dateTime.iso8601", Time.ISO_8601Date((DateTime) param)));
+                value.AddChild(new Element("dateTime.iso8601", Time.ISO_8601Date((DateTime)param)));
             }
-                // byte arrays must be encoded in Base64 encoding
+            // byte arrays must be encoded in Base64 encoding
             else if (param is byte[])
             {
-                var b = (byte[]) param;
+                var b = (byte[])param;
                 value.AddChild(new Element("base64", Convert.ToBase64String(b, 0, b.Length)));
             }
-                // Arraylist maps to an XML-RPC array
+            // Arraylist maps to an XML-RPC array
             else if (param is ArrayList)
             {
                 //<array>  
@@ -156,12 +157,12 @@ namespace ASC.Xmpp.Core.protocol.iq.rpc
                 array.AddChild(data);
                 value.AddChild(array);
             }
-                // java.util.Hashtable maps to an XML-RPC struct
+            // java.util.Hashtable maps to an XML-RPC struct
             else if (param is Hashtable)
             {
                 var elStruct = new Element("struct");
 
-                var ht = (Hashtable) param;
+                var ht = (Hashtable)param;
                 IEnumerator myEnumerator = ht.Keys.GetEnumerator();
                 while (myEnumerator.MoveNext())
                 {

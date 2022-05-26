@@ -142,7 +142,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         /// <returns> </returns>
         protected override char byteToAscii(byte[] buf, int off)
         {
-            return (char) buf[off];
+            return (char)buf[off];
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
         /// <returns> </returns>
         protected override bool charMatches(byte[] buf, int off, char c)
         {
-            return ((char) buf[off]) == c;
+            return ((char)buf[off]) == c;
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                 byte b = sourceBuf[sourceStart++];
                 if (b >= 0)
                 {
-                    targetBuf[targetStart++] = (char) b;
+                    targetBuf[targetStart++] = (char)b;
                 }
                 else
                 {
@@ -200,7 +200,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
 
                             /* 5, 6 */
                             targetBuf[targetStart++] =
-                                (char) (((b & 0x1F) << 6) | (sourceBuf[sourceStart++] & 0x3F));
+                                (char)(((b & 0x1F) << 6) | (sourceBuf[sourceStart++] & 0x3F));
                             break;
                         case BT_LEAD3:
 
@@ -208,7 +208,7 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                             c = (b & 0xF) << 12;
                             c |= (sourceBuf[sourceStart++] & 0x3F) << 6;
                             c |= sourceBuf[sourceStart++] & 0x3F;
-                            targetBuf[targetStart++] = (char) c;
+                            targetBuf[targetStart++] = (char)c;
                             break;
                         case BT_LEAD4:
 
@@ -218,8 +218,8 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                             c |= (sourceBuf[sourceStart++] & 0x3F) << 6;
                             c |= sourceBuf[sourceStart++] & 0x3F;
                             c -= 0x10000;
-                            targetBuf[targetStart++] = (char) ((c >> 10) | 0xD800);
-                            targetBuf[targetStart++] = (char) ((c & ((1 << 10) - 1)) | 0xDC00);
+                            targetBuf[targetStart++] = (char)((c >> 10) | 0xD800);
+                            targetBuf[targetStart++] = (char)((c & ((1 << 10) - 1)) | 0xDC00);
                             break;
                     }
                 }
@@ -247,11 +247,11 @@ namespace ASC.Xmpp.Core.utils.Xml.xpnet
                     ++off;
                     switch (b)
                     {
-                        case (byte) '\n':
+                        case (byte)'\n':
                             lineNumber += 1;
                             colDiff = off;
                             break;
-                        case (byte) '\r':
+                        case (byte)'\r':
                             lineNumber += 1;
                             if (off != end && buf[off] == '\n')
                             {

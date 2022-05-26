@@ -87,13 +87,13 @@ namespace ASC.Xmpp.Core.protocol.iq.privacy
 
         public Action Action
         {
-            get { return (Action) GetAttributeEnum("action", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("action", typeof(Action)); }
             set { SetAttribute("action", value.ToString()); }
         }
 
         public Type Type
         {
-            get { return (Type) GetAttributeEnum("type", typeof (Type)); }
+            get { return (Type)GetAttributeEnum("type", typeof(Type)); }
             set
             {
                 if (value != Type.NONE)

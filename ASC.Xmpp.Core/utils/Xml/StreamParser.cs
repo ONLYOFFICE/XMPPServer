@@ -23,9 +23,11 @@
 
 using System;
 using System.Collections;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 using ASC.Xmpp.Core.utils.Xml.xpnet;
+
 using Encoding = System.Text.Encoding;
 using UTF8Encoding = ASC.Xmpp.Core.utils.Xml.xpnet.UTF8Encoding;
 
@@ -212,18 +214,18 @@ namespace ASC.Xmpp.Core.utils.Xml
                             break;
                         case TOK.CHAR_REF:
                         case TOK.MAGIC_ENTITY_REF:
-                            AddText(new string(new[] {ct.RefChar1}));
+                            AddText(new string(new[] { ct.RefChar1 }));
                             break;
                         case TOK.CHAR_PAIR_REF:
-                            AddText(new string(new[] {ct.RefChar1, ct.RefChar2}));
+                            AddText(new string(new[] { ct.RefChar1, ct.RefChar2 }));
                             break;
                         case TOK.COMMENT:
                             if (current != null)
                             {
                                 // <!-- 4
                                 // --> 3
-                                int start = off + 4*m_enc.MinBytesPerChar;
-                                int end = ct.TokenEnd - off - 7*m_enc.MinBytesPerChar;
+                                int start = off + 4 * m_enc.MinBytesPerChar;
+                                int end = ct.TokenEnd - off - 7 * m_enc.MinBytesPerChar;
                                 string text = utf.GetString(b, start, end);
                                 current.AddChild(new Comment(text));
                             }
@@ -382,7 +384,7 @@ namespace ASC.Xmpp.Core.utils.Xml
 
             foreach (string attrname in ht.Keys)
             {
-                newel.SetAttribute(attrname, (string) ht[attrname]);
+                newel.SetAttribute(attrname, (string)ht[attrname]);
             }
 
             if (m_root == null)
@@ -432,7 +434,7 @@ namespace ASC.Xmpp.Core.utils.Xml
             // 			if (current.Name != name)
             // 				throw new Exception("Invalid end tag: " + name +
             // 					" != " + current.Name);
-            var parent = (Element) current.Parent;
+            var parent = (Element)current.Parent;
             if (parent == null)
             {
                 DoRaiseOnStreamElement(current);
@@ -484,10 +486,10 @@ namespace ASC.Xmpp.Core.utils.Xml
                             break;
                         case TOK.CHAR_REF:
                         case TOK.MAGIC_ENTITY_REF:
-                            val += new string(new[] {ct.RefChar1});
+                            val += new string(new[] { ct.RefChar1 });
                             break;
                         case TOK.CHAR_PAIR_REF:
-                            val += new string(new[] {ct.RefChar1, ct.RefChar2});
+                            val += new string(new[] { ct.RefChar1, ct.RefChar2 });
                             break;
                         case TOK.ENTITY_REF:
 #if CF

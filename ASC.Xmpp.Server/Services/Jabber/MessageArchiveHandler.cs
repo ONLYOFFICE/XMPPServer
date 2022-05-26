@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using ASC.Common.Logging;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
@@ -174,7 +175,7 @@ namespace ASC.Xmpp.Server.Services.Jabber
             if (!iq.HasTo) return XmppStanzaError.ToServiceUnavailable(iq);
 
             archiveStore.ClearUnreadMessages(iq.From, iq.To, serviceProvider);
-           
+
             iq.Type = IqType.result;
             iq.SwitchDirection();
             return iq;

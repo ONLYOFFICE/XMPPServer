@@ -19,7 +19,6 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol.x.data;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 //	Example 1. Requesting Search Fields
@@ -102,11 +101,11 @@ namespace ASC.Xmpp.Core.protocol.iq.search
         /// </summary>
         public x.data.Data Data
         {
-            get { return SelectSingleElement(typeof (x.data.Data)) as x.data.Data; }
+            get { return SelectSingleElement(typeof(x.data.Data)) as x.data.Data; }
             set
             {
-                if (HasTag(typeof (x.data.Data)))
-                    RemoveTag(typeof (x.data.Data));
+                if (HasTag(typeof(x.data.Data)))
+                    RemoveTag(typeof(x.data.Data));
 
                 if (value != null)
                     AddChild(value);
@@ -125,12 +124,12 @@ namespace ASC.Xmpp.Core.protocol.iq.search
         //}
         public SearchItem[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (SearchItem));
+            ElementList nl = SelectElements(typeof(SearchItem));
             var items = new SearchItem[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (SearchItem) e;
+                items[i] = (SearchItem)e;
                 i++;
             }
             return items;

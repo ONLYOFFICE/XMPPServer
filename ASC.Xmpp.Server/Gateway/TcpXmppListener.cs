@@ -26,7 +26,9 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
+
 using ASC.Common.Logging;
+
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
@@ -154,7 +156,7 @@ namespace ASC.Xmpp.Server.Gateway
                     {
                         tcpListener.BeginAcceptSocket(BeginAcceptCallback, null);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         log.ErrorFormat("Error listener '{0}' on AcceptCallback: {1}", Name, e);
                     }

@@ -26,52 +26,53 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using ASC.Xmpp.Core.utils;
 using System.Security.Cryptography;
+
+using ASC.Xmpp.Core.utils;
 
 namespace ASC.Xmpp.Server.Utils
 {
-	/// <summary>
-	/// Summary description for UniqueId.
-	/// </summary>
-	public class UniqueId
-	{
-		// Lenght of the Session ID on bytes,
-		// 4 bytes equaly 8 chars
-		// 16^8 possibilites for the session IDs (4.294.967.296)
-		// This should be unique enough
-		#region Members
+    /// <summary>
+    /// Summary description for UniqueId.
+    /// </summary>
+    public class UniqueId
+    {
+        // Lenght of the Session ID on bytes,
+        // 4 bytes equaly 8 chars
+        // 16^8 possibilites for the session IDs (4.294.967.296)
+        // This should be unique enough
+        #region Members
 
-		/// <summary>
-		/// </summary>
-		private static int m_lenght = 4;
+        /// <summary>
+        /// </summary>
+        private static readonly int m_lenght = 4;
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-	    /// <summary>
-	    /// </summary>
-	    /// <returns>
-	    /// </returns>
-	    public static string CreateNewId()
-	    {
-	        return CreateNewId(m_lenght);
-	    }
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public static string CreateNewId()
+        {
+            return CreateNewId(m_lenght);
+        }
 
-	    /// <summary>
-		/// </summary>
-		/// <returns>
-		/// </returns>
-		public static string CreateNewId(int length)
-		{
-			RandomNumberGenerator rng = RandomNumberGenerator.Create();
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public static string CreateNewId(int length)
+        {
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
             byte[] buf = new byte[length];
-			rng.GetBytes(buf);
+            rng.GetBytes(buf);
 
-			return Hash.HexToString(buf);
-		}
+            return Hash.HexToString(buf);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

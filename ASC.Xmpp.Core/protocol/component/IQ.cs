@@ -61,11 +61,11 @@ namespace ASC.Xmpp.Core.protocol.component
         /// </summary>
         public new Error Error
         {
-            get { return SelectSingleElement(typeof (Error)) as Error; }
+            get { return SelectSingleElement(typeof(Error)) as Error; }
             set
             {
-                if (HasTag(typeof (Error)))
-                    RemoveTag(typeof (Error));
+                if (HasTag(typeof(Error)))
+                    RemoveTag(typeof(Error));
 
                 if (value != null)
                     AddChild(value);

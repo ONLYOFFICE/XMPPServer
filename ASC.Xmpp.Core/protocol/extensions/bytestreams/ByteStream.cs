@@ -73,7 +73,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.bytestreams
 
         public Mode Mode
         {
-            get { return (Mode) GetAttributeEnum("mode", typeof (Mode)); }
+            get { return (Mode)GetAttributeEnum("mode", typeof(Mode)); }
             set
             {
                 if (value != Mode.NONE)
@@ -88,11 +88,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.bytestreams
         /// </summary>
         public Activate Activate
         {
-            get { return SelectSingleElement(typeof (Activate)) as Activate; }
+            get { return SelectSingleElement(typeof(Activate)) as Activate; }
             set
             {
-                if (HasTag(typeof (Activate)))
-                    RemoveTag(typeof (Activate));
+                if (HasTag(typeof(Activate)))
+                    RemoveTag(typeof(Activate));
 
                 if (value != null)
                     AddChild(value);
@@ -101,11 +101,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.bytestreams
 
         public StreamHostUsed StreamHostUsed
         {
-            get { return SelectSingleElement(typeof (StreamHostUsed)) as StreamHostUsed; }
+            get { return SelectSingleElement(typeof(StreamHostUsed)) as StreamHostUsed; }
             set
             {
-                if (HasTag(typeof (StreamHostUsed)))
-                    RemoveTag(typeof (StreamHostUsed));
+                if (HasTag(typeof(StreamHostUsed)))
+                    RemoveTag(typeof(StreamHostUsed));
 
                 if (value != null)
                     AddChild(value);
@@ -182,12 +182,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.bytestreams
         /// <returns> </returns>
         public StreamHost[] GetStreamHosts()
         {
-            ElementList nl = SelectElements(typeof (StreamHost));
+            ElementList nl = SelectElements(typeof(StreamHost));
             var hosts = new StreamHost[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                hosts[i] = (StreamHost) e;
+                hosts[i] = (StreamHost)e;
                 i++;
             }
             return hosts;

@@ -107,12 +107,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
         /// <returns> returns an Array of Items </returns>
         public Item[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (Item));
+            ElementList nl = SelectElements(typeof(Item));
             var items = new Item[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Item) e;
+                items[i] = (Item)e;
                 i++;
             }
             return items;

@@ -23,13 +23,13 @@ using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.iq.chatmarkers
 {
-    public class Chatmarkers: Element
+    public class Chatmarkers : Element
     {
         public Chatmarkers()
         {
             TagName = "query";
             Namespace = Uri.MSG_CHAT_MARKERS;
         }
-        
+
     }
 }

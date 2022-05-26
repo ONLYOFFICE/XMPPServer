@@ -75,7 +75,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
 
         public NoteType Type
         {
-            get { return (NoteType) GetAttributeEnum("type", typeof (NoteType)); }
+            get { return (NoteType)GetAttributeEnum("type", typeof(NoteType)); }
             set { SetAttribute("type", value.ToString()); }
         }
     }

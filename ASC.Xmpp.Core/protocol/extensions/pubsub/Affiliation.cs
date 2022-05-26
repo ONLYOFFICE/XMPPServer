@@ -74,7 +74,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public AffiliationType AffiliationType
         {
-            get { return (AffiliationType) GetAttributeEnum("affiliation", typeof (AffiliationType)); }
+            get { return (AffiliationType)GetAttributeEnum("affiliation", typeof(AffiliationType)); }
             set { SetAttribute("affiliation", value.ToString()); }
         }
     }

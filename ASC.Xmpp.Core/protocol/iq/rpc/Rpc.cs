@@ -73,10 +73,10 @@ namespace ASC.Xmpp.Core.protocol.iq.rpc
         /// </summary>
         public MethodCall MethodCall
         {
-            get { return (MethodCall) SelectSingleElement(typeof (MethodCall)); }
+            get { return (MethodCall)SelectSingleElement(typeof(MethodCall)); }
             set
             {
-                RemoveTag(typeof (MethodCall));
+                RemoveTag(typeof(MethodCall));
                 if (value != null)
                     AddChild(value);
             }
@@ -86,10 +86,10 @@ namespace ASC.Xmpp.Core.protocol.iq.rpc
         /// </summary>
         public MethodResponse MethodResponse
         {
-            get { return (MethodResponse) SelectSingleElement(typeof (MethodResponse)); }
+            get { return (MethodResponse)SelectSingleElement(typeof(MethodResponse)); }
             set
             {
-                RemoveTag(typeof (MethodResponse));
+                RemoveTag(typeof(MethodResponse));
                 if (value != null)
                     AddChild(value);
             }

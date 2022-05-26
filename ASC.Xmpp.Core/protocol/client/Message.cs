@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.protocol.Base;
 using ASC.Xmpp.Core.protocol.extensions.chatstates;
 using ASC.Xmpp.Core.protocol.extensions.html;
@@ -352,7 +353,7 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public MessageType Type
         {
-            get { return (MessageType) GetAttributeEnum("type", typeof (MessageType)); }
+            get { return (MessageType)GetAttributeEnum("type", typeof(MessageType)); }
 
             set
             {
@@ -372,13 +373,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Error Error
         {
-            get { return SelectSingleElement(typeof (Error)) as Error; }
+            get { return SelectSingleElement(typeof(Error)) as Error; }
 
             set
             {
-                if (HasTag(typeof (Error)))
+                if (HasTag(typeof(Error)))
                 {
-                    RemoveTag(typeof (Error));
+                    RemoveTag(typeof(Error));
                 }
 
                 if (value != null)
@@ -393,11 +394,11 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Html Html
         {
-            get { return (Html) SelectSingleElement(typeof (Html)); }
+            get { return (Html)SelectSingleElement(typeof(Html)); }
 
             set
             {
-                RemoveTag(typeof (Html));
+                RemoveTag(typeof(Html));
                 if (value != null)
                 {
                     AddChild(value);
@@ -410,13 +411,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Event XEvent
         {
-            get { return SelectSingleElement(typeof (Event)) as Event; }
+            get { return SelectSingleElement(typeof(Event)) as Event; }
 
             set
             {
-                if (HasTag(typeof (Event)))
+                if (HasTag(typeof(Event)))
                 {
-                    RemoveTag(typeof (Event));
+                    RemoveTag(typeof(Event));
                 }
 
                 if (value != null)
@@ -431,13 +432,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Delay XDelay
         {
-            get { return SelectSingleElement(typeof (Delay)) as Delay; }
+            get { return SelectSingleElement(typeof(Delay)) as Delay; }
 
             set
             {
-                if (HasTag(typeof (Delay)))
+                if (HasTag(typeof(Delay)))
                 {
-                    RemoveTag(typeof (Delay));
+                    RemoveTag(typeof(Delay));
                 }
 
                 if (value != null)
@@ -452,13 +453,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Headers Headers
         {
-            get { return SelectSingleElement(typeof (Headers)) as Headers; }
+            get { return SelectSingleElement(typeof(Headers)) as Headers; }
 
             set
             {
-                if (HasTag(typeof (Headers)))
+                if (HasTag(typeof(Headers)))
                 {
-                    RemoveTag(typeof (Headers));
+                    RemoveTag(typeof(Headers));
                 }
 
                 if (value != null)
@@ -473,13 +474,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Nickname Nickname
         {
-            get { return SelectSingleElement(typeof (Nickname)) as Nickname; }
+            get { return SelectSingleElement(typeof(Nickname)) as Nickname; }
 
             set
             {
-                if (HasTag(typeof (Nickname)))
+                if (HasTag(typeof(Nickname)))
                 {
-                    RemoveTag(typeof (Nickname));
+                    RemoveTag(typeof(Nickname));
                 }
 
                 if (value != null)
@@ -497,23 +498,23 @@ namespace ASC.Xmpp.Core.protocol.client
         {
             get
             {
-                if (HasTag(typeof (Active)))
+                if (HasTag(typeof(Active)))
                 {
                     return Chatstate.active;
                 }
-                else if (HasTag(typeof (Inactive)))
+                else if (HasTag(typeof(Inactive)))
                 {
                     return Chatstate.inactive;
                 }
-                else if (HasTag(typeof (Composing)))
+                else if (HasTag(typeof(Composing)))
                 {
                     return Chatstate.composing;
                 }
-                else if (HasTag(typeof (Paused)))
+                else if (HasTag(typeof(Paused)))
                 {
                     return Chatstate.paused;
                 }
-                else if (HasTag(typeof (Gone)))
+                else if (HasTag(typeof(Gone)))
                 {
                     return Chatstate.gone;
                 }
@@ -551,11 +552,11 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         private void RemoveChatstate()
         {
-            RemoveTag(typeof (Active));
-            RemoveTag(typeof (Inactive));
-            RemoveTag(typeof (Composing));
-            RemoveTag(typeof (Paused));
-            RemoveTag(typeof (Gone));
+            RemoveTag(typeof(Active));
+            RemoveTag(typeof(Inactive));
+            RemoveTag(typeof(Composing));
+            RemoveTag(typeof(Paused));
+            RemoveTag(typeof(Gone));
         }
 
         #endregion

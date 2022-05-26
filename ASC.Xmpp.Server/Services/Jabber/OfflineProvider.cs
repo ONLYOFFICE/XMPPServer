@@ -19,6 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
 using ASC.Xmpp.Core.protocol.iq.roster;
@@ -31,8 +34,7 @@ using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Storage.Interface;
 using ASC.Xmpp.Server.Streams;
 using ASC.Xmpp.Server.Utils;
-using System;
-using System.Collections.Generic;
+
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 
 namespace ASC.Xmpp.Server.Services.Jabber

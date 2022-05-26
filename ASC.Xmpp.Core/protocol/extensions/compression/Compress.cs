@@ -58,7 +58,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.compression
                 if (value != CompressionMethod.Unknown)
                     SetTag("method", value.ToString());
             }
-            get { return (CompressionMethod) GetTagEnum("method", typeof (CompressionMethod)); }
+            get { return (CompressionMethod)GetTagEnum("method", typeof(CompressionMethod)); }
         }
     }
 }

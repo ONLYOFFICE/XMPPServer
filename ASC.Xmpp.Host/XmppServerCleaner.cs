@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Text.RegularExpressions;
 using System.Threading;
 
 using ASC.Common.Data;
@@ -31,7 +30,6 @@ using ASC.Common.Data.Sql;
 using ASC.Common.Logging;
 using ASC.Common.Module;
 using ASC.Core;
-using ASC.Xmpp.Core.utils;
 
 namespace ASC.Xmpp.Host
 {
@@ -68,7 +66,7 @@ namespace ASC.Xmpp.Host
                 {
                     log.InfoFormat("Start cleaner interation.");
 
-                    using (var db = new DbManager("default"))
+                    using (var db = DbManager.FromHttpContext("default"))
                     {
                         var t = new SqlCreate.Table("jabber_clear", true)
                             .AddColumn("lastdate", DbType.DateTime);
@@ -110,7 +108,7 @@ having max(v.visitdate) between ? and ?";
                                 domain = domain.Replace(to, from); // revert replace
                             }
                             domain = (tid.Item2.EndsWith("_deleted") ? tid.Item2.Substring(0, tid.Item2.Length - 8) : tid.Item2) +
-                                "." + domain;                            
+                                "." + domain;
 
                             if (stop.WaitOne(TimeSpan.Zero))
                             {
@@ -144,40 +142,24 @@ having max(v.visitdate) between ? and ?";
                         db.ExecuteNonQuery("insert into jabber_clear values (?)", maxdate);
 
                         // remove offline messages
-                        var id = 0;
-                        using (var cmd = CreateCommand(db, "select id, message from jabber_offmessage order by 1"))
-                        using (var reader = cmd.ExecuteReader())
+
+                        var deleteQueryString = "";
+                        var date = maxdate.AddMonths(1);
+                        while (date < DateTime.UtcNow)
                         {
-                            var less = false;
-                            while (reader.Read())
-                            {
-                                var message = reader.GetString(1);
-                                var m = Regex.Match(message, "<x xmlns=\"jabber:x:delay\" stamp=\"(.+)\"");
-                                if (m.Success)
-                                {
-                                    var date = Time.Date(m.Groups[1].Value);
-                                    if (date != DateTime.MinValue && date <= maxdate)
-                                    {
-                                        less = true;
-                                    }
-                                    else
-                                    {
-                                        if (less)
-                                        {
-                                            id = reader.GetInt32(0);
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
+                            deleteQueryString = deleteQueryString + "'<x xmlns=\\\"jabber:x:delay\\\" stamp=\\\"" + date.ToString("yyyyMM") + "' AND `message` NOT REGEXP ";
+                            date = date.AddMonths(1);
                         }
-                        if (0 < id)
+                        deleteQueryString = "DELETE from jabber_offmessage WHERE `message` NOT REGEXP " + deleteQueryString + "'<x xmlns=\\\"jabber:x:delay\\\" stamp=\\\"" + DateTime.UtcNow.ToString("yyyyMM") + "' LIMIT 1000";
+
+                        using (var cmd = CreateCommand(db, deleteQueryString))
                         {
-                            using (var cmd = CreateCommand(db, "delete from jabber_offmessage where id < ?", id))
+                            var affected = cmd.ExecuteNonQuery();
+                            while (affected == 1000)
                             {
-                                var affected = cmd.ExecuteNonQuery();
-                                log.DebugFormat("Remove {0} messages from jabber_offmessage", affected);
+                                affected = cmd.ExecuteNonQuery();
                             }
+                            log.DebugFormat("Remove messages from jabber_offmessage");
                         }
                     }
                 }
@@ -197,14 +179,14 @@ having max(v.visitdate) between ? and ?";
         }
 
 
-        private IDbCommand CreateCommand(DbManager db, string sql, params object[] parameters)
+        private IDbCommand CreateCommand(IDbManager db, string sql, params object[] parameters)
         {
             var cmd = db.Connection.CreateCommand(sql, parameters);
             cmd.CommandTimeout = 60 * 60;
             return cmd;
         }
 
-        private void RemoveFromArchive(DbManager db, string jid, DateTime lastdate)
+        private void RemoveFromArchive(IDbManager db, string jid, DateTime lastdate)
         {
             jid = jid.Trim().TrimEnd('.').Replace("_", "\\_").Replace("%", "\\%");
             if (!jid.Contains("|"))

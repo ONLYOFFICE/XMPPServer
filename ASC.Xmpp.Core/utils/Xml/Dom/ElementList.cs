@@ -90,7 +90,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         /// <returns> </returns>
         public Element Item(int index)
         {
-            return (Element) List[index];
+            return (Element)List[index];
         }
 
         #endregion

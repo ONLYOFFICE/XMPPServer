@@ -104,12 +104,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub.owner
         /// <returns> </returns>
         public Subscriber[] GetSubscribers()
         {
-            ElementList nl = SelectElements(typeof (Subscriber));
+            ElementList nl = SelectElements(typeof(Subscriber));
             var subscribers = new Subscriber[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                subscribers[i] = (Subscriber) e;
+                subscribers[i] = (Subscriber)e;
                 i++;
             }
             return subscribers;

@@ -19,6 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Core.Users;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.client;
@@ -27,9 +30,6 @@ using ASC.Xmpp.Server;
 using ASC.Xmpp.Server.Configuration;
 using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 
 namespace ASC.Xmpp.Host
 {

@@ -40,7 +40,7 @@ namespace ASC.Xmpp.Core.protocol.iq.roster
 
         public RosterItem[] GetRoster()
         {
-            ElementList nl = SelectElements(typeof (RosterItem));
+            ElementList nl = SelectElements(typeof(RosterItem));
             int i = 0;
             var result = new RosterItem[nl.Count];
             foreach (RosterItem ri in nl)

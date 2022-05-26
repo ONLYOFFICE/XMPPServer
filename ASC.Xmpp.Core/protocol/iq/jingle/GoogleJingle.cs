@@ -33,7 +33,7 @@ namespace ASC.Xmpp.Core.protocol.iq.jingle
 
         public Server[] GetServers()
         {
-            ElementList nl = SelectElements(typeof (Server));
+            ElementList nl = SelectElements(typeof(Server));
             int i = 0;
             var result = new Server[nl.Count];
             foreach (Server ri in nl)
@@ -91,11 +91,11 @@ namespace ASC.Xmpp.Core.protocol.iq.jingle
 
         public virtual Stun Stun
         {
-            get { return SelectSingleElement(typeof (Stun)) as Stun; }
+            get { return SelectSingleElement(typeof(Stun)) as Stun; }
 
             set
             {
-                RemoveTag(typeof (Stun));
+                RemoveTag(typeof(Stun));
                 if (value != null)
                 {
                     AddChild(value);

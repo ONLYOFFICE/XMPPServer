@@ -19,6 +19,11 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
 using ASC.Common.Data.Sql;
 using ASC.Common.Data.Sql.Expressions;
 using ASC.Xmpp.Core.protocol;
@@ -28,10 +33,6 @@ using ASC.Xmpp.Core.protocol.x.muc;
 using ASC.Xmpp.Core.utils;
 using ASC.Xmpp.Server.Services.Muc2.Room.Settings;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 
 namespace ASC.Xmpp.Server.Storage
 {
@@ -110,7 +111,7 @@ namespace ASC.Xmpp.Server.Storage
             if (Jid.IsNullOrEmpty(mucName)) throw new ArgumentNullException("mucName");
 
             var q = new SqlQuery("jabber_room_history").Select("message").Where("jid", mucName.Bare).OrderBy("id", false);
-            if (startindex < int.MaxValue){q.SetFirstResult(startindex);}
+            if (startindex < int.MaxValue) { q.SetFirstResult(startindex); }
             if (0 < count && count < int.MaxValue) q.SetMaxResults(count);
 
             var messages = ExecuteList(q).ConvertAll(m => ElementSerializer.DeSerializeElement<Message>((string)m[0]));
@@ -182,27 +183,27 @@ namespace ASC.Xmpp.Server.Storage
                     .Select("visible")
                     .Select("members"))
                 .ConvertAll(o => new MucRoomSettings
-                    {
-                        Anonymous = Convert.ToBoolean(o[0]),
-                        CanChangeSubject = Convert.ToBoolean(o[1]),
-                        CanInvite = Convert.ToBoolean(o[2]),
-                        CanSeeMemberList = (Role)Convert.ToInt32(o[3]),
-                        HistoryCountOnEnter = Convert.ToInt32(o[4]),
-                        Instructions = o[5] as string,
-                        Logging = Convert.ToBoolean(o[6]),
-                        MaxOccupant = Convert.ToInt32(o[7]),
-                        MembersOnly = Convert.ToBoolean(o[8]),
-                        Moderated = Convert.ToBoolean(o[9]),
-                        Password = o[10] as string,
-                        PasswordProtected = Convert.ToBoolean(o[11]),
-                        Persistent = Convert.ToBoolean(o[12]),
-                        PresenceBroadcastedFrom = (Role)Convert.ToInt32(o[13]),
-                        Subject = o[14] as string,
-                        Title = o[15] as string,
-                        UserNamesOnly = Convert.ToBoolean(o[16]),
-                        Visible = Convert.ToBoolean(o[17]),
-                        Members = MucRoomSettings.ParseMemberList(o[18] as string)
-                    })
+                {
+                    Anonymous = Convert.ToBoolean(o[0]),
+                    CanChangeSubject = Convert.ToBoolean(o[1]),
+                    CanInvite = Convert.ToBoolean(o[2]),
+                    CanSeeMemberList = (Role)Convert.ToInt32(o[3]),
+                    HistoryCountOnEnter = Convert.ToInt32(o[4]),
+                    Instructions = o[5] as string,
+                    Logging = Convert.ToBoolean(o[6]),
+                    MaxOccupant = Convert.ToInt32(o[7]),
+                    MembersOnly = Convert.ToBoolean(o[8]),
+                    Moderated = Convert.ToBoolean(o[9]),
+                    Password = o[10] as string,
+                    PasswordProtected = Convert.ToBoolean(o[11]),
+                    Persistent = Convert.ToBoolean(o[12]),
+                    PresenceBroadcastedFrom = (Role)Convert.ToInt32(o[13]),
+                    Subject = o[14] as string,
+                    Title = o[15] as string,
+                    UserNamesOnly = Convert.ToBoolean(o[16]),
+                    Visible = Convert.ToBoolean(o[17]),
+                    Members = MucRoomSettings.ParseMemberList(o[18] as string)
+                })
                 .SingleOrDefault();
         }
 

@@ -53,7 +53,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.amp
         /// </summary>
         public Action Action
         {
-            get { return (Action) GetAttributeEnum("action", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("action", typeof(Action)); }
             set
             {
                 if (value == Action.Unknown)

@@ -90,7 +90,7 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
 
         public MessageType Type
         {
-            get { return (MessageType) GetAttributeEnum("type", typeof (MessageType)); }
+            get { return (MessageType)GetAttributeEnum("type", typeof(MessageType)); }
 
             set
             {
@@ -110,13 +110,13 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
         /// </summary>
         public client.Error Error
         {
-            get { return SelectSingleElement(typeof (client.Error)) as client.Error; }
+            get { return SelectSingleElement(typeof(client.Error)) as client.Error; }
 
             set
             {
-                if (HasTag(typeof (client.Error)))
+                if (HasTag(typeof(client.Error)))
                 {
-                    RemoveTag(typeof (client.Error));
+                    RemoveTag(typeof(client.Error));
                 }
 
                 if (value != null)
@@ -137,11 +137,11 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
         /// </summary>
         public Html Html
         {
-            get { return (Html) SelectSingleElement(typeof (Html)); }
+            get { return (Html)SelectSingleElement(typeof(Html)); }
 
             set
             {
-                RemoveTag(typeof (Html));
+                RemoveTag(typeof(Html));
                 if (value != null)
                 {
                     AddChild(value);
@@ -151,13 +151,13 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
 
         public Event XEvent
         {
-            get { return SelectSingleElement(typeof (Event)) as Event; }
+            get { return SelectSingleElement(typeof(Event)) as Event; }
 
             set
             {
-                if (HasTag(typeof (Event)))
+                if (HasTag(typeof(Event)))
                 {
-                    RemoveTag(typeof (Event));
+                    RemoveTag(typeof(Event));
                 }
 
                 if (value != null)
@@ -172,13 +172,13 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
         /// </summary>
         public Delay XDelay
         {
-            get { return SelectSingleElement(typeof (Delay)) as Delay; }
+            get { return SelectSingleElement(typeof(Delay)) as Delay; }
 
             set
             {
-                if (HasTag(typeof (Delay)))
+                if (HasTag(typeof(Delay)))
                 {
-                    RemoveTag(typeof (Delay));
+                    RemoveTag(typeof(Delay));
                 }
 
                 if (value != null)
@@ -193,13 +193,13 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
         /// </summary>
         public Headers Headers
         {
-            get { return SelectSingleElement(typeof (Headers)) as Headers; }
+            get { return SelectSingleElement(typeof(Headers)) as Headers; }
 
             set
             {
-                if (HasTag(typeof (Headers)))
+                if (HasTag(typeof(Headers)))
                 {
-                    RemoveTag(typeof (Headers));
+                    RemoveTag(typeof(Headers));
                 }
 
                 if (value != null)
@@ -214,13 +214,13 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
         /// </summary>
         public Nickname Nickname
         {
-            get { return SelectSingleElement(typeof (Nickname)) as Nickname; }
+            get { return SelectSingleElement(typeof(Nickname)) as Nickname; }
 
             set
             {
-                if (HasTag(typeof (Nickname)))
+                if (HasTag(typeof(Nickname)))
                 {
-                    RemoveTag(typeof (Nickname));
+                    RemoveTag(typeof(Nickname));
                 }
 
                 if (value != null)
@@ -232,20 +232,20 @@ namespace ASC.Xmpp.Core.protocol.x.tm.history
 
         public static HistoryItem FromMessage(Message message)
         {
-            message = (Message) message.Clone();
+            message = (Message)message.Clone();
             var item = new HistoryItem
-                           {
-                               From = message.From,
-                               Body = message.Body,
-                               Subject = message.Subject,
-                               Thread = message.Thread,
-                               Nickname = message.Nickname,
-                               Type = message.Type,
-                               Html = message.Html,
-                               Headers = message.Headers,
-                               XDelay = message.XDelay,
-                               XEvent = message.XEvent
-                           };
+            {
+                From = message.From,
+                Body = message.Body,
+                Subject = message.Subject,
+                Thread = message.Thread,
+                Nickname = message.Nickname,
+                Type = message.Type,
+                Html = message.Html,
+                Headers = message.Headers,
+                XDelay = message.XDelay,
+                XEvent = message.XEvent
+            };
             return item;
         }
     }

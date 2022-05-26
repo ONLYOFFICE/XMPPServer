@@ -29,23 +29,23 @@ namespace ASC.Xmpp.Server.Services.Muc2.Room.Member
     public class MucRoomMemberInfo : IEquatable<MucRoomMemberInfo>
     {
         public Jid Jid { get; set; }
-        public Affiliation Affiliation { get; set;}
-        public Role Role { get; set;}
+        public Affiliation Affiliation { get; set; }
+        public Role Role { get; set; }
 
         public MucRoomMemberInfo()
         {
-            
+
         }
 
         public MucRoomMemberInfo(string record)
         {
-            string[] fields = record.Trim(';',' ').Split(':');
-            if (fields.Length!=3)
+            string[] fields = record.Trim(';', ' ').Split(':');
+            if (fields.Length != 3)
             {
                 throw new ArgumentException("bad format");
             }
             Jid = new Jid(fields[0]);
-            Affiliation = (Affiliation) Enum.Parse(typeof (Affiliation), fields[1]);
+            Affiliation = (Affiliation)Enum.Parse(typeof(Affiliation), fields[1]);
             Role = (Role)Enum.Parse(typeof(Role), fields[2]);
         }
 

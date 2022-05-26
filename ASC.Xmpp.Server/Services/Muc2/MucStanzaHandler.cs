@@ -27,6 +27,7 @@ using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Services.Muc2.Helpers;
 using ASC.Xmpp.Server.Streams;
 using ASC.Xmpp.Server.Utils;
+
 using Error = ASC.Xmpp.Core.protocol.client.Error;
 
 namespace ASC.Xmpp.Server.Services.Muc2

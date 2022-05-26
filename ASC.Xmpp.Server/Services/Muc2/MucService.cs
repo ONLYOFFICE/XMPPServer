@@ -19,6 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.iq.disco;
 using ASC.Xmpp.Server.Handler;
@@ -27,8 +30,6 @@ using ASC.Xmpp.Server.Services.Muc2.Room;
 using ASC.Xmpp.Server.Services.Muc2.Room.Settings;
 using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
 
 namespace ASC.Xmpp.Server.Services.Muc2
 {

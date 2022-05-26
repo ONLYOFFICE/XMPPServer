@@ -83,7 +83,7 @@ namespace ASC.Xmpp.Core.protocol.iq.vcard
 
         public AddressLocation Location
         {
-            get { return (AddressLocation) HasTagEnum(typeof (AddressLocation)); }
+            get { return (AddressLocation)HasTagEnum(typeof(AddressLocation)); }
             set { SetTag(value.ToString()); }
         }
 

@@ -38,7 +38,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
 
         public Type Type
         {
-            get { return (Type) GetAttributeEnum("type", typeof (Type)); }
+            get { return (Type)GetAttributeEnum("type", typeof(Type)); }
             set
             {
                 if (value == Type.NONE)

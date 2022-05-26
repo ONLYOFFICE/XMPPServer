@@ -126,12 +126,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.bookmarks
         /// <returns> </returns>
         public Conference[] GetConferences()
         {
-            ElementList nl = SelectElements(typeof (Conference));
+            ElementList nl = SelectElements(typeof(Conference));
             var items = new Conference[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Conference) e;
+                items[i] = (Conference)e;
                 i++;
             }
             return items;
@@ -171,12 +171,12 @@ namespace ASC.Xmpp.Core.protocol.extensions.bookmarks
         /// <returns> </returns>
         public Url[] GetUrls()
         {
-            ElementList nl = SelectElements(typeof (Url));
+            ElementList nl = SelectElements(typeof(Url));
             var items = new Url[nl.Count];
             int i = 0;
             foreach (Element e in nl)
             {
-                items[i] = (Url) e;
+                items[i] = (Url)e;
                 i++;
             }
             return items;

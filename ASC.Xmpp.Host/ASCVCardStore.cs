@@ -19,6 +19,15 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Web;
+
 using ASC.Common.Caching;
 using ASC.Core;
 using ASC.Core.Users;
@@ -28,14 +37,6 @@ using ASC.Xmpp.Core.protocol.iq.vcard;
 using ASC.Xmpp.Server;
 using ASC.Xmpp.Server.Storage;
 using ASC.Xmpp.Server.Storage.Interface;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace ASC.Xmpp.Host
 {
@@ -152,7 +153,7 @@ namespace ASC.Xmpp.Host
                 using (var bitmap = new Bitmap(size, size))
                 using (var g = Graphics.FromImage(bitmap))
                 {
-                    var delta = (image.Width - image.Height)/2;
+                    var delta = (image.Width - image.Height) / 2;
                     var srcRect = new RectangleF(0f, 0f, imageMinSize, imageMinSize);
                     if (image.Width < image.Height) srcRect.Y = -delta;
                     else srcRect.X = delta;

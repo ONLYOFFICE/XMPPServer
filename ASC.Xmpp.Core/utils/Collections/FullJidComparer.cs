@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections;
+
 using ASC.Xmpp.Core.protocol;
 
 namespace ASC.Xmpp.Core.utils.Collections
@@ -53,8 +54,8 @@ namespace ASC.Xmpp.Core.utils.Collections
         {
             if (x is Jid && y is Jid)
             {
-                var jidX = (Jid) x;
-                var jidY = (Jid) y;
+                var jidX = (Jid)x;
+                var jidY = (Jid)y;
 
                 if (jidX.ToString() == jidY.ToString())
                 {

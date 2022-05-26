@@ -62,7 +62,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.commands
         /// </summary>
         public Action Execute
         {
-            get { return (Action) GetAttributeEnum("execute", typeof (Action)); }
+            get { return (Action)GetAttributeEnum("execute", typeof(Action)); }
             set
             {
                 if (value == Action.NONE)

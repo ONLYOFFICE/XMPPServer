@@ -19,6 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+using System;
+using System.Collections.Generic;
+
 using ASC.Core;
 using ASC.Xmpp.Core.protocol;
 using ASC.Xmpp.Core.protocol.Base;
@@ -28,9 +31,7 @@ using ASC.Xmpp.Server.Configuration;
 using ASC.Xmpp.Server.Handler;
 using ASC.Xmpp.Server.Services;
 using ASC.Xmpp.Server.Streams;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+
 using Stream = ASC.Xmpp.Core.protocol.Stream;
 using Uri = ASC.Xmpp.Core.protocol.Uri;
 

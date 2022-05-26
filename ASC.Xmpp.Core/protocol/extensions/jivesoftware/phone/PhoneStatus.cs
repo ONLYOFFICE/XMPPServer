@@ -42,7 +42,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.jivesoftware.phone
         public PhoneStatusType Status
         {
             set { SetAttribute("status", value.ToString()); }
-            get { return (PhoneStatusType) GetAttributeEnum("status", typeof (PhoneStatusType)); }
+            get { return (PhoneStatusType)GetAttributeEnum("status", typeof(PhoneStatusType)); }
         }
     }
 }

@@ -19,7 +19,6 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol.x.data;
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 namespace ASC.Xmpp.Core.protocol.extensions.pubsub
@@ -106,11 +105,11 @@ namespace ASC.Xmpp.Core.protocol.extensions.pubsub
         /// </summary>
         public x.data.Data Data
         {
-            get { return SelectSingleElement(typeof (x.data.Data)) as x.data.Data; }
+            get { return SelectSingleElement(typeof(x.data.Data)) as x.data.Data; }
             set
             {
-                if (HasTag(typeof (x.data.Data)))
-                    RemoveTag(typeof (x.data.Data));
+                if (HasTag(typeof(x.data.Data)))
+                    RemoveTag(typeof(x.data.Data));
 
                 if (value != null)
                     AddChild(value);

@@ -79,13 +79,13 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Actor Actor
         {
-            get { return SelectSingleElement(typeof (Actor)) as Actor; }
+            get { return SelectSingleElement(typeof(Actor)) as Actor; }
 
             set
             {
-                if (HasTag(typeof (Actor)))
+                if (HasTag(typeof(Actor)))
                 {
-                    RemoveTag(typeof (Actor));
+                    RemoveTag(typeof(Actor));
                 }
 
                 if (value != null)
@@ -99,7 +99,7 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Affiliation Affiliation
         {
-            get { return (Affiliation) GetAttributeEnum("affiliation", typeof (Affiliation)); }
+            get { return (Affiliation)GetAttributeEnum("affiliation", typeof(Affiliation)); }
 
             set { SetAttribute("affiliation", value.ToString()); }
         }
@@ -126,7 +126,7 @@ namespace ASC.Xmpp.Core.protocol.x.muc
         /// </summary>
         public Role Role
         {
-            get { return (Role) GetAttributeEnum("role", typeof (Role)); }
+            get { return (Role)GetAttributeEnum("role", typeof(Role)); }
 
             set { SetAttribute("role", value.ToString()); }
         }

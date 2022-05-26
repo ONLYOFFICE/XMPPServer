@@ -136,7 +136,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
         /// <returns> </returns>
         public Node Item(int index)
         {
-            return (Node) List[index];
+            return (Node)List[index];
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace ASC.Xmpp.Core.utils.Xml.Dom
             for (int i = start; i < Count; i++)
             {
                 // Element e = (Element) List[i];
-                var node = (Node) List[i];
+                var node = (Node)List[i];
                 node.m_Index = i;
             }
         }

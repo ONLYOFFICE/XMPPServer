@@ -26,14 +26,14 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ASC.Xmpp.Server.Gateway
 {
-	class TcpSslXmppConnection : TcpXmppConnection
-	{
+    class TcpSslXmppConnection : TcpXmppConnection
+    {
         public TcpSslXmppConnection(Socket socket, long maxPacket, X509Certificate2 cert)
-			: base(socket, maxPacket)
-		{
+            : base(socket, maxPacket)
+        {
             sendStream = receiveStream = new SslStream(receiveStream, false);
             ((SslStream)receiveStream).AuthenticateAsServer(cert, false,
                 SslProtocols.Ssl3 | SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12, false);
-		}
-	}
+        }
+    }
 }

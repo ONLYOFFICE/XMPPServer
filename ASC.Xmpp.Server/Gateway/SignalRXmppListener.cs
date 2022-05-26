@@ -19,8 +19,9 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Server.Utils;
 using System.Collections.Generic;
+
+using ASC.Xmpp.Server.Utils;
 
 namespace ASC.Xmpp.Server.Gateway
 {

@@ -19,15 +19,17 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol;
-using ASC.Xmpp.Core.protocol.iq.disco;
-using XmppData = ASC.Xmpp.Core.protocol.x.data;
-using ASC.Xmpp.Core.protocol.x.muc;
-using ASC.Xmpp.Core.utils.Xml.Dom;
-using ASC.Xmpp.Server.Services.Muc2.Room.Member;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
+using ASC.Xmpp.Core.protocol;
+using ASC.Xmpp.Core.protocol.iq.disco;
+using ASC.Xmpp.Core.protocol.x.muc;
+using ASC.Xmpp.Core.utils.Xml.Dom;
+using ASC.Xmpp.Server.Services.Muc2.Room.Member;
+
+using XmppData = ASC.Xmpp.Core.protocol.x.data;
 
 namespace ASC.Xmpp.Server.Services.Muc2.Room.Settings
 {

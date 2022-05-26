@@ -59,11 +59,11 @@ namespace ASC.Xmpp.Core.protocol.stream
 
         public StartTls StartTls
         {
-            get { return SelectSingleElement(typeof (StartTls)) as StartTls; }
+            get { return SelectSingleElement(typeof(StartTls)) as StartTls; }
             set
             {
-                if (HasTag(typeof (StartTls)))
-                    RemoveTag(typeof (StartTls));
+                if (HasTag(typeof(StartTls)))
+                    RemoveTag(typeof(StartTls));
 
                 if (value != null)
                     AddChild(value);
@@ -72,11 +72,11 @@ namespace ASC.Xmpp.Core.protocol.stream
 
         public Bind Bind
         {
-            get { return SelectSingleElement(typeof (Bind)) as Bind; }
+            get { return SelectSingleElement(typeof(Bind)) as Bind; }
             set
             {
-                if (HasTag(typeof (Bind)))
-                    RemoveTag(typeof (Bind));
+                if (HasTag(typeof(Bind)))
+                    RemoveTag(typeof(Bind));
 
                 if (value != null)
                     AddChild(value);
@@ -100,11 +100,11 @@ namespace ASC.Xmpp.Core.protocol.stream
 
         public Compression Compression
         {
-            get { return SelectSingleElement(typeof (Compression)) as Compression; }
+            get { return SelectSingleElement(typeof(Compression)) as Compression; }
             set
             {
-                if (HasTag(typeof (Compression)))
-                    RemoveTag(typeof (Compression));
+                if (HasTag(typeof(Compression)))
+                    RemoveTag(typeof(Compression));
 
                 if (value != null)
                     AddChild(value);
@@ -113,11 +113,11 @@ namespace ASC.Xmpp.Core.protocol.stream
 
         public Register Register
         {
-            get { return SelectSingleElement(typeof (Register)) as Register; }
+            get { return SelectSingleElement(typeof(Register)) as Register; }
             set
             {
-                if (HasTag(typeof (Register)))
-                    RemoveTag(typeof (Register));
+                if (HasTag(typeof(Register)))
+                    RemoveTag(typeof(Register));
 
                 if (value != null)
                     AddChild(value);
@@ -126,11 +126,11 @@ namespace ASC.Xmpp.Core.protocol.stream
 
         public Mechanisms Mechanisms
         {
-            get { return SelectSingleElement(typeof (Mechanisms)) as Mechanisms; }
+            get { return SelectSingleElement(typeof(Mechanisms)) as Mechanisms; }
             set
             {
-                if (HasTag(typeof (Mechanisms)))
-                    RemoveTag(typeof (Mechanisms));
+                if (HasTag(typeof(Mechanisms)))
+                    RemoveTag(typeof(Mechanisms));
 
                 if (value != null)
                     AddChild(value);

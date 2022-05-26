@@ -19,11 +19,12 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol;
-using ASC.Xmpp.Server.Services.Muc2.Room.Member;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using ASC.Xmpp.Core.protocol;
+using ASC.Xmpp.Server.Services.Muc2.Room.Member;
 
 namespace ASC.Xmpp.Server.Services.Muc2.Room
 {

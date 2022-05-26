@@ -19,18 +19,21 @@
  * http://www.ag-software.de														 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-using ASC.Xmpp.Core.protocol;
-using ASC.Xmpp.Core.protocol.iq.vcard;
 using System.Collections.Generic;
 
-namespace ASC.Xmpp.Server.Storage.Interface {
+using ASC.Xmpp.Core.protocol;
+using ASC.Xmpp.Core.protocol.iq.vcard;
 
-	public interface IVCardStore {
+namespace ASC.Xmpp.Server.Storage.Interface
+{
 
-		void SetVCard(Jid jid, Vcard vcard);
+    public interface IVCardStore
+    {
 
-		Vcard GetVCard(Jid jid, string id = "");
+        void SetVCard(Jid jid, Vcard vcard);
 
-		ICollection<Vcard> Search(Vcard pattern);
-	}
+        Vcard GetVCard(Jid jid, string id = "");
+
+        ICollection<Vcard> Search(Vcard pattern);
+    }
 }

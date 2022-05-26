@@ -158,11 +158,11 @@ namespace ASC.Xmpp.Core.authorization.DigestMD5
         #endregion
 
         public override void Init()
-        {            
+        {
         }
 
         public override void Parse(utils.Xml.Dom.Node e)
-        {            
+        {
         }
 
         #region Utility methods

@@ -87,7 +87,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.shim
         /// <param name="name"> </param>
         public Header GetHeader(string name)
         {
-            return (Header) SelectSingleElement("header", "name", name);
+            return (Header)SelectSingleElement("header", "name", name);
         }
 
         public Header[] GetHeaders()
@@ -98,7 +98,7 @@ namespace ASC.Xmpp.Core.protocol.extensions.shim
             int i = 0;
             foreach (Element e in nl)
             {
-                headers[i] = (Header) e;
+                headers[i] = (Header)e;
                 i++;
             }
             return headers;

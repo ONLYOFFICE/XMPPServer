@@ -78,13 +78,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Error Error
         {
-            get { return SelectSingleElement(typeof (Error)) as Error; }
+            get { return SelectSingleElement(typeof(Error)) as Error; }
 
             set
             {
-                if (HasTag(typeof (Error)))
+                if (HasTag(typeof(Error)))
                 {
-                    RemoveTag(typeof (Error));
+                    RemoveTag(typeof(Error));
                 }
 
                 if (value != null)
@@ -98,17 +98,17 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public bool IsPrimary
         {
-            get { return GetTag(typeof (Primary)) == null ? false : true; }
+            get { return GetTag(typeof(Primary)) == null ? false : true; }
 
             set
             {
                 if (value)
                 {
-                    SetTag(typeof (Primary));
+                    SetTag(typeof(Primary));
                 }
                 else
                 {
-                    RemoveTag(typeof (Primary));
+                    RemoveTag(typeof(Primary));
                 }
             }
         }
@@ -117,13 +117,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public User MucUser
         {
-            get { return SelectSingleElement(typeof (User)) as User; }
+            get { return SelectSingleElement(typeof(User)) as User; }
 
             set
             {
-                if (HasTag(typeof (User)))
+                if (HasTag(typeof(User)))
                 {
-                    RemoveTag(typeof (User));
+                    RemoveTag(typeof(User));
                 }
 
                 if (value != null)
@@ -138,13 +138,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Nickname Nickname
         {
-            get { return SelectSingleElement(typeof (Nickname)) as Nickname; }
+            get { return SelectSingleElement(typeof(Nickname)) as Nickname; }
 
             set
             {
-                if (HasTag(typeof (Nickname)))
+                if (HasTag(typeof(Nickname)))
                 {
-                    RemoveTag(typeof (Nickname));
+                    RemoveTag(typeof(Nickname));
                 }
 
                 if (value != null)
@@ -184,7 +184,7 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public ShowType Show
         {
-            get { return (ShowType) GetTagEnum("show", typeof (ShowType)); }
+            get { return (ShowType)GetTagEnum("show", typeof(ShowType)); }
 
             set
             {
@@ -214,7 +214,7 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public PresenceType Type
         {
-            get { return (PresenceType) GetAttributeEnum("type", typeof (PresenceType)); }
+            get { return (PresenceType)GetAttributeEnum("type", typeof(PresenceType)); }
 
             set
             {
@@ -234,13 +234,13 @@ namespace ASC.Xmpp.Core.protocol.client
         /// </summary>
         public Delay XDelay
         {
-            get { return SelectSingleElement(typeof (Delay)) as Delay; }
+            get { return SelectSingleElement(typeof(Delay)) as Delay; }
 
             set
             {
-                if (HasTag(typeof (Delay)))
+                if (HasTag(typeof(Delay)))
                 {
-                    RemoveTag(typeof (Delay));
+                    RemoveTag(typeof(Delay));
                 }
 
                 if (value != null)

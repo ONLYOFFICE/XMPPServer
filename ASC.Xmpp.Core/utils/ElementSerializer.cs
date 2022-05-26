@@ -22,6 +22,7 @@
 #region using
 
 using System.Text;
+
 using ASC.Xmpp.Core.utils.Xml.Dom;
 
 #endregion

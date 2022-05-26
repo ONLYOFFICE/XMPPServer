@@ -20,6 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
+
 using ASC.Xmpp.Core.IO.Compression.Checksums;
 using ASC.Xmpp.Core.IO.Compression.Streams;
 
@@ -258,7 +259,7 @@ namespace ASC.Xmpp.Core.IO.Compression
 
             /* The header is written in "wrong" byte order */
             header = ((header << 8) | (header >> 8)) & 0xffff;
-            if (header%31 != 0)
+            if (header % 31 != 0)
             {
                 throw new SharpZipBaseException("Header checksum illegal");
             }
@@ -446,9 +447,9 @@ namespace ASC.Xmpp.Core.IO.Compression
                 neededBits -= 8;
             }
 
-            if ((int) adler.Value != readAdler)
+            if ((int)adler.Value != readAdler)
             {
-                throw new SharpZipBaseException("Adler chksum doesn't match: " + (int) adler.Value + " vs. " +
+                throw new SharpZipBaseException("Adler chksum doesn't match: " + (int)adler.Value + " vs. " +
                                                 readAdler);
             }
 
@@ -524,49 +525,49 @@ namespace ASC.Xmpp.Core.IO.Compression
                     return true;
 
                 case DECODE_STORED_LEN1:
+                {
+                    if ((uncomprLen = input.PeekBits(16)) < 0)
                     {
-                        if ((uncomprLen = input.PeekBits(16)) < 0)
-                        {
-                            return false;
-                        }
-
-                        input.DropBits(16);
-                        mode = DECODE_STORED_LEN2;
+                        return false;
                     }
 
-                    goto case DECODE_STORED_LEN2; /* fall through */
+                    input.DropBits(16);
+                    mode = DECODE_STORED_LEN2;
+                }
+
+                goto case DECODE_STORED_LEN2; /* fall through */
 
                 case DECODE_STORED_LEN2:
+                {
+                    int nlen = input.PeekBits(16);
+                    if (nlen < 0)
                     {
-                        int nlen = input.PeekBits(16);
-                        if (nlen < 0)
-                        {
-                            return false;
-                        }
-
-                        input.DropBits(16);
-                        if (nlen != (uncomprLen ^ 0xffff))
-                        {
-                            throw new SharpZipBaseException("broken uncompressed block");
-                        }
-
-                        mode = DECODE_STORED;
+                        return false;
                     }
 
-                    goto case DECODE_STORED; /* fall through */
+                    input.DropBits(16);
+                    if (nlen != (uncomprLen ^ 0xffff))
+                    {
+                        throw new SharpZipBaseException("broken uncompressed block");
+                    }
+
+                    mode = DECODE_STORED;
+                }
+
+                goto case DECODE_STORED; /* fall through */
 
                 case DECODE_STORED:
+                {
+                    int more = outputWindow.CopyStored(input, uncomprLen);
+                    uncomprLen -= more;
+                    if (uncomprLen == 0)
                     {
-                        int more = outputWindow.CopyStored(input, uncomprLen);
-                        uncomprLen -= more;
-                        if (uncomprLen == 0)
-                        {
-                            mode = DECODE_BLOCKS;
-                            return true;
-                        }
-
-                        return !input.IsNeedingInput;
+                        mode = DECODE_BLOCKS;
+                        return true;
                     }
+
+                    return !input.IsNeedingInput;
+                }
 
                 case DECODE_DYN_HEADER:
                     if (!dynHeader.Decode(input))
@@ -618,7 +619,7 @@ namespace ASC.Xmpp.Core.IO.Compression
             }
 
             adler.Update(buffer, offset, len);
-            if ((int) adler.Value != readAdler)
+            if ((int)adler.Value != readAdler)
             {
                 throw new SharpZipBaseException("Wrong adler checksum");
             }
@@ -756,7 +757,7 @@ namespace ASC.Xmpp.Core.IO.Compression
         /// <returns> the adler checksum. </returns>
         public int Adler
         {
-            get { return IsNeedingDictionary ? readAdler : (int) adler.Value; }
+            get { return IsNeedingDictionary ? readAdler : (int)adler.Value; }
         }
 
         /// <summary>

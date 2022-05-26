@@ -81,7 +81,7 @@ namespace ASC.Xmpp.Core.protocol.iq.browse
 
         public BrowseItem[] GetItems()
         {
-            ElementList nl = SelectElements(typeof (BrowseItem));
+            ElementList nl = SelectElements(typeof(BrowseItem));
             var items = new BrowseItem[nl.Count];
             int i = 0;
             foreach (Element item in nl)
