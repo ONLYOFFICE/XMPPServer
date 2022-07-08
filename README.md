@@ -1,6 +1,6 @@
 ## Overview
 
-Talk is an instant messaging app used within ONLYOFFICE. It's based on agsXMPP SDK. 
+Talk is an instant messaging app used within ONLYOFFICE. It's based on [agsXMPP SDK](https://www.ag-software.net/agsxmpp-sdk/ "AG-Software » agsXMPP SDK").
 
 ## Functionality
 
@@ -9,7 +9,7 @@ Talk is an instant messaging app used within ONLYOFFICE. It's based on agsXMPP S
 * Creating chat-rooms,
 * Receiving notifications from ONLYOFFICE.
 
-Talk is a part of **ONLYOFFICE Workspace** that also includes [Document Server(ONLYOFFICE Docs)](https://github.com/ONLYOFFICE/DocumentServer), [Community Server (ONLYOFFICE Groups)](https://github.com/ONLYOFFICE/CommunityServer), and [Mail Server](https://github.com/ONLYOFFICE/Docker-MailServer). 
+Talk is a part of **ONLYOFFICE Workspace** that also includes [Document Server(ONLYOFFICE Docs)](https://github.com/ONLYOFFICE/DocumentServer), [Community Server (ONLYOFFICE Groups)](https://github.com/ONLYOFFICE/CommunityServer), and [Mail Server](https://github.com/ONLYOFFICE/Docker-MailServer).
 
 ## Documentation
 
